@@ -2,8 +2,14 @@
 
 Android widget to display PDF documents in your Activities or Fragments.
 
-Usage
------
+Installation
+------------
+
+hopefully, the library will be available soon as a gradle dependency.
+In the meanwhile, you can checkout the source.
+
+Usage - Remote PDF's
+--------------------
 
 Use **RemotePDFViewPager** to load from remote URLs
 
@@ -44,6 +50,8 @@ Use **RemotePDFViewPager** to load from remote URLs
         adapter.close();
     }
 
+Usage - Local PDF's
+-------------------
 
 Use **PDFViewPager** class to load PDF from assets
 
@@ -85,7 +93,7 @@ TODOs
 Developed By
 ------------
 
-* Olmo Gallegos Hernández - [@voghDev][1] - [mobiledevstories.com][10]
+* Olmo Gallegos Hernández - [@voghDev][9] - [mobiledevstories.com][10]
 
 <a href="http://twitter.com/voghDev">
   <img alt="Follow me on Twitter" src="http://imageshack.us/a/img812/3923/smallth.png" />
@@ -114,10 +122,10 @@ Contributing
 ------------
 
     fork the project into your GitHub account
-    checkout your project's fork
-    add your changes
-    git commit your changes to your repo, then git push
-    review your code and send me a pull request once it is ready
+    checkout your GitHub repo for the project
+    implement your changes
+    commit your changes, push them
+    review your code and send me a pull request if you consider it
 
 [8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main
 [9]: http://twitter.com/voghDev
