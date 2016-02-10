@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
@@ -26,7 +27,7 @@ import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 /**
  * Created by olmo on 9/02/16.
  */
-public class AssetOnXMLActivity extends Activity
+public class AssetOnXMLActivity extends AppCompatActivity
 {
     PDFViewPager pdfViewPager;
 

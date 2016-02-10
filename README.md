@@ -19,13 +19,15 @@ Use **RemotePDFViewPager** to load from remote URLs
 
 2.- Create a **RemotePDFViewPager** object
 
-        RemotePDFViewPager remotePDFViewPager =
-              new RemotePDFViewPager(context, "http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf", this);
+    RemotePDFViewPager remotePDFViewPager =
+          new RemotePDFViewPager(context, "http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf", this);
 
-3.- Wait for callbacks to be called.
+3.- Configure these callbacks and they will be called on the each situation.
 
     @Override
     public void onSuccess(String url, String destinationPath) {
+        // That's the positive case. PDF Download went fine
+
         adapter = new PDFPagerAdapter(this, "AdobeXMLFormsSamples.pdf");
         remotePDFViewPager.setAdapter(adapter);
         setContentView(remotePDFViewPager);
@@ -67,10 +69,10 @@ Use **PDFViewPager** class to load PDF from assets
 2b.- Or directly, declare it on XML
 
     <es.voghdev.pdfviewpager.library.PDFViewPager
-      android:id="@+id/pdfViewPager"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:assetFileName="sample.pdf"/>
+        android:id="@+id/pdfViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:assetFileName="sample.pdf"/>
 
 3.- Release adapter in *onDestroy*
 
@@ -86,8 +88,8 @@ TODOs
 
 - [ ] Load PDF documents from SD card
 - [ ] Make PDF documents zoomable with pinch and double tap
-- [ ] Unify all features in only one PDFViewPager class
-- [ ] Support API Levels under 21, invoking system PDF intent.
+- [ ] Unify all features in only one **PDFViewPager** class
+- [ ] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [ ] UI tests
 
 Developed By
