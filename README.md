@@ -9,7 +9,7 @@ Use **RemotePDFViewPager** to load from remote URLs
 
 1.- Make your Activity or Fragment implement DownloadFile.Listener
 
-    public class RemotePDFActivity extends AppCompatActivity implements DownloadFile.Listener
+    public class RemotePDFActivity extends AppCompatActivity implements DownloadFile.Listener {
 
 2.- Create a **RemotePDFViewPager** object
 
@@ -20,7 +20,7 @@ Use **RemotePDFViewPager** to load from remote URLs
 
     @Override
     public void onSuccess(String url, String destinationPath) {
-        adapter = new PDFPagerAdapter(this, FileUtil.extractFileNameFromURL(url));
+        adapter = new PDFPagerAdapter(this, "AdobeXMLFormsSamples.pdf");
         remotePDFViewPager.setAdapter(adapter);
         setContentView(remotePDFViewPager);
     }
@@ -35,9 +35,43 @@ Use **RemotePDFViewPager** to load from remote URLs
         // You will get download progress here
     }
 
-# More examples coming soon...
+4.- Don't forget to close adapter in *onDestroy* to release all resources
 
-Check out sample project for further information
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        adapter.close();
+    }
+
+
+Use **PDFViewPager** class to load PDF from assets
+
+1.- Copy your assets to cache directory (lib will do that for you in future versions)
+
+    CopyAsset copyAsset = new CopyAssetThreadImpl(context, new Handler(), null); // You won't need 3rd parameter this time
+    copyAsset.copy(asset, new File(getCacheDir(), "sample.pdf").getAbsolutePath());
+
+2.- Create your **PDFViewPager** passing your PDF file, located in *assets* (see [sample][8])
+
+    pdfViewPager = new PDFViewPager(this, "sample.pdf");
+
+2b.- Or directly, declare it on XML
+
+    <es.voghdev.pdfviewpager.library.PDFViewPager
+      android:id="@+id/pdfViewPager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:assetFileName="sample.pdf"/>
+
+3.- Release adapter in *onDestroy*
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
+    }
 
 TODOs
 -----
@@ -85,5 +119,6 @@ Contributing
     git commit your changes to your repo, then git push
     review your code and send me a pull request once it is ready
 
+[8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main
 [9]: http://twitter.com/voghDev
 [10]: http://www.mobiledevstories.com
