@@ -5,12 +5,35 @@ Android widget to display PDF documents in your Activities or Fragments.
 Usage
 -----
 
-Use *RemotePDFViewPager* to load from remote URLs
+Use **RemotePDFViewPager** to load from remote URLs
 
-    RemotePDFViewPager remotePDFViewPager =
-      new RemotePDFViewPager(context,
-         "",
-         listener);
+1.- Make your Activity or Fragment implement DownloadFile.Listener
+
+    public class RemotePDFActivity extends AppCompatActivity implements DownloadFile.Listener
+
+2.- Create a **RemotePDFViewPager** object
+
+        RemotePDFViewPager remotePDFViewPager =
+              new RemotePDFViewPager(context, "http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf", this);
+
+3.- Wait for callbacks to be called.
+
+    @Override
+    public void onSuccess(String url, String destinationPath) {
+        adapter = new PDFPagerAdapter(this, FileUtil.extractFileNameFromURL(url));
+        remotePDFViewPager.setAdapter(adapter);
+        setContentView(remotePDFViewPager);
+    }
+
+    @Override
+    public void onFailure(Exception e) {
+        // This will be called if download fails
+    }
+
+    @Override
+    public void onProgressUpdate(int progress, int total) {
+        // You will get download progress here
+    }
 
 # More examples coming soon...
 
