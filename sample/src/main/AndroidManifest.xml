@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AssetOnXMLActivity" android:theme="@style/Base.Theme.AppCompat"/>
+        <activity android:name=".AssetOnSDActivity" android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".RemotePDFActivity" android:theme="@style/Base.Theme.AppCompat"/>
     </application>
 </manifest>

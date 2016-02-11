@@ -59,9 +59,20 @@ public class PDFPagerAdapter extends PagerAdapter {
     }
 
     protected ParcelFileDescriptor getSeekableFileDescriptor(String path) throws IOException {
-        File pdfCopy = new File(context.getCacheDir(), path);
-        ParcelFileDescriptor pfd = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
+        File pdfCopy;
+        ParcelFileDescriptor pfd;
+        if(isAnAsset(path)){
+            pdfCopy = new File(context.getCacheDir(), path);
+        }else{
+            pdfCopy = new File(path);
+            //pfd = context.getContentResolver().openFileDescriptor(Uri.parse(path), "rw");
+        }
+        pfd = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
         return pfd;
+    }
+
+    private boolean isAnAsset(String path) {
+        return !path.startsWith("/");
     }
 
     @Override

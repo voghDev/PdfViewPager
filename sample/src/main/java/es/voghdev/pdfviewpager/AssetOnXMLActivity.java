@@ -15,7 +15,6 @@
  */
 package es.voghdev.pdfviewpager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,17 +23,13 @@ import android.support.v7.app.AppCompatActivity;
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 
-/**
- * Created by olmo on 9/02/16.
- */
-public class AssetOnXMLActivity extends AppCompatActivity
-{
+public class AssetOnXMLActivity extends AppCompatActivity{
     PDFViewPager pdfViewPager;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setTitle(R.string.asset_on_xml);
         setContentView(R.layout.activity_asset_on_xml);
 
         pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
@@ -44,7 +39,7 @@ public class AssetOnXMLActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
 
-        ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
+        ((PDFPagerAdapter) pdfViewPager.getAdapter()).close();
     }
 
     public static void open(Context context){

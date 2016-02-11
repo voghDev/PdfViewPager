@@ -15,7 +15,6 @@
  */
 package es.voghdev.pdfviewpager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,6 +39,7 @@ public class RemotePDFActivity extends AppCompatActivity implements DownloadFile
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setTitle(R.string.remote_pdf_example);
         setContentView(R.layout.activity_remote_pdf);
 
         root = (LinearLayout) findViewById(R.id.remote_pdf_root);

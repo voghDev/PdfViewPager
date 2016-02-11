@@ -15,44 +15,42 @@
  */
 package es.voghdev.pdfviewpager;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import java.io.File;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class AssetOnSDActivity extends AppCompatActivity{
     PDFViewPager pdfViewPager;
-    PDFPagerAdapter adapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setTitle(R.string.std_example);
-        setContentView(R.layout.activity_main);
+        setTitle(R.string.asset_on_sd);
+        setContentView(R.layout.activity_asset_on_sd);
 
-        pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
-
-        adapter = new PDFPagerAdapter(this, "sample.pdf");
-        pdfViewPager.setAdapter(adapter);
-
-        openAllSamples();
+        pdfViewPager = new PDFViewPager(this, getPdfPathOnSDCard());
     }
 
-    private void openAllSamples() {
-        RemotePDFActivity.open(this);
-        AssetOnXMLActivity.open(this);
-        AssetOnSDActivity.open(this);
+    private String getPdfPathOnSDCard() {
+        File f = new File(getExternalFilesDir("pdf"), "adobe.pdf");
+        return f.getAbsolutePath();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        if(adapter != null) {
-            adapter.close();
-            adapter = null;
-        }
+        ((PDFPagerAdapter) pdfViewPager.getAdapter()).close();
+    }
+
+    public static void open(Context context){
+        Intent i = new Intent(context, AssetOnSDActivity.class);
+        context.startActivity(i);
     }
 }
