@@ -11,6 +11,8 @@ In the meanwhile, you can checkout the source.
 Usage - Remote PDF's
 --------------------
 
+![RemotePDFScreenshot][remotePDFScreenshot]
+
 Use **RemotePDFViewPager** to load from remote URLs
 
 1.- Make your Activity or Fragment implement DownloadFile.Listener
@@ -54,6 +56,8 @@ Use **RemotePDFViewPager** to load from remote URLs
 
 Usage - Local PDF's
 -------------------
+
+![LocalPDFScreenshot][localPDFScreenshot]
 
 Use **PDFViewPager** class to load PDF from assets
 
@@ -129,6 +133,8 @@ Contributing
     commit your changes, push them
     review your code and send me a pull request if you consider it
 
+[remotePDFScreenshot]: ./screenshots/remote.png
+[localPDFScreenshot]: ./screenshots/local.png
 [8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main
 [9]: http://twitter.com/voghDev
 [10]: http://www.mobiledevstories.com
