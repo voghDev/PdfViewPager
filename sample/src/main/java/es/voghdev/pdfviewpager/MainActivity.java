@@ -15,6 +15,7 @@
  */
 package es.voghdev.pdfviewpager;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -36,14 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new PDFPagerAdapter(this, "sample.pdf");
         pdfViewPager.setAdapter(adapter);
-
-        openAllSamples();
-    }
-
-    private void openAllSamples() {
-        RemotePDFActivity.open(this);
-        AssetOnXMLActivity.open(this);
-        AssetOnSDActivity.open(this);
     }
 
     @Override

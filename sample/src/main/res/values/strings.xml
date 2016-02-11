@@ -8,4 +8,8 @@
     <string name="asset_on_xml">Asset on XML example</string>
     <string name="remote_pdf_example">Remote PDF Example</string>
     <string name="std_example">PdfViewPager example</string>
+    <string name="ready">Ready to download</string>
+    <string name="legacy_pdf">Legacy PDF Example (Pre-Lollipop)</string>
+    <string name="downloading">Downloading...</string>
+    <string name="downloaded_wait">Download Complete. Now opening PDF, Wait a moment please...</string>
 </resources>
