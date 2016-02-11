@@ -11,7 +11,7 @@ In the meanwhile, you can checkout the source.
 Usage - Remote PDF's
 --------------------
 
-![RemotePDFScreenshot][remotePDFScreenshot]
+![](http://imgur.com/3hVfayy)
 
 Use **RemotePDFViewPager** to load from remote URLs
 
@@ -57,7 +57,7 @@ Use **RemotePDFViewPager** to load from remote URLs
 Usage - Local PDF's
 -------------------
 
-![LocalPDFScreenshot][localPDFScreenshot]
+![](http://imgur.com/YXPDf4S)
 
 Use **PDFViewPager** class to load PDF from assets
 
