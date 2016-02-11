@@ -89,7 +89,7 @@ TODOs
 - [ ] Load PDF documents from SD card
 - [ ] Make PDF documents zoomable with pinch and double tap
 - [ ] Unify all features in only one **PDFViewPager** class
-- [ ] Support API Levels under 21, by downloading PDF and invoking system native intent.
+- [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [ ] UI tests
 
 Developed By
