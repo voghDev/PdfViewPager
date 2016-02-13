@@ -11,7 +11,7 @@ In the meanwhile, you can checkout the source.
 Usage - Remote PDF's
 --------------------
 
-![](http://imgur.com/3hVfayy)
+![Screenshot][remotePDFScreenshot]
 
 Use **RemotePDFViewPager** to load from remote URLs
 
@@ -57,7 +57,7 @@ Use **RemotePDFViewPager** to load from remote URLs
 Usage - Local PDF's
 -------------------
 
-![](http://imgur.com/YXPDf4S)
+![Screenshot][localPDFScreenshot]
 
 Use **PDFViewPager** class to load PDF from assets
 
@@ -133,8 +133,8 @@ Contributing
     commit your changes, push them
     review your code and send me a pull request if you consider it
 
-[remotePDFScreenshot]: ./screenshots/remote.png
-[localPDFScreenshot]: ./screenshots/local.png
+[remotePDFScreenshot]: ./screenshots/remote.gif
+[localPDFScreenshot]: ./screenshots/local.gif
 [8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main
 [9]: http://twitter.com/voghDev
 [10]: http://www.mobiledevstories.com
