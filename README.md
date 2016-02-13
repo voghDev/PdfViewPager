@@ -87,10 +87,26 @@ Use **PDFViewPager** class to load PDF from assets
         ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
     }
 
+Usage - PDF's on SD card
+------------------------
+
+![Screenshot][sdcardPDFScreenshot]
+
+Use **PDFViewPager** class to load PDF from your SD card
+
+1.- Create a **PDFViewPager** object, passing the file location in your SD card
+
+    PDFViewPager pdfViewPager = new PDFViewPager(context, getPdfPathOnSDCard());
+
+    protected String getPdfPathOnSDCard() {
+        File f = new File(getExternalFilesDir("pdf"), "adobe.pdf");
+        return f.getAbsolutePath();
+    }
+
 TODOs
 -----
 
-- [ ] Load PDF documents from SD card
+- [X] Load PDF documents from SD card
 - [ ] Make PDF documents zoomable with pinch and double tap
 - [ ] Unify all features in only one **PDFViewPager** class
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
@@ -135,6 +151,7 @@ Contributing
 
 [remotePDFScreenshot]: ./screenshots/remote.gif
 [localPDFScreenshot]: ./screenshots/local.gif
+[sdcardPDFScreenshot]: ./screenshots/sdcard.gif
 [8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main
 [9]: http://twitter.com/voghDev
 [10]: http://www.mobiledevstories.com

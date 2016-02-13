@@ -46,7 +46,7 @@ public class AssetOnSDActivity extends AppCompatActivity{
         copyAssetsOnSDCard();
     }
 
-    private void copyAssetsOnSDCard() {
+    protected void copyAssetsOnSDCard() {
         final Context context = this;
         CopyAsset copyAsset = new CopyAssetThreadImpl(getApplicationContext(), new Handler(), new CopyAsset.Listener() {
             @Override
@@ -67,7 +67,7 @@ public class AssetOnSDActivity extends AppCompatActivity{
         }
     }
 
-    private String getPdfPathOnSDCard() {
+    protected String getPdfPathOnSDCard() {
         File f = new File(pdfFolder, "adobe.pdf");
         return f.getAbsolutePath();
     }
