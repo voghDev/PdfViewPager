@@ -24,7 +24,7 @@ Use **RemotePDFViewPager** to load from remote URLs
     RemotePDFViewPager remotePDFViewPager =
           new RemotePDFViewPager(context, "http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf", this);
 
-3.- Configure these callbacks and they will be called on the each situation.
+3.- Configure the corresponding callbacks and they will be called on each situation.
 
     @Override
     public void onSuccess(String url, String destinationPath) {
