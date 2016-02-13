@@ -37,7 +37,6 @@ public class SampleApplication extends Application{
         CopyAsset copyAsset = new CopyAssetThreadImpl(this, new Handler(), null);
         for(String asset : sampleAssets){
             copyAsset.copy(asset, new File(getCacheDir(), asset).getAbsolutePath());
-            copyAsset.copy(asset, new File(getExternalFilesDir("pdf"), asset).getAbsolutePath());
         }
     }
 }

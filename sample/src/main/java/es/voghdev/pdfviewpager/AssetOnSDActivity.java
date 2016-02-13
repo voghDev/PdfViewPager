@@ -18,15 +18,23 @@ package es.voghdev.pdfviewpager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.io.File;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.asset.CopyAsset;
+import es.voghdev.pdfviewpager.library.asset.CopyAssetThreadImpl;
 
 public class AssetOnSDActivity extends AppCompatActivity{
+    final String[] sampleAssets = {"adobe.pdf","sample.pdf"};
+
     PDFViewPager pdfViewPager;
+    File pdfFolder;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -34,11 +42,33 @@ public class AssetOnSDActivity extends AppCompatActivity{
         setTitle(R.string.asset_on_sd);
         setContentView(R.layout.activity_asset_on_sd);
 
-        pdfViewPager = new PDFViewPager(this, getPdfPathOnSDCard());
+        pdfFolder = Environment.getExternalStorageDirectory();
+        copyAssetsOnSDCard();
+    }
+
+    private void copyAssetsOnSDCard() {
+        final Context context = this;
+        CopyAsset copyAsset = new CopyAssetThreadImpl(getApplicationContext(), new Handler(), new CopyAsset.Listener() {
+            @Override
+            public void success(String assetName, String destinationPath) {
+                pdfViewPager = new PDFViewPager(context, getPdfPathOnSDCard());
+                setContentView(pdfViewPager);
+            }
+
+            @Override
+            public void failure(Exception e) {
+                e.printStackTrace();
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        for(String asset : sampleAssets){
+            copyAsset.copy(asset, new File(pdfFolder, asset).getAbsolutePath());
+        }
     }
 
     private String getPdfPathOnSDCard() {
-        File f = new File(getExternalFilesDir("pdf"), "adobe.pdf");
+        File f = new File(pdfFolder, "adobe.pdf");
         return f.getAbsolutePath();
     }
 

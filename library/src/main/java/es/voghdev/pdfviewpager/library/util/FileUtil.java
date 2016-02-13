@@ -27,9 +27,10 @@ import java.io.OutputStream;
 import es.voghdev.pdfviewpager.library.BuildConfig;
 
 public class FileUtil {
-    public static boolean copyAsset(Context ctx, String assetName, String destinationPath){
-        try{
+    public static boolean copyAsset(Context ctx, String assetName, String destinationPath) throws IOException{
             InputStream in = ctx.getAssets().open(assetName);
+            File f = new File(destinationPath);
+            f.createNewFile();
             OutputStream out = new FileOutputStream(new File(destinationPath));
 
             byte[] buffer = new byte[1024];
@@ -39,11 +40,6 @@ public class FileUtil {
             }
             in.close();
             out.close();
-
-        }catch(IOException e){
-            e.printStackTrace();
-            return false;
-        }
 
         return true;
     }

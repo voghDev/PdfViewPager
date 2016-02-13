@@ -18,6 +18,8 @@ package es.voghdev.pdfviewpager.library.asset;
 import android.content.Context;
 import android.os.Handler;
 
+import java.io.IOException;
+
 import es.voghdev.pdfviewpager.library.util.FileUtil;
 
 public class CopyAssetThreadImpl implements CopyAsset {
@@ -37,8 +39,12 @@ public class CopyAssetThreadImpl implements CopyAsset {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                FileUtil.copyAsset(context, assetName, destinationPath);
-                notifySuccess(assetName, destinationPath);
+                try {
+                    FileUtil.copyAsset(context, assetName, destinationPath);
+                    notifySuccess(assetName, destinationPath);
+                }catch(IOException e) {
+                    notifyError(e);
+                }
             }
         }).start();
     }
@@ -51,6 +57,18 @@ public class CopyAssetThreadImpl implements CopyAsset {
             @Override
             public void run() {
                 listener.success(assetName, destinationPath);
+            }
+        });
+    }
+
+    private void notifyError(final IOException e) {
+        if(uiThread == null)
+            return;
+
+        uiThread.post(new Runnable() {
+            @Override
+            public void run() {
+                listener.failure(e);
             }
         });
     }

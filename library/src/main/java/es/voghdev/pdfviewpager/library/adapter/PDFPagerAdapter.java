@@ -19,9 +19,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
+import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +33,9 @@ import android.widget.ImageView;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.net.URI;
 
+import es.voghdev.pdfviewpager.library.BuildConfig;
 import es.voghdev.pdfviewpager.library.R;
 
 public class PDFPagerAdapter extends PagerAdapter {
@@ -55,19 +59,27 @@ public class PDFPagerAdapter extends PagerAdapter {
             inflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         }catch(IOException e){
             e.printStackTrace();
+            Log.e("PDFPagerAdapter", e.getMessage());
         }
     }
 
     protected ParcelFileDescriptor getSeekableFileDescriptor(String path) throws IOException {
-        File pdfCopy;
         ParcelFileDescriptor pfd;
+
+        File pdfCopy = new File(path);
+        if(pdfCopy.exists()){
+            pfd = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
+            return pfd;
+        }
+
         if(isAnAsset(path)){
             pdfCopy = new File(context.getCacheDir(), path);
+            pfd = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
         }else{
-            pdfCopy = new File(path);
-            //pfd = context.getContentResolver().openFileDescriptor(Uri.parse(path), "rw");
+            URI uri = URI.create(String.format("file://%s", path));
+            pfd = context.getContentResolver().openFileDescriptor(Uri.parse(uri.toString()), "rw");
         }
-        pfd = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
+
         return pfd;
     }
 

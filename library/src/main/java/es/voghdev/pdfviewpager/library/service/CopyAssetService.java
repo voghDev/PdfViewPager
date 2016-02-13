@@ -19,6 +19,8 @@ import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 
+import java.io.IOException;
+
 import es.voghdev.pdfviewpager.library.BuildConfig;
 import es.voghdev.pdfviewpager.library.util.FileUtil;
 
@@ -53,6 +55,10 @@ public class CopyAssetService extends IntentService {
     }
 
     private void handleActionCopyAsset(String asset, String destinationPath) {
-        FileUtil.copyAsset(this, asset, destinationPath);
+        try {
+            FileUtil.copyAsset(this, asset, destinationPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
