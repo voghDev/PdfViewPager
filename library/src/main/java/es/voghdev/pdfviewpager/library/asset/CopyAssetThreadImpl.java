@@ -34,6 +34,11 @@ public class CopyAssetThreadImpl implements CopyAsset {
             this.listener = listener;
     }
 
+    public CopyAssetThreadImpl(Context context, Handler uiThread) {
+        this.context = context;
+        this.uiThread = uiThread;
+    }
+
     @Override
     public void copy(final String assetName, final String destinationPath) {
         new Thread(new Runnable() {

@@ -59,13 +59,13 @@ Use **RemotePDFViewPager** to load from remote URLs
 Usage - Local PDF's
 -------------------
 
-![Screenshot][localPDFScreenshot]
-
 Use **PDFViewPager** class to load PDF from assets
+
+![Screenshot][localPDFScreenshot]
 
 1.- Copy your assets to cache directory (lib will do that for you in future versions)
 
-    CopyAsset copyAsset = new CopyAssetThreadImpl(context, new Handler(), null); // You won't need 3rd parameter this time
+    CopyAsset copyAsset = new CopyAssetThreadImpl(context, new Handler());
     copyAsset.copy(asset, new File(getCacheDir(), "sample.pdf").getAbsolutePath());
 
 2.- Create your **PDFViewPager** passing your PDF file, located in *assets* (see [sample][8])

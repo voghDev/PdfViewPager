@@ -34,7 +34,7 @@ public class SampleApplication extends Application{
     }
 
     private void initSampleAssets() {
-        CopyAsset copyAsset = new CopyAssetThreadImpl(this, new Handler(), null);
+        CopyAsset copyAsset = new CopyAssetThreadImpl(this, new Handler());
         for(String asset : sampleAssets){
             copyAsset.copy(asset, new File(getCacheDir(), asset).getAbsolutePath());
         }
