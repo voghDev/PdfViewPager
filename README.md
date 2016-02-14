@@ -13,17 +13,8 @@ Installation
 hopefully, the library will be available soon as a gradle dependency.
 In the meanwhile, you can checkout the source.
 
-Usage
------
-
-With PDFViewPager you can display
-
-[Remote PDFs from an external URL](#Remote PDFs)
-[Local PDFs attached as assets](#Local PDFs as assets)
-[Local PDFs stored in your SD card](#Local PDFs on SD card)
-
-# Remote PDFs
---------------
+Usage - Remote PDF's
+--------------------
 
 ![Screenshot][remotePDFScreenshot]
 
@@ -68,8 +59,8 @@ Use **RemotePDFViewPager** to load from remote URLs
         adapter.close();
     }
 
-# Local PDFs as assets
-----------------------
+Usage - Local PDF's
+-------------------
 
 Use **PDFViewPager** class to load PDF from assets
 
@@ -101,8 +92,8 @@ Use **PDFViewPager** class to load PDF from assets
         ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
     }
 
-# Local PDFs on SD card
------------------------
+Usage - PDF's on SD card
+------------------------
 
 ![Screenshot][sdcardPDFScreenshot]
 
