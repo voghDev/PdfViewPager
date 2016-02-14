@@ -1,7 +1,10 @@
 # PdfViewPager
 
 Android widget to display PDF documents in your Activities or Fragments.
-**Important note:** PDFViewPager uses *PdfRenderer* class, which works only on API 21 or older.
+
+Important note: **PDFViewPager** uses *PdfRenderer* class, which works **only on API 21 or older**.
+See [PDFRenderer documentation][6].
+
 If you are targeting pre-Lollipop devices, have a look at the [legacy sample][7]
 
 Installation
@@ -10,8 +13,17 @@ Installation
 hopefully, the library will be available soon as a gradle dependency.
 In the meanwhile, you can checkout the source.
 
-Usage - Remote PDF's
---------------------
+Usage
+-----
+
+With PDFViewPager you can display
+
+[Remote PDFs from an external URL](#Remote PDFs)
+[Local PDFs attached as assets](#Local PDFs as assets)
+[Local PDFs stored in your SD card](#Local PDFs on SD card)
+
+# Remote PDFs
+--------------
 
 ![Screenshot][remotePDFScreenshot]
 
@@ -56,8 +68,8 @@ Use **RemotePDFViewPager** to load from remote URLs
         adapter.close();
     }
 
-Usage - Local PDF's
--------------------
+# Local PDFs as assets
+----------------------
 
 Use **PDFViewPager** class to load PDF from assets
 
@@ -72,7 +84,7 @@ Use **PDFViewPager** class to load PDF from assets
 
     pdfViewPager = new PDFViewPager(this, "sample.pdf");
 
-2b.- Or directly, declare it on XML
+2b.- Or directly, declare it on your XML layout
 
     <es.voghdev.pdfviewpager.library.PDFViewPager
         android:id="@+id/pdfViewPager"
@@ -89,8 +101,8 @@ Use **PDFViewPager** class to load PDF from assets
         ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
     }
 
-Usage - PDF's on SD card
-------------------------
+# Local PDFs on SD card
+-----------------------
 
 ![Screenshot][sdcardPDFScreenshot]
 
@@ -154,7 +166,8 @@ Contributing
 [remotePDFScreenshot]: ./screenshots/remote.gif
 [localPDFScreenshot]: ./screenshots/local.gif
 [sdcardPDFScreenshot]: ./screenshots/sdcard.gif
+[6]: http://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html
 [7]: https://github.com/voghDev/PdfViewPager/blob/master/sample/src/main/java/es/voghdev/pdfviewpager/LegacyPDFActivity.java
-[8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main
+[8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main/java/es/voghdev/pdfviewpager
 [9]: http://twitter.com/voghDev
 [10]: http://www.mobiledevstories.com
