@@ -35,7 +35,6 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.net.URI;
 
-import es.voghdev.pdfviewpager.library.BuildConfig;
 import es.voghdev.pdfviewpager.library.R;
 
 public class PDFPagerAdapter extends PagerAdapter {
@@ -117,9 +116,8 @@ public class PDFPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        Bitmap b = bitmaps.get(position).get();
-        if(b != null && !b.isRecycled())
-            b.recycle();
+        // b.recycle() causes crashes if called here.
+        // All bitmaps are recycled in close().
     }
 
     @SuppressWarnings("NewApi")
@@ -129,10 +127,19 @@ public class PDFPagerAdapter extends PagerAdapter {
             renderer.close();
     }
 
-    private void releaseAllBitmaps() {
-        for(int i=0; bitmaps != null && i<bitmaps.size(); ++i)
-            bitmaps.get(bitmaps.keyAt(i)).get().recycle();
+    protected void releaseAllBitmaps() {
+        for(int i=0; bitmaps != null && i<bitmaps.size(); ++i) {
+            recycleBitmap(bitmaps.keyAt(i));
+        }
         bitmaps.clear();
+    }
+
+    protected void recycleBitmap(int position){
+        Bitmap b = bitmaps.get(position).get();
+        if(b != null && !b.isRecycled()) {
+            b.recycle();
+            bitmaps.remove(position);
+        }
     }
 
     @Override

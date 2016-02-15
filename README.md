@@ -20,16 +20,22 @@ Usage - Remote PDF's
 
 Use **RemotePDFViewPager** to load from remote URLs
 
-1.- Make your Activity or Fragment implement DownloadFile.Listener
+1.- Add INTERNET, READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE permissions on your AndroidManifest.xml
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+2.- Make your Activity or Fragment implement DownloadFile.Listener
 
     public class RemotePDFActivity extends AppCompatActivity implements DownloadFile.Listener {
 
-2.- Create a **RemotePDFViewPager** object
+3.- Create a **RemotePDFViewPager** object
 
     RemotePDFViewPager remotePDFViewPager =
           new RemotePDFViewPager(context, "http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf", this);
 
-3.- Configure the corresponding callbacks and they will be called on each situation.
+4.- Configure the corresponding callbacks and they will be called on each situation.
 
     @Override
     public void onSuccess(String url, String destinationPath) {
@@ -48,9 +54,10 @@ Use **RemotePDFViewPager** to load from remote URLs
     @Override
     public void onProgressUpdate(int progress, int total) {
         // You will get download progress here
+        // Always on UI Thread so feel free to update your views here
     }
 
-4.- Don't forget to close adapter in *onDestroy* to release all resources
+5.- Don't forget to close adapter in *onDestroy* to release all resources
 
     @Override
     protected void onDestroy() {
