@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">PdfViewPager samples</string>
     <string name="remote_pdf_url">Remote PDF URL</string>
     <string name="sample_pdf_url">http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf</string>
     <string name="download">Tap to start download</string>
     <string name="asset_on_sd">Asset on SD card example</string>
     <string name="asset_on_xml">Asset on XML example</string>
     <string name="remote_pdf_example">Remote PDF Example</string>
-    <string name="std_example">PdfViewPager example</string>
+    <string name="std_example">PdfViewPager examples</string>
     <string name="ready">Ready to download</string>
     <string name="legacy_pdf">Legacy PDF Example (Pre-Lollipop)</string>
     <string name="downloading">Downloading...</string>
     <string name="downloaded_wait">Download Complete. Now opening PDF, Wait a moment please...</string>
+    <string name="flaticon_attr">BTW, all icons are from www.flaticon.com</string>
+    <string name="txt1">This is a PDF document, declared on XML, set up by code.</string>
+    <string name="sample2_txt">Remote PDF sample</string>
+    <string name="sample3_txt">PDF on your SD sample</string>
+    <string name="sample4_txt">PDF as asset (code) sample</string>
+    <string name="sample5_txt">PDF as asset (XML) sample</string>
+    <string name="sample6_txt">PDF for pre-Lollipop devices</string>
+    <string name="dummy_msg">This sample PDF here &gt;&gt;\nis declared by code</string>
 </resources>

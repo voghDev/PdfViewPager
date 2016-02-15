@@ -18,6 +18,8 @@ package es.voghdev.pdfviewpager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Toast;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
@@ -48,4 +50,26 @@ public class MainActivity extends AppCompatActivity {
             adapter = null;
         }
     }
+
+    // region OnClick handlers
+    public void onClickSample2(View v){
+        RemotePDFActivity.open(this);
+    }
+
+    public void onClickSample3(View v){
+        AssetOnSDActivity.open(this);
+    }
+
+    public void onClickSample4(View v){
+        Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
+    }
+
+    public void onClickSample5(View v){
+        AssetOnXMLActivity.open(this);
+    }
+
+    public void onClickSample6(View v){
+        LegacyPDFActivity.open(this);
+    }
+    // endregion
 }

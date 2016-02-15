@@ -1,22 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-    >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This is a PDF document, set up by code"
-        />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt1"/>
 
-    <es.voghdev.pdfviewpager.library.PDFViewPager
-        android:id="@+id/pdfViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtFlatIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/flaticon_attr"
+            android:autoLink="web"/>
 
+        <Button
+            android:id="@+id/btnSample2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sample2_txt"
+            android:onClick="onClickSample2"/>
+
+        <Button
+            android:id="@+id/btnSample3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sample3_txt"
+            android:onClick="onClickSample3"/>
+
+        <Button
+            android:id="@+id/btnSample4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sample4_txt"
+            android:onClick="onClickSample4"/>
+
+        <Button
+            android:id="@+id/btnSample5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sample5_txt"
+            android:onClick="onClickSample5"/>
+
+        <Button
+            android:id="@+id/btnSample6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sample6_txt"
+            android:onClick="onClickSample6"/>
+
+        <es.voghdev.pdfviewpager.library.PDFViewPager
+            android:id="@+id/pdfViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"/>
+    </LinearLayout>
+</ScrollView>
