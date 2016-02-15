@@ -18,6 +18,6 @@
     <string name="sample3_txt">PDF on your SD sample</string>
     <string name="sample4_txt">PDF as asset (code) sample</string>
     <string name="sample5_txt">PDF as asset (XML) sample</string>
-    <string name="sample6_txt">PDF for pre-Lollipop devices</string>
+    <string name="sample6_txt">Pre-lollipop PDF download and launch</string>
     <string name="dummy_msg">This sample PDF here &gt;&gt;\nis declared by code</string>
 </resources>

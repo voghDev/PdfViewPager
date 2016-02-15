@@ -59,7 +59,6 @@ public class LegacyPDFActivity extends AppCompatActivity implements DownloadFile
             }
         });
 
-        openAllSamples();
     }
 
     private void bindViews() {
@@ -71,14 +70,6 @@ public class LegacyPDFActivity extends AppCompatActivity implements DownloadFile
     public static void open(Context context){
         Intent i = new Intent(context, LegacyPDFActivity.class);
         context.startActivity(i);
-    }
-
-    private void openAllSamples() {
-        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ){
-            RemotePDFActivity.open(this);
-            AssetOnXMLActivity.open(this);
-            AssetOnSDActivity.open(this);
-        }
     }
 
     private void launchOpenPDFIntent(String destinationPath) {
