@@ -2,7 +2,7 @@
 
 Android widget to display PDF documents in your Activities or Fragments.
 
-Important note: **PDFViewPager** uses *PdfRenderer* class, which works **only on API 21 or older**.
+Important note: **PDFViewPager** uses *PdfRenderer* class, which works **only on API 21 or later**.
 See [PDFRenderer documentation][6].
 
 If you are targeting pre-Lollipop devices, have a look at the [legacy sample][7]
