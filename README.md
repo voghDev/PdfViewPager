@@ -1,5 +1,7 @@
 # PdfViewPager
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-PdfViewPager-green.svg?style=true)](https://android-arsenal.com/details/1/3155)
+
 Android widget to display PDF documents in your Activities or Fragments.
 
 Important note: **PDFViewPager** uses *PdfRenderer* class, which works **only on API 21 or later**.
