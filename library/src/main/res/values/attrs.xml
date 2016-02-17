@@ -4,4 +4,8 @@
         <attr name="assetFileName" format="string" /> <!-- Load PDF from Asset -->
         <attr name="pdfUrl" format="string" /> <!-- Load PDF from remote URL -->
     </declare-styleable>
+
+    <declare-styleable name="LegacyPDFView">
+
+    </declare-styleable>
 </resources>

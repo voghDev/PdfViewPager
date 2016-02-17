@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+
+    <TextView
+        android:id="@+id/legacy_pdf_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pdfvp_ready_to_download"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        />
+
+    <ProgressBar
+        android:id="@+id/legacy_pdf_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        />
+
+    <Button
+        android:id="@+id/legacy_pdf_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"/>
+
+</LinearLayout>

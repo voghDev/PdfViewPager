@@ -10,21 +10,7 @@ If you are targeting pre-Lollipop devices, have a look at the [legacy sample][7]
 Installation
 ------------
 
-Add these lines to your global *build.gradle* file
-
-    allprojects {
-        repositories {
-            jcenter()
-            maven{
-                url 'https://dl.bintray.com/voghdev/maven/'
-            }
-        }
-        // ... rest of your file
-    }
-
-*(hopefully, the previous lines won't be necessary in the future)*
-
-And in your *app/build.gradle*
+Add this line in your *app/build.gradle*
 
     compile 'es.voghdev.pdfviewpager:library:0.1.2'
 

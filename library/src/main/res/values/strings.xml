@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">pdfviewpager</string>
+    <string name="pdfvp_ready_to_download">Ready to download</string>
 </resources>
