@@ -42,6 +42,11 @@ public class PDFViewPager extends ViewPager {
     }
 
     private void init(AttributeSet attrs){
+        if(isInEditMode()) {
+            setBackgroundResource(R.drawable.flaticon_pdf_dummy);
+            return;
+        }
+
         if(attrs != null){
             TypedArray a;
 
