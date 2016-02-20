@@ -87,7 +87,7 @@ public class LegacyPDFView extends LinearLayout implements DownloadFile.Listener
     }
 
     public int getMax(){
-        getProgressBar().getMax();
+        return getProgressBar().getMax();
     }
 
     public void setMax(int max){
