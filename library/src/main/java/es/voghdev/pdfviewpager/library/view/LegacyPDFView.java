@@ -17,6 +17,7 @@ package es.voghdev.pdfviewpager.library.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -25,14 +26,23 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import es.voghdev.pdfviewpager.library.R;
+import es.voghdev.pdfviewpager.library.remote.DownloadFile;
+import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
 
-public class LegacyPDFView extends LinearLayout {
+public class LegacyPDFView extends LinearLayout implements DownloadFile.Listener {
     TextView textView;
     ProgressBar progressBar;
     Button button;
+    DownloadFile downloadFile;
 
     public LegacyPDFView(Context context) {
         super(context);
+        init(null);
+    }
+
+    public LegacyPDFView(Context context, DownloadFile downloadFile) {
+        super(context);
+        this.downloadFile = downloadFile;
         init(null);
     }
 
@@ -49,9 +59,15 @@ public class LegacyPDFView extends LinearLayout {
     private void init(AttributeSet attrs) {
         View v = inflate(getContext(), getLayoutId(), this);
 
-        textView = (TextView) v.findViewById(R.id.legacy_pdf_textView);
-        button = (Button) v.findViewById(R.id.legacy_pdf_button);
-        progressBar = (ProgressBar) v.findViewById(R.id.legacy_pdf_progressBar);
+        if(viewFound(v, R.id.legacy_pdf_textView))
+            textView = (TextView) v.findViewById(R.id.legacy_pdf_textView);
+        if(viewFound(v, R.id.legacy_pdf_button))
+            button = (Button) v.findViewById(R.id.legacy_pdf_button);
+        if(viewFound(v, R.id.legacy_pdf_progressBar))
+            progressBar = (ProgressBar) v.findViewById(R.id.legacy_pdf_progressBar);
+
+        if(downloadFile == null)
+            downloadFile = new DownloadFileUrlConnectionImpl(getContext(), new Handler(), this);
 
         if (attrs != null){
             TypedArray a;
@@ -62,8 +78,16 @@ public class LegacyPDFView extends LinearLayout {
         }
     }
 
+    protected boolean viewFound(View root, int id){
+        return root.findViewById(id) != null;
+    }
+
     public void setOnClickListener(OnClickListener l){
         getButton().setOnClickListener(l);
+    }
+
+    public int getMax(){
+        getProgressBar().getMax();
     }
 
     public void setMax(int max){
@@ -99,4 +123,24 @@ public class LegacyPDFView extends LinearLayout {
         return button;
     }
     //end region
+
+    //region DownloadFile.Listener virtuals
+    @Override
+    public void onSuccess(String url, String destinationPath) {
+
+    }
+
+    @Override
+    public void onFailure(Exception e) {
+
+    }
+
+    @Override
+    public void onProgressUpdate(int progress, int total) {
+        if(getMax() != total)
+            setMax(total);
+
+        setProgress(progress);
+    }
+    //endregion
 }
