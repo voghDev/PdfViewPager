@@ -85,7 +85,7 @@ Use **PDFViewPager** class to load PDF from assets
 
     pdfViewPager = new PDFViewPager(this, "sample.pdf");
 
-*Now supports Zooming and panning thanks to [sephiroth74/ImageViewZoom] library*
+*Now supports Zooming and panning thanks to [sephiroth74/ImageViewZoom][5] library*
 
 2b.- Or directly, declare it on your XML layout
 
@@ -128,7 +128,7 @@ TODOs
 -----
 
 - [X] Load PDF documents from SD card
-- [ ] Make PDF documents zoomable with pinch and double tap
+- [X] Make PDF documents zoomable with pinch and double tap (first approach made possible thanks to [Alessandro Crugnola's ImageViewZoom][5]
 - [ ] Unify all features in only one **PDFViewPager** class
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [ ] UI tests
