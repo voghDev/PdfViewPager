@@ -37,11 +37,11 @@ public class PDFViewPager extends ViewPager {
         init(attrs);
     }
 
-    private void init(String pdfPath) {
+    protected void init(String pdfPath) {
         setAdapter(new PDFPagerAdapter(context, pdfPath));
     }
 
-    private void init(AttributeSet attrs){
+    protected void init(AttributeSet attrs){
         if(isInEditMode()) {
             setBackgroundResource(R.drawable.flaticon_pdf_dummy);
             return;

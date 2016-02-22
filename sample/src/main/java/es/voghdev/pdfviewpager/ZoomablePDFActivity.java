@@ -15,64 +15,40 @@
  */
 package es.voghdev.pdfviewpager;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Toast;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
+import es.voghdev.pdfviewpager.library.PDFViewPagerZoom;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapterZoom;
 
-public class MainActivity extends AppCompatActivity {
+public class ZoomablePDFActivity extends AppCompatActivity{
     PDFViewPager pdfViewPager;
-    PDFPagerAdapter adapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(R.string.std_example);
-        setContentView(R.layout.activity_main);
 
-        pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
-
-        adapter = new PDFPagerAdapter(this, "sample.pdf");
-        pdfViewPager.setAdapter(adapter);
+        pdfViewPager = new PDFViewPagerZoom(this, "sample.pdf");
+        setContentView(pdfViewPager);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
+        PDFPagerAdapter adapter = (PDFPagerAdapter) pdfViewPager.getAdapter();
         if(adapter != null) {
             adapter.close();
             adapter = null;
         }
     }
 
-    // region OnClick handlers
-    public void onClickSample2(View v){
-        RemotePDFActivity.open(this);
+    public static void open(Context context){
+        Intent i = new Intent(context, ZoomablePDFActivity.class);
+        context.startActivity(i);
     }
-
-    public void onClickSample3(View v){
-        AssetOnSDActivity.open(this);
-    }
-
-    public void onClickSample4(View v){
-        Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
-    }
-
-    public void onClickSample5(View v){
-        AssetOnXMLActivity.open(this);
-    }
-
-    public void onClickSample6(View v){
-        LegacyPDFActivity.open(this);
-    }
-
-    public void onClickSample7(View v){
-        ZoomablePDFActivity.open(this);
-    }
-    // endregion
 }

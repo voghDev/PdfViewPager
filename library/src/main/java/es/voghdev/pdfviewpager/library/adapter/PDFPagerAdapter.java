@@ -110,7 +110,7 @@ public class PDFPagerAdapter extends PagerAdapter {
     }
 
     @SuppressWarnings("NewApi")
-    private PdfRenderer.Page getPDFPage(int position) {
+    protected PdfRenderer.Page getPDFPage(int position) {
         return renderer.openPage(position);
     }
 

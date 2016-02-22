@@ -20,4 +20,5 @@
     <string name="sample5_txt">PDF as asset (XML) sample</string>
     <string name="sample6_txt">Pre-lollipop PDF download and launch</string>
     <string name="dummy_msg">This sample PDF here &gt;&gt;\nis declared by code</string>
+    <string name="sample7_txt">Zoomable PDF (beta)</string>
 </resources>
