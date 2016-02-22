@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickSample5(View v){
         AssetOnXMLActivity.open(this);
+        ZoomablePDFOnXMLActivity.open(this);
     }
 
     public void onClickSample6(View v){

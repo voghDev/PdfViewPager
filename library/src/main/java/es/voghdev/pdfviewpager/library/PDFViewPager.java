@@ -38,7 +38,7 @@ public class PDFViewPager extends ViewPager {
     }
 
     protected void init(String pdfPath) {
-        setAdapter(new PDFPagerAdapter(context, pdfPath));
+        initAdapter(context, pdfPath);
     }
 
     protected void init(AttributeSet attrs){
@@ -54,7 +54,11 @@ public class PDFViewPager extends ViewPager {
             String assetFileName = a.getString(R.styleable.PDFViewPager_assetFileName);
 
             if( assetFileName != null && assetFileName.length() > 0)
-                setAdapter(new PDFPagerAdapter(context, assetFileName));
+                initAdapter(context, assetFileName);
         }
+    }
+
+    protected void initAdapter(Context context, String pdfPath){
+        setAdapter(new PDFPagerAdapter(context, pdfPath));
     }
 }

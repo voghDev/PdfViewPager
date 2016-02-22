@@ -18,6 +18,7 @@ package es.voghdev.pdfviewpager.library;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapterZoom;
 
 public class PDFViewPagerZoom extends PDFViewPager {
@@ -29,7 +30,7 @@ public class PDFViewPagerZoom extends PDFViewPager {
         super(context, attrs);
     }
 
-    protected void init(String pdfPath) {
+    protected void initAdapter(Context context, String pdfPath){
         setAdapter(new PDFPagerAdapterZoom(context, pdfPath));
     }
 }
