@@ -87,6 +87,8 @@ Use **PDFViewPager** class to load PDF from assets
 
 *Now supports Zooming and panning thanks to [sephiroth74/ImageViewZoom][5] library*
 
+    pdfViewPager = new PDFViewPagerZoom(this, "sample.pdf");
+
 2b.- Or directly, declare it on your XML layout
 
     <es.voghdev.pdfviewpager.library.PDFViewPager
@@ -94,10 +96,6 @@ Use **PDFViewPager** class to load PDF from assets
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:assetFileName="sample.pdf"/>
-
-If you want zooming and panning, use **PDFViewPagerZoom** instead of **PDFViewPager**
-
-    pdfViewPager = new PDFViewPagerZoom(this, "sample.pdf");
 
 3.- Release adapter in *onDestroy*
 

@@ -23,7 +23,6 @@ import android.support.v7.app.AppCompatActivity;
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.PDFViewPagerZoom;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapterZoom;
 
 public class ZoomablePDFActivity extends AppCompatActivity{
     PDFViewPager pdfViewPager;
