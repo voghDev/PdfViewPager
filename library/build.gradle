@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/voghDev/PdfViewPager'
     gitUrl = 'https://github.com/voghDev/PdfViewPager.git'
 
-    libraryVersion = '0.1.2'
+    libraryVersion = '0.2.0'
 
     developerId = 'voghDev'
     developerName = 'Olmo Gallegos'
