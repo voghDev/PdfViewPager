@@ -14,7 +14,7 @@ Installation
 
 Add this line in your *app/build.gradle*
 
-    compile 'es.voghdev.pdfviewpager:library:0.2.0'
+    compile 'es.voghdev.pdfviewpager:library:0.1.2'
 
 Usage - Remote PDF's
 --------------------
