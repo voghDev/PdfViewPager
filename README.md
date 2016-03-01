@@ -4,8 +4,8 @@
 
 Android widget to display PDF documents in your Activities or Fragments.
 
-Important note: **PDFViewPager** uses *PdfRenderer* class, which works **only on API 21 or later**.
-See [PDFRenderer documentation][6].
+Important note: **PDFViewPager** uses [PdfRenderer][6] class, which works **only on API 21 or higher**.
+See [Official doc][6] for details.
 
 If you are targeting pre-Lollipop devices, have a look at the [legacy sample][7]
 
@@ -14,7 +14,7 @@ Installation
 
 Add this line in your *app/build.gradle*
 
-    compile 'es.voghdev.pdfviewpager:library:0.1.2'
+    compile 'es.voghdev.pdfviewpager:library:0.2.0'
 
 Usage - Remote PDF's
 --------------------
@@ -74,7 +74,7 @@ Usage - Local PDF's
 
 Use **PDFViewPager** class to load PDF from assets
 
-![Screenshot][localPDFScreenshot]
+![Screenshot][localPDFScreenshot] ![Screenshot][zoomingScreenshot]
 
 1.- Copy your assets to cache directory (lib will do that for you in future versions)
 
@@ -100,6 +100,7 @@ Use **PDFViewPager** class to load PDF from assets
 *again, if you want zoom and pan support*
 
     <es.voghdev.pdfviewpager.library.PDFViewPagerZoom
+    ... />
 
 3.- Release adapter in *onDestroy*
 
@@ -130,10 +131,10 @@ TODOs
 -----
 
 - [X] Load PDF documents from SD card
-- [X] Make PDF documents zoomable with pinch and double tap (first approach made possible thanks to [Alessandro Crugnola's ImageViewZoom][5]
+- [X] Make PDF documents zoomable with pinch and double tap (first approach made possible thanks to [ImageViewZoom][5]
 - [ ] Unify all features in only one **PDFViewPager** class
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
-- [ ] UI tests
+- [X] UI tests
 
 Developed By
 ------------
@@ -175,6 +176,7 @@ Contributing
 [remotePDFScreenshot]: ./screenshots/remote.gif
 [localPDFScreenshot]: ./screenshots/local.gif
 [sdcardPDFScreenshot]: ./screenshots/sdcard.gif
+[zoomingScreenshot]: ./screenshots/zooming.gif
 [5]: https://github.com/sephiroth74/ImageViewZoom
 [6]: http://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html
 [7]: https://github.com/voghDev/PdfViewPager/blob/master/sample/src/main/java/es/voghdev/pdfviewpager/LegacyPDFActivity.java
