@@ -63,6 +63,13 @@
             android:text="@string/sample7_txt"
             android:onClick="onClickSample7"/>
 
+        <Button
+            android:id="@+id/btnSample8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sample8_txt"
+            android:onClick="onClickSample8"/>
+
         <es.voghdev.pdfviewpager.library.PDFViewPager
             android:id="@+id/pdfViewPager"
             android:layout_width="match_parent"

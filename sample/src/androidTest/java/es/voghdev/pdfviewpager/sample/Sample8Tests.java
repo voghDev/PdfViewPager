@@ -12,50 +12,21 @@ import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.assertion.PositionAssertions.isBelow;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.not;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class MainActivityTest  {
+@RunWith(AndroidJUnit4.class) @LargeTest public class Sample8Tests {
     @Rule public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
-    @Test public void showsSamplesTitle() {
+    @Test public void startsEighthSample() {
         startActivity();
 
-        onView(withText(R.string.txt1)).check(matches(isDisplayed()));
-    }
-
-    @Test public void showsSamplesButton1() {
-        startActivity();
-
-        onView(withId(R.id.btnSample2)).check(matches(isDisplayed()));
-    }
-
-    @Test public void showsSamplesButton2() {
-        startActivity();
-
-        onView(withText(R.string.sample3_txt)).check(isBelow(withId(R.id.btnSample2)));
-    }
-
-    @Test public void showsSamplesButton8() {
-        startActivity();
-
-        onView(withText(R.string.sample8_txt)).check(isBelow(withId(R.id.btnSample7)));
-    }
-
-
-    @Test public void samplesButton3IsCorrectlyPositioned() {
-        startActivity();
-
-        onView(withText(R.string.sample3_txt)).check(isBelow(withId(R.id.btnSample2)));
-    }
-
-    @Test public void showsInitialPdfViewer() {
-        startActivity();
-
+        onView(withText(R.string.sample8_txt)).perform(click());
         onView(withId(R.id.pdfViewPager)).check(matches(isDisplayed()));
     }
 

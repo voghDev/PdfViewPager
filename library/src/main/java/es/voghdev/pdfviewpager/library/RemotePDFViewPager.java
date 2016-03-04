@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.pdfviewpager.library.remote;
+package es.voghdev.pdfviewpager.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -24,6 +24,8 @@ import android.util.AttributeSet;
 import java.io.File;
 
 import es.voghdev.pdfviewpager.library.R;
+import es.voghdev.pdfviewpager.library.remote.DownloadFile;
+import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
 import es.voghdev.pdfviewpager.library.util.FileUtil;
 
 public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listener {

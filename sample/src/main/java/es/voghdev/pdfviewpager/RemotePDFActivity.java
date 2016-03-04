@@ -24,9 +24,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import es.voghdev.pdfviewpager.library.RemotePDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
-import es.voghdev.pdfviewpager.library.remote.RemotePDFViewPager;
 import es.voghdev.pdfviewpager.library.util.FileUtil;
 
 public class RemotePDFActivity extends AppCompatActivity implements DownloadFile.Listener {

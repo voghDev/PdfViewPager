@@ -22,6 +22,7 @@
         <activity android:name=".RemotePDFActivity" android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".LegacyPDFActivity" android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".ZoomablePDFActivity" android:theme="@style/Base.Theme.AppCompat"/>
+        <activity android:name=".ZoomablePDFActivityPhotoView" android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".ZoomablePDFOnXMLActivity" android:theme="@style/Base.Theme.AppCompat"/>
     </application>
 </manifest>
