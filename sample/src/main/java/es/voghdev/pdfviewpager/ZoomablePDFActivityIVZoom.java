@@ -21,17 +21,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
-import es.voghdev.pdfviewpager.library.PDFViewPagerZoom;
+import es.voghdev.pdfviewpager.library.PDFViewPagerIVZoom;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 
-public class ZoomablePDFActivity extends AppCompatActivity{
+public class ZoomablePDFActivityIVZoom extends AppCompatActivity{
     PDFViewPager pdfViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        pdfViewPager = new PDFViewPagerZoom(this, "sample.pdf");
+        pdfViewPager = new PDFViewPagerIVZoom(this, "sample.pdf");
+        pdfViewPager.setId(R.id.pdfViewPagerZoom);
         setContentView(pdfViewPager);
     }
 
@@ -47,7 +48,7 @@ public class ZoomablePDFActivity extends AppCompatActivity{
     }
 
     public static void open(Context context){
-        Intent i = new Intent(context, ZoomablePDFActivity.class);
+        Intent i = new Intent(context, ZoomablePDFActivityIVZoom.class);
         context.startActivity(i);
     }
 }

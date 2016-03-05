@@ -40,6 +40,18 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
         onView(withText(R.string.sample3_txt)).check(isBelow(withId(R.id.btnSample2)));
     }
 
+    @Test public void showsSamplesButton6() {
+        startActivity();
+
+        onView(withText(R.string.sample6_txt)).check(isBelow(withId(R.id.btnSample5)));
+    }
+
+    @Test public void showsSamplesButton7() {
+        startActivity();
+
+        onView(withText(R.string.sample7_txt)).check(isBelow(withId(R.id.btnSample6)));
+    }
+
     @Test public void showsSamplesButton8() {
         startActivity();
 

@@ -12,10 +12,10 @@
         android:text="And this one is zoomable"
         />
 
-    <es.voghdev.pdfviewpager.library.PDFViewPagerIVZoom
+    <es.voghdev.pdfviewpager.library.PDFViewPagerZoom
         android:id="@+id/pdfViewPagerZoom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:assetFileName="sample.pdf"/>
+        app:assetFileName="adobe.pdf"/>
 </LinearLayout>
 

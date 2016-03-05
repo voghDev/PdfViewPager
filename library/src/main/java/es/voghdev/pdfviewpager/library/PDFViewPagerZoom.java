@@ -33,4 +33,17 @@ public class PDFViewPagerZoom extends PDFViewPager {
     protected void initAdapter(Context context, String pdfPath){
         setAdapter(new PDFPagerAdapterZoom(context, pdfPath));
     }
+
+    /**
+     * Bugfix explained in https://github.com/chrisbanes/PhotoView
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        try {
+            return super.onInterceptTouchEvent(ev);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

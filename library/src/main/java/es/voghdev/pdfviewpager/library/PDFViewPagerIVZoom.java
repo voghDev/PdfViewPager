@@ -17,33 +17,20 @@ package es.voghdev.pdfviewpager.library;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapterPhotoView;
+import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapterIVZoom;
 
-public class PDFViewPagerPhotoView extends PDFViewPager {
-    public PDFViewPagerPhotoView(Context context, String pdfPath) {
+
+public class PDFViewPagerIVZoom extends PDFViewPager {
+    public PDFViewPagerIVZoom(Context context, String pdfPath) {
         super(context, pdfPath);
     }
 
-    public PDFViewPagerPhotoView(Context context, AttributeSet attrs) {
+    public PDFViewPagerIVZoom(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     protected void initAdapter(Context context, String pdfPath){
-        setAdapter(new PDFPagerAdapterPhotoView(context, pdfPath));
-    }
-
-    /**
-     * Bugfix explained in https://github.com/chrisbanes/PhotoView
-     */
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        try {
-            return super.onInterceptTouchEvent(ev);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return false;
-        }
+        setAdapter(new PDFPagerAdapterIVZoom(context, pdfPath));
     }
 }

@@ -19,25 +19,30 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
 import android.support.v4.view.ViewPager;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
 
 import es.voghdev.pdfviewpager.library.R;
-import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PDFPagerAdapterZoom extends PDFPagerAdapter {
 
+    SparseArray<WeakReference<PhotoViewAttacher>> attachers;
+
     public PDFPagerAdapterZoom(Context context, String pdfPath) {
         super(context, pdfPath);
+        attachers = new SparseArray<>();
     }
 
     @Override
     @SuppressWarnings("NewApi")
     public Object instantiateItem(ViewGroup container, int position) {
-        View v = inflater.inflate(R.layout.view_zoomable_pdf_page, container, false);
-        ImageViewTouch ivt = (ImageViewTouch) v.findViewById(R.id.imageViewZoom);
+        View v = inflater.inflate(R.layout.view_pdf_page, container, false);
+        ImageView iv = (ImageView) v.findViewById(R.id.imageView);
 
         if(renderer == null || getCount() < position)
             return v;
@@ -49,10 +54,23 @@ public class PDFPagerAdapterZoom extends PDFPagerAdapter {
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
+        PhotoViewAttacher attacher = new PhotoViewAttacher(iv);
+
         bitmaps.put(position, new WeakReference<Bitmap>(bitmap));
-        ivt.setImageBitmap(bitmap);
+        attachers.put(position, new WeakReference<PhotoViewAttacher>(attacher));
+        iv.setImageBitmap(bitmap);
+        attacher.update();
         ((ViewPager) container).addView(v, 0);
 
         return v;
+    }
+
+    @Override
+    public void close() {
+        super.close();
+        if(attachers != null){
+            attachers.clear();
+            attachers = null;
+        }
     }
 }

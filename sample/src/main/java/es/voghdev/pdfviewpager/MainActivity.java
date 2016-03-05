@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickSample7(View v){
-        ZoomablePDFActivity.open(this);
+        ZoomablePDFActivityIVZoom.open(this);
     }
 
     public void onClickSample8(View v){

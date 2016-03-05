@@ -20,11 +20,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import es.voghdev.pdfviewpager.library.PDFViewPagerZoom;
+import es.voghdev.pdfviewpager.library.PDFViewPagerIVZoom;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 
 public class ZoomablePDFOnXMLActivity extends AppCompatActivity{
-    PDFViewPagerZoom pdfViewPager;
+    PDFViewPagerIVZoom pdfViewPager;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -32,7 +32,7 @@ public class ZoomablePDFOnXMLActivity extends AppCompatActivity{
         setTitle(R.string.zoomable_asset_on_xml);
         setContentView(R.layout.activity_zoomable_pdf_xml);
 
-        pdfViewPager = (PDFViewPagerZoom) findViewById(R.id.pdfViewPagerZoom);
+        pdfViewPager = (PDFViewPagerIVZoom) findViewById(R.id.pdfViewPagerZoom);
     }
 
     @Override
