@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2016 Olmo Gallegos Hernández.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package es.voghdev.pdfviewpager.sample;
 
 import android.support.test.espresso.intent.rule.IntentsTestRule;
@@ -17,6 +32,11 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
+import static org.hamcrest.core.AllOf.allOf;
+import static org.hamcrest.core.StringContains.containsString;
+import static org.hamcrest.core.StringEndsWith.endsWith;
+import static org.hamcrest.core.StringStartsWith.startsWith;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample7Tests {
     @Rule public IntentsTestRule<MainActivity> activityRule =
@@ -26,7 +46,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
         startActivity();
 
         onView(withText(R.string.sample7_txt)).perform(click());
-        onView(withId(R.id.pdfViewPagerZoom)).check(matches(isDisplayed()));
+         onView(withId(R.id.pdfViewPagerZoom)).check(matches(isDisplayed()));
+//        onView(withClassName(containsString("PdfViewPager"))).check(matches(isDisplayed()));
     }
 
     private MainActivity startActivity() {
