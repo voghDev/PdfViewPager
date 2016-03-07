@@ -32,7 +32,6 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.CoreMatchers.not;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample8Tests {
     @Rule public IntentsTestRule<MainActivity> activityRule =

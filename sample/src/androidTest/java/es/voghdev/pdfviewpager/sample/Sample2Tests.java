@@ -15,16 +15,22 @@
  */
 package es.voghdev.pdfviewpager.sample;
 
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
+
 import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
+import es.voghdev.pdfviewpager.sample.idlingresource.WaitIdlingResource;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -35,6 +41,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.not;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample2Tests {
+     WaitIdlingResource idlingResource;
+
     @Rule public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
@@ -51,6 +59,25 @@ import static org.hamcrest.CoreMatchers.not;
         onView(withText(R.string.sample2_txt)).perform(click());
         onView(withId(R.id.btn_download)).perform(click());
         onView(withId(R.id.btn_download)).check(matches(not(isDisplayed())));
+    }
+
+    @Test public void showsPdfAfterDownload() {
+        startActivity();
+
+        onView(withText(R.string.sample2_txt)).perform(click());
+        onView(withId(R.id.btn_download)).perform(click());
+        idlingResource = new WaitIdlingResource(System.currentTimeMillis(), 1500);
+        Espresso.registerIdlingResources(idlingResource);
+        onView(withId(R.id.btn_download)).check(matches(isDisplayed()));
+        onView(withId(R.id.pdfViewPager)).check(matches(isDisplayed()));
+    }
+
+    @After
+    public void tearDown() {
+        List<IdlingResource> idlingResources = Espresso.getIdlingResources();
+        for (IdlingResource resource : idlingResources) {
+            Espresso.unregisterIdlingResources(resource);
+        }
     }
 
     private MainActivity startActivity() {

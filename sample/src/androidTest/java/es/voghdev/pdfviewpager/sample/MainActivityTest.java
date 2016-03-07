@@ -43,13 +43,13 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
         onView(withText(R.string.txt1)).check(matches(isDisplayed()));
     }
 
-    @Test public void showsSamplesButton1() {
+    @Test public void showsSamplesButton2() {
         startActivity();
 
         onView(withId(R.id.btnSample2)).check(matches(isDisplayed()));
     }
 
-    @Test public void showsSamplesButton2() {
+    @Test public void showsSamplesButton3() {
         startActivity();
 
         onView(withText(R.string.sample3_txt)).check(isBelow(withId(R.id.btnSample2)));

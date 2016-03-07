@@ -64,6 +64,7 @@ public class RemotePDFActivity extends AppCompatActivity implements DownloadFile
             @Override
             public void onClick(View view) {
                 remotePDFViewPager = new RemotePDFViewPager(ctx, getUrlFromEditText(), listener);
+                remotePDFViewPager.setId(R.id.pdfViewPager);
                 hideDownloadButton();
             }
         });
