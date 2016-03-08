@@ -25,18 +25,15 @@ import org.junit.runner.RunWith;
 
 import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
+import es.voghdev.pdfviewpager.library.PDFViewPagerIVZoom;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static org.hamcrest.core.AllOf.allOf;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.StringContains.containsString;
-import static org.hamcrest.core.StringEndsWith.endsWith;
-import static org.hamcrest.core.StringStartsWith.startsWith;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample7Tests {
     @Rule public IntentsTestRule<MainActivity> activityRule =
@@ -46,8 +43,7 @@ import static org.hamcrest.core.StringStartsWith.startsWith;
         startActivity();
 
         onView(withText(R.string.sample7_txt)).perform(click());
-         onView(withId(R.id.pdfViewPagerZoom)).check(matches(isDisplayed()));
-//        onView(withClassName(containsString("PdfViewPager"))).check(matches(isDisplayed()));
+        onView(withClassName(containsString(PDFViewPagerIVZoom.class.getSimpleName()))).check(matches(isDisplayed()));
     }
 
     private MainActivity startActivity() {

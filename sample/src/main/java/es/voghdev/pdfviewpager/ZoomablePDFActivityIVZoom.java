@@ -32,7 +32,6 @@ public class ZoomablePDFActivityIVZoom extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         pdfViewPager = new PDFViewPagerIVZoom(this, "sample.pdf");
-        pdfViewPager.setId(R.id.pdfViewPagerZoom);
         setContentView(pdfViewPager);
     }
 
