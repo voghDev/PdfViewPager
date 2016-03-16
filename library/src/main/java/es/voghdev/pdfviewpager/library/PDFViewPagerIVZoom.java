@@ -20,7 +20,6 @@ import android.util.AttributeSet;
 
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapterIVZoom;
 
-
 public class PDFViewPagerIVZoom extends PDFViewPager {
     public PDFViewPagerIVZoom(Context context, String pdfPath) {
         super(context, pdfPath);
