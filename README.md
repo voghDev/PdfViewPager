@@ -136,6 +136,8 @@ TODOs
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [X] UI tests
 
+See [changelog][4] for details
+
 Developed By
 ------------
 
@@ -177,6 +179,7 @@ Contributing
 [localPDFScreenshot]: ./screenshots/local.gif
 [sdcardPDFScreenshot]: ./screenshots/sdcard.gif
 [zoomingScreenshot]: ./screenshots/zooming.gif
+[4]: https://github.com/voghDev/PdfViewPager/blob/master/CHANGELOG.md
 [5]: https://github.com/sephiroth74/ImageViewZoom
 [6]: http://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html
 [7]: https://github.com/voghDev/PdfViewPager/blob/master/sample/src/main/java/es/voghdev/pdfviewpager/LegacyPDFActivity.java
