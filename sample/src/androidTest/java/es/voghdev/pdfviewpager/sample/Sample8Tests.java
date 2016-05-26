@@ -28,10 +28,13 @@ import es.voghdev.pdfviewpager.R;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.junit.Assert.fail;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample8Tests {
     @Rule public IntentsTestRule<MainActivity> activityRule =
@@ -42,6 +45,31 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
         onView(withText(R.string.sample8_txt)).perform(click());
         onView(withId(R.id.pdfViewPagerZoom)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void shouldSwipeToLastPageThenGoBackToFistWithoutCrashing() throws Exception {
+        startActivity();
+        onView(withText(R.string.sample8_txt)).perform(click());
+
+        try {
+            swipeToEnd();
+            swipeToBeginning();
+        } catch (Exception ex) {
+            fail("Error paging");
+        }
+    }
+
+    private void swipeToEnd() {
+        for (int i = 0; i < 30; i++) {
+            onView(withId(R.id.pdfViewPagerZoom)).perform(swipeLeft());
+        }
+    }
+
+    private void swipeToBeginning() {
+        for (int i = 0; i < 30; i++) {
+            onView(withId(R.id.pdfViewPagerZoom)).perform(swipeRight());
+        }
     }
 
     private MainActivity startActivity() {
