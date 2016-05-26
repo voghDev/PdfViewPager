@@ -68,6 +68,7 @@ public class PDFPagerAdapter extends PagerAdapter {
         }
     }
 
+    @SuppressWarnings("NewApi")
     private SimpleBitmapPoolParams extractPdfParams(PdfRenderer renderer, float renderQuality) {
         PdfRenderer.Page samplePage = getPDFPage(renderer, FIRST_PAGE);
         SimpleBitmapPoolParams params = new SimpleBitmapPoolParams();
