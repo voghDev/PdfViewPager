@@ -29,8 +29,8 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 
 public class PDFPagerAdapterIVZoom extends PDFPagerAdapter {
 
-    public PDFPagerAdapterIVZoom(Context context, String pdfPath) {
-        super(context, pdfPath);
+    public PDFPagerAdapterIVZoom(Context context, String pdfPath, int offScreenSize) {
+        super(context, pdfPath, offScreenSize);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class PDFPagerAdapterIVZoom extends PDFPagerAdapter {
         if(renderer == null || getCount() < position)
             return v;
 
-        PdfRenderer.Page page = getPDFPage(position);
+        PdfRenderer.Page page = getPDFPage(renderer, position);
 
         Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(),
                 Bitmap.Config.ARGB_8888);

@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 
 import es.voghdev.pdfviewpager.library.adapter.BitmapContainer;
+import es.voghdev.pdfviewpager.library.adapter.PdfParams;
 
 public class SimpleBitmapPool implements BitmapContainer {
 
@@ -16,6 +17,14 @@ public class SimpleBitmapPool implements BitmapContainer {
     private int height;
 
     private Bitmap.Config config;
+
+    public SimpleBitmapPool(PdfParams params){
+        this.poolSize = getPoolSize(params.getOffScreenSize());
+        this.width = params.getWidth();
+        this.height = params.getHeight();
+        this.config = params.getConfig();
+        this.bitmaps = new Bitmap[poolSize];
+    }
 
     public SimpleBitmapPool(int offScreenSize, int width, int height, Bitmap.Config config) {
         this.poolSize = getPoolSize(offScreenSize);

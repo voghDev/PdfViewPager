@@ -23,7 +23,6 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,22 +30,30 @@ import android.widget.ImageView;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.ref.WeakReference;
 import java.net.URI;
 
 import es.voghdev.pdfviewpager.library.R;
+import es.voghdev.pdfviewpager.library.util.SimpleBitmapPool;
 
 public class PDFPagerAdapter extends PagerAdapter {
+    private static final int FIRST_PAGE = 0;
+    private static final float DEFAULT_QUALITY = 2.0f;
+
     String pdfPath;
     Context context;
     PdfRenderer renderer;
     BitmapContainer bitmapContainer;
     LayoutInflater inflater;
 
-    public PDFPagerAdapter(Context context, String pdfPath) {
+    protected float renderQuality;
+    protected int offScreenSize;
+
+    public PDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
         this.pdfPath = pdfPath;
         this.context = context;
-        bitmapContainer = new DefaultBitmapContainer();
+        this.renderQuality = DEFAULT_QUALITY;
+        this.offScreenSize = offScreenSize;
+
         init();
     }
 
@@ -55,9 +62,25 @@ public class PDFPagerAdapter extends PagerAdapter {
         try {
             renderer = new PdfRenderer(getSeekableFileDescriptor(pdfPath));
             inflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            PdfParams params = extractPdfParams(renderer, renderQuality);
+            bitmapContainer = new SimpleBitmapPool(params);
         }catch(IOException e){
             e.printStackTrace();
         }
+    }
+
+    private PdfParams extractPdfParams(PdfRenderer renderer, float renderQuality) {
+        PdfRenderer.Page samplePage = getPDFPage(renderer, FIRST_PAGE);
+        PdfParams params = new PdfParams();
+
+        params.setRenderQuality(renderQuality);
+        params.setOffScreenSize(offScreenSize);
+        params.setWidth((int) (samplePage.getWidth() * renderQuality));
+        params.setHeight((int) (samplePage.getHeight() * renderQuality));
+
+        samplePage.close();
+
+        return params;
     }
 
     protected ParcelFileDescriptor getSeekableFileDescriptor(String path) throws IOException {
@@ -94,7 +117,7 @@ public class PDFPagerAdapter extends PagerAdapter {
         if(renderer == null || getCount() < position)
             return v;
 
-        PdfRenderer.Page page = getPDFPage(position);
+        PdfRenderer.Page page = getPDFPage(renderer, position);
 
         Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(),
                 Bitmap.Config.ARGB_8888);
@@ -110,7 +133,7 @@ public class PDFPagerAdapter extends PagerAdapter {
     }
 
     @SuppressWarnings("NewApi")
-    protected PdfRenderer.Page getPDFPage(int position) {
+    protected PdfRenderer.Page getPDFPage(PdfRenderer renderer, int position) {
         return renderer.openPage(position);
     }
 

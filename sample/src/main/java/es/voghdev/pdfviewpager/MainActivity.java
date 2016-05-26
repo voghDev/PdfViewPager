@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
 
-        adapter = new PDFPagerAdapter(this, "sample.pdf");
+        adapter = new PDFPagerAdapter(this, "sample.pdf", pdfViewPager.getOffscreenPageLimit());
         pdfViewPager.setAdapter(adapter);
     }
 

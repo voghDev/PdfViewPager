@@ -95,7 +95,7 @@ public class RemotePDFActivity extends AppCompatActivity implements DownloadFile
 
     @Override
     public void onSuccess(String url, String destinationPath) {
-        adapter = new PDFPagerAdapter(this, FileUtil.extractFileNameFromURL(url));
+        adapter = new PDFPagerAdapter(this, FileUtil.extractFileNameFromURL(url), remotePDFViewPager.getOffscreenPageLimit());
         remotePDFViewPager.setAdapter(adapter);
         updateLayout();
         showDownloadButton();

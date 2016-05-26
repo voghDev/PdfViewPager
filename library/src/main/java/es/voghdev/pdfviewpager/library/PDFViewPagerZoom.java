@@ -31,7 +31,7 @@ public class PDFViewPagerZoom extends PDFViewPager {
     }
 
     protected void initAdapter(Context context, String pdfPath){
-        setAdapter(new PDFPagerAdapterZoom(context, pdfPath));
+        setAdapter(new PDFPagerAdapterZoom(context, pdfPath, getOffscreenPageLimit()));
     }
 
     /**
