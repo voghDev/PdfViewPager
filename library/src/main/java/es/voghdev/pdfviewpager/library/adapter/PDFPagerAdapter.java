@@ -23,7 +23,6 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,13 +40,13 @@ public class PDFPagerAdapter extends PagerAdapter {
     String pdfPath;
     Context context;
     PdfRenderer renderer;
-    SparseArray<WeakReference<Bitmap>> bitmaps;
+    BitmapContainer bitmapContainer;
     LayoutInflater inflater;
 
     public PDFPagerAdapter(Context context, String pdfPath) {
         this.pdfPath = pdfPath;
         this.context = context;
-        bitmaps = new SparseArray<>();
+        bitmapContainer = new DefaultBitmapContainer();
         init();
     }
 
@@ -58,28 +57,28 @@ public class PDFPagerAdapter extends PagerAdapter {
             inflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         }catch(IOException e){
             e.printStackTrace();
-            Log.e("PDFPagerAdapter", e.getMessage());
         }
     }
 
     protected ParcelFileDescriptor getSeekableFileDescriptor(String path) throws IOException {
-        ParcelFileDescriptor pfd;
+        ParcelFileDescriptor parcelFileDescriptor;
 
         File pdfCopy = new File(path);
+
         if(pdfCopy.exists()){
-            pfd = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
-            return pfd;
+            parcelFileDescriptor = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
+            return parcelFileDescriptor;
         }
 
         if(isAnAsset(path)){
             pdfCopy = new File(context.getCacheDir(), path);
-            pfd = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
+            parcelFileDescriptor = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
         }else{
             URI uri = URI.create(String.format("file://%s", path));
-            pfd = context.getContentResolver().openFileDescriptor(Uri.parse(uri.toString()), "rw");
+            parcelFileDescriptor = context.getContentResolver().openFileDescriptor(Uri.parse(uri.toString()), "rw");
         }
 
-        return pfd;
+        return parcelFileDescriptor;
     }
 
     private boolean isAnAsset(String path) {
@@ -102,7 +101,8 @@ public class PDFPagerAdapter extends PagerAdapter {
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
-        bitmaps.put(position, new WeakReference<Bitmap>(bitmap));
+        bitmapContainer.put(position, bitmap);
+
         iv.setImageBitmap(bitmap);
         ((ViewPager) container).addView(v, 0);
 
@@ -128,18 +128,7 @@ public class PDFPagerAdapter extends PagerAdapter {
     }
 
     protected void releaseAllBitmaps() {
-        for(int i=0; bitmaps != null && i<bitmaps.size(); ++i) {
-            recycleBitmap(bitmaps.keyAt(i));
-        }
-        bitmaps.clear();
-    }
-
-    protected void recycleBitmap(int position){
-        Bitmap b = bitmaps.get(position).get();
-        if(b != null && !b.isRecycled()) {
-            b.recycle();
-            bitmaps.remove(position);
-        }
+        bitmapContainer.clear();
     }
 
     @Override

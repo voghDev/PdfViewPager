@@ -49,7 +49,8 @@ public class PDFPagerAdapterIVZoom extends PDFPagerAdapter {
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
-        bitmaps.put(position, new WeakReference<Bitmap>(bitmap));
+        bitmapContainer.put(position, bitmap);
+
         ivt.setImageBitmap(bitmap);
         ((ViewPager) container).addView(v, 0);
 

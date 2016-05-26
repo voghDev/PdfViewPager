@@ -56,8 +56,9 @@ public class PDFPagerAdapterZoom extends PDFPagerAdapter {
 
         PhotoViewAttacher attacher = new PhotoViewAttacher(iv);
 
-        bitmaps.put(position, new WeakReference<Bitmap>(bitmap));
+        bitmapContainer.put(position, bitmap);
         attachers.put(position, new WeakReference<PhotoViewAttacher>(attacher));
+
         iv.setImageBitmap(bitmap);
         attacher.update();
         ((ViewPager) container).addView(v, 0);
