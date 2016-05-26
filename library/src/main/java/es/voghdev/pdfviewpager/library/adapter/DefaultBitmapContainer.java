@@ -13,11 +13,6 @@ public class DefaultBitmapContainer implements BitmapContainer {
     }
 
     @Override
-    public void put(int position, Bitmap bitmap) {
-        bitmaps.put(position, new WeakReference<Bitmap>(bitmap));
-    }
-
-    @Override
     public Bitmap get(int position) {
         return null;
     }

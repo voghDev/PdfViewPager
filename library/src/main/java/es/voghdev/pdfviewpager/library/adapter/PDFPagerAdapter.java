@@ -33,7 +33,6 @@ import java.io.IOException;
 import java.net.URI;
 
 import es.voghdev.pdfviewpager.library.R;
-import es.voghdev.pdfviewpager.library.util.SimpleBitmapPool;
 
 public class PDFPagerAdapter extends PagerAdapter {
     private static final int FIRST_PAGE = 0;
@@ -62,16 +61,16 @@ public class PDFPagerAdapter extends PagerAdapter {
         try {
             renderer = new PdfRenderer(getSeekableFileDescriptor(pdfPath));
             inflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            PdfParams params = extractPdfParams(renderer, renderQuality);
+            SimpleBitmapPoolParams params = extractPdfParams(renderer, renderQuality);
             bitmapContainer = new SimpleBitmapPool(params);
         }catch(IOException e){
             e.printStackTrace();
         }
     }
 
-    private PdfParams extractPdfParams(PdfRenderer renderer, float renderQuality) {
+    private SimpleBitmapPoolParams extractPdfParams(PdfRenderer renderer, float renderQuality) {
         PdfRenderer.Page samplePage = getPDFPage(renderer, FIRST_PAGE);
-        PdfParams params = new PdfParams();
+        SimpleBitmapPoolParams params = new SimpleBitmapPoolParams();
 
         params.setRenderQuality(renderQuality);
         params.setOffScreenSize(offScreenSize);
@@ -119,12 +118,9 @@ public class PDFPagerAdapter extends PagerAdapter {
 
         PdfRenderer.Page page = getPDFPage(renderer, position);
 
-        Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(),
-                Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = bitmapContainer.get(position);
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
-
-        bitmapContainer.put(position, bitmap);
 
         iv.setImageBitmap(bitmap);
         ((ViewPager) container).addView(v, 0);
@@ -151,7 +147,8 @@ public class PDFPagerAdapter extends PagerAdapter {
     }
 
     protected void releaseAllBitmaps() {
-        bitmapContainer.clear();
+        if(bitmapContainer != null)
+            bitmapContainer.clear();
     }
 
     @Override
