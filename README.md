@@ -21,7 +21,7 @@ Usage
 
 Use **PDFViewPager** class to load PDF files from assets or SD card
 
-![Screenshot][localPDFScreenshot] ![Screenshot][sdcardPDFScreenshot] ![Screenshot][zoomingScreenshot]
+![Screenshot][localPDFScreenshot] ![Screenshot][zoomingScreenshot]
 
 1.- Copy your assets to cache directory if your PDF is located on assets directory
 
