@@ -21,11 +21,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
     PDFViewPager pdfViewPager;
-    PDFPagerAdapter adapter;
+    BasePDFPagerAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
 
-        adapter = new PDFPagerAdapter(this, "sample.pdf", pdfViewPager.getOffscreenPageLimit());
+        adapter = new BasePDFPagerAdapter(this, "sample.pdf", pdfViewPager.getOffscreenPageLimit());
         pdfViewPager.setAdapter(adapter);
     }
 

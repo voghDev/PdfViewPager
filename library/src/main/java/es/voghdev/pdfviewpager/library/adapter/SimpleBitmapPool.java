@@ -31,7 +31,7 @@ public class SimpleBitmapPool implements BitmapContainer {
 
     private Bitmap.Config config;
 
-    public SimpleBitmapPool(SimpleBitmapPoolParams params){
+    public SimpleBitmapPool(PdfRendererParams params){
         this.poolSize = getPoolSize(params.getOffScreenSize());
         this.width = params.getWidth();
         this.height = params.getHeight();

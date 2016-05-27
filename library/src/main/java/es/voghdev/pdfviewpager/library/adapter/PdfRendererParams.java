@@ -17,7 +17,7 @@ package es.voghdev.pdfviewpager.library.adapter;
 
 import android.graphics.Bitmap;
 
-public class SimpleBitmapPoolParams {
+public class PdfRendererParams {
     private static final Bitmap.Config DEFAULT_CONFIG = Bitmap.Config.ARGB_8888;
 
     int width;

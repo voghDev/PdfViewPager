@@ -20,7 +20,7 @@ import android.content.res.TypedArray;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 
 public class PDFViewPager extends ViewPager {
     protected Context context;
@@ -59,6 +59,6 @@ public class PDFViewPager extends ViewPager {
     }
 
     protected void initAdapter(Context context, String pdfPath){
-        setAdapter(new PDFPagerAdapter(context, pdfPath, getOffscreenPageLimit()));
+        setAdapter(new BasePDFPagerAdapter(context, pdfPath, getOffscreenPageLimit()));
     }
 }

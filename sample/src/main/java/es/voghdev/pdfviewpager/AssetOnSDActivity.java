@@ -26,7 +26,7 @@ import android.widget.Toast;
 import java.io.File;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.asset.CopyAsset;
 import es.voghdev.pdfviewpager.library.asset.CopyAssetThreadImpl;
 
@@ -76,7 +76,7 @@ public class AssetOnSDActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
 
-        ((PDFPagerAdapter) pdfViewPager.getAdapter()).close();
+        ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
     }
 
     public static void open(Context context){

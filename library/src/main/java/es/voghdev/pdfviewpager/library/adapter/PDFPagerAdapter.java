@@ -15,97 +15,27 @@
  */
 package es.voghdev.pdfviewpager.library.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
-import android.net.Uri;
-import android.os.ParcelFileDescriptor;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
+import java.lang.ref.WeakReference;
 
 import es.voghdev.pdfviewpager.library.R;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class PDFPagerAdapter extends PagerAdapter {
-    private static final int FIRST_PAGE = 0;
-    private static final float DEFAULT_QUALITY = 2.0f;
+public class PDFPagerAdapter extends BasePDFPagerAdapter {
 
-    String pdfPath;
-    Context context;
-    PdfRenderer renderer;
-    BitmapContainer bitmapContainer;
-    LayoutInflater inflater;
-
-    protected float renderQuality;
-    protected int offScreenSize;
+    SparseArray<WeakReference<PhotoViewAttacher>> attachers;
 
     public PDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
-        this.pdfPath = pdfPath;
-        this.context = context;
-        this.renderQuality = DEFAULT_QUALITY;
-        this.offScreenSize = offScreenSize;
-
-        init();
-    }
-
-    @SuppressWarnings("NewApi")
-    protected void init() {
-        try {
-            renderer = new PdfRenderer(getSeekableFileDescriptor(pdfPath));
-            inflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            SimpleBitmapPoolParams params = extractPdfParams(renderer, renderQuality);
-            bitmapContainer = new SimpleBitmapPool(params);
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    @SuppressWarnings("NewApi")
-    private SimpleBitmapPoolParams extractPdfParams(PdfRenderer renderer, float renderQuality) {
-        PdfRenderer.Page samplePage = getPDFPage(renderer, FIRST_PAGE);
-        SimpleBitmapPoolParams params = new SimpleBitmapPoolParams();
-
-        params.setRenderQuality(renderQuality);
-        params.setOffScreenSize(offScreenSize);
-        params.setWidth((int) (samplePage.getWidth() * renderQuality));
-        params.setHeight((int) (samplePage.getHeight() * renderQuality));
-
-        samplePage.close();
-
-        return params;
-    }
-
-    protected ParcelFileDescriptor getSeekableFileDescriptor(String path) throws IOException {
-        ParcelFileDescriptor parcelFileDescriptor;
-
-        File pdfCopy = new File(path);
-
-        if(pdfCopy.exists()){
-            parcelFileDescriptor = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
-            return parcelFileDescriptor;
-        }
-
-        if(isAnAsset(path)){
-            pdfCopy = new File(context.getCacheDir(), path);
-            parcelFileDescriptor = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
-        }else{
-            URI uri = URI.create(String.format("file://%s", path));
-            parcelFileDescriptor = context.getContentResolver().openFileDescriptor(Uri.parse(uri.toString()), "rw");
-        }
-
-        return parcelFileDescriptor;
-    }
-
-    private boolean isAnAsset(String path) {
-        return !path.startsWith("/");
+        super(context, pdfPath, offScreenSize);
+        attachers = new SparseArray<>();
     }
 
     @Override
@@ -123,43 +53,23 @@ public class PDFPagerAdapter extends PagerAdapter {
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
+        PhotoViewAttacher attacher = new PhotoViewAttacher(iv);
+
+        attachers.put(position, new WeakReference<PhotoViewAttacher>(attacher));
+
         iv.setImageBitmap(bitmap);
+        attacher.update();
         ((ViewPager) container).addView(v, 0);
 
         return v;
     }
 
-    @SuppressWarnings("NewApi")
-    protected PdfRenderer.Page getPDFPage(PdfRenderer renderer, int position) {
-        return renderer.openPage(position);
-    }
-
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        // b.recycle() causes crashes if called here.
-        // All bitmaps are recycled in close().
-    }
-
-    @SuppressWarnings("NewApi")
-    public void close(){
-        releaseAllBitmaps();
-        if(renderer != null)
-            renderer.close();
-    }
-
-    protected void releaseAllBitmaps() {
-        if(bitmapContainer != null)
-            bitmapContainer.clear();
-    }
-
-    @Override
-    @SuppressWarnings("NewApi")
-    public int getCount() {
-        return renderer != null ? renderer.getPageCount() : 0;
-    }
-
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == (View)object;
+    public void close() {
+        super.close();
+        if(attachers != null){
+            attachers.clear();
+            attachers = null;
+        }
     }
 }

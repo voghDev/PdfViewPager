@@ -18,7 +18,7 @@ package es.voghdev.pdfviewpager.library;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapterIVZoom;
+import es.voghdev.pdfviewpager.library.adapter.LegacyPDFPagerAdapter;
 
 public class PDFViewPagerIVZoom extends PDFViewPager {
     public PDFViewPagerIVZoom(Context context, String pdfPath) {
@@ -30,6 +30,6 @@ public class PDFViewPagerIVZoom extends PDFViewPager {
     }
 
     protected void initAdapter(Context context, String pdfPath){
-        setAdapter(new PDFPagerAdapterIVZoom(context, pdfPath, getOffscreenPageLimit()));
+        setAdapter(new LegacyPDFPagerAdapter(context, pdfPath, getOffscreenPageLimit()));
     }
 }

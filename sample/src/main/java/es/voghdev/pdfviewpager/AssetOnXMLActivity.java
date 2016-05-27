@@ -21,7 +21,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 
 public class AssetOnXMLActivity extends AppCompatActivity{
     PDFViewPager pdfViewPager;
@@ -39,7 +39,7 @@ public class AssetOnXMLActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
 
-        ((PDFPagerAdapter) pdfViewPager.getAdapter()).close();
+        ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
     }
 
     public static void open(Context context){

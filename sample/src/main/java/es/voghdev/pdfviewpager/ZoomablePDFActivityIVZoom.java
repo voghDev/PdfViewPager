@@ -22,7 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.PDFViewPagerIVZoom;
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 
 public class ZoomablePDFActivityIVZoom extends AppCompatActivity{
     PDFViewPager pdfViewPager;
@@ -39,7 +39,7 @@ public class ZoomablePDFActivityIVZoom extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
 
-        PDFPagerAdapter adapter = (PDFPagerAdapter) pdfViewPager.getAdapter();
+        BasePDFPagerAdapter adapter = (BasePDFPagerAdapter) pdfViewPager.getAdapter();
         if(adapter != null) {
             adapter.close();
             adapter = null;

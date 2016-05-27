@@ -25,7 +25,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import es.voghdev.pdfviewpager.library.RemotePDFViewPager;
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 import es.voghdev.pdfviewpager.library.util.FileUtil;
 
@@ -34,7 +34,7 @@ public class RemotePDFActivity extends AppCompatActivity implements DownloadFile
     RemotePDFViewPager remotePDFViewPager;
     EditText etPdfUrl;
     Button btnDownload;
-    PDFPagerAdapter adapter;
+    BasePDFPagerAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -95,7 +95,7 @@ public class RemotePDFActivity extends AppCompatActivity implements DownloadFile
 
     @Override
     public void onSuccess(String url, String destinationPath) {
-        adapter = new PDFPagerAdapter(this, FileUtil.extractFileNameFromURL(url), remotePDFViewPager.getOffscreenPageLimit());
+        adapter = new BasePDFPagerAdapter(this, FileUtil.extractFileNameFromURL(url), remotePDFViewPager.getOffscreenPageLimit());
         remotePDFViewPager.setAdapter(adapter);
         updateLayout();
         showDownloadButton();
