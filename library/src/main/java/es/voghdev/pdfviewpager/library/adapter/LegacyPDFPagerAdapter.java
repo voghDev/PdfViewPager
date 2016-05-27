@@ -27,6 +27,10 @@ import java.lang.ref.WeakReference;
 import es.voghdev.pdfviewpager.library.R;
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 
+/**
+ * Deprecated class. We recommend to use PDFPagerAdapter instead
+ */
+@Deprecated
 public class LegacyPDFPagerAdapter extends BasePDFPagerAdapter {
 
     public LegacyPDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {

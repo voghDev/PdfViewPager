@@ -34,14 +34,19 @@ import es.voghdev.pdfviewpager.sample.idlingresource.WaitIdlingResource;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.junit.Assert.fail;
 import static org.hamcrest.CoreMatchers.not;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample2Tests {
-     WaitIdlingResource idlingResource;
+    private static final int N_PAGES = 5;
+
+    WaitIdlingResource idlingResource;
 
     @Rule public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
@@ -70,6 +75,33 @@ import static org.hamcrest.CoreMatchers.not;
         Espresso.registerIdlingResources(idlingResource);
         onView(withId(R.id.btn_download)).check(matches(isDisplayed()));
         onView(withId(R.id.pdfViewPager)).check(matches(isDisplayed()));
+    }
+
+    @Test public void swipesPdfToLastPageAndBackWithNoCrashesWhenDownloadIsCompleted() {
+        startActivity();
+
+        onView(withText(R.string.sample2_txt)).perform(click());
+        onView(withId(R.id.btn_download)).perform(click());
+        idlingResource = new WaitIdlingResource(System.currentTimeMillis(), 1500);
+        Espresso.registerIdlingResources(idlingResource);
+        try {
+            swipeToLastPage();
+            swipeToBeginning();
+        } catch (Exception ex) {
+            fail("Remote PDF crashes when paging");
+        }
+    }
+
+    private void swipeToLastPage() {
+        for (int i = 0; i < N_PAGES; i++) {
+            onView(withId(R.id.pdfViewPager)).perform(swipeLeft());
+        }
+    }
+
+    private void swipeToBeginning() {
+        for (int i = 0; i < N_PAGES; i++) {
+            onView(withId(R.id.pdfViewPager)).perform(swipeRight());
+        }
     }
 
     @After

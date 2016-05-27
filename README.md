@@ -16,12 +16,66 @@ Add this line in your *app/build.gradle*
 
     compile 'es.voghdev.pdfviewpager:library:0.2.1'
 
-Usage - Remote PDF's
---------------------
+Usage
+-----
+
+Use **PDFViewPager** class to load PDF files from assets or SD card
+
+![Screenshot][localPDFScreenshot] ![Screenshot][sdcardPDFScreenshot] ![Screenshot][zoomingScreenshot]
+
+1.- Copy your assets to cache directory if your PDF is located on assets directory
+
+    CopyAsset copyAsset = new CopyAssetThreadImpl(context, new Handler());
+    copyAsset.copy(asset, new File(getCacheDir(), "sample.pdf").getAbsolutePath());
+
+2a.- Create your **PDFViewPager** passing your PDF file, located in *assets* (see [sample][8])
+
+    pdfViewPager = new PDFViewPager(this, "sample.pdf");
+
+2b.- Or directly, declare it on your XML layout
+
+    <es.voghdev.pdfviewpager.library.PDFViewPager
+        android:id="@+id/pdfViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:assetFileName="sample.pdf"/>
+
+It will automatically have zooming and panning capability
+
+3.- Release adapter in *onDestroy*
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
+    }
+
+PDF's on SD card
+----------------
+
+1.- Create a **PDFViewPager** object, passing the file location in your SD card
+
+    PDFViewPager pdfViewPager = new PDFViewPager(context, getPdfPathOnSDCard());
+
+    protected String getPdfPathOnSDCard() {
+        File f = new File(getExternalFilesDir("pdf"), "adobe.pdf");
+        return f.getAbsolutePath();
+    }
+
+2.- Don't forget to release the adapter in *onDestroy*
+
+        @Override
+        protected void onDestroy() {
+            super.onDestroy();
+
+            ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
+        }
+
+Remote PDF's from a URL
+-----------------------
 
 ![Screenshot][remotePDFScreenshot]
-
-Use **RemotePDFViewPager** to load from remote URLs
 
 1.- Add INTERNET, READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE permissions on your AndroidManifest.xml
 
@@ -67,60 +121,6 @@ Use **RemotePDFViewPager** to load from remote URLs
         super.onDestroy();
 
         adapter.close();
-    }
-
-Usage - Local PDF's
--------------------
-
-Use **PDFViewPager** class to load PDF from assets
-
-![Screenshot][localPDFScreenshot] ![Screenshot][zoomingScreenshot]
-
-1.- Copy your assets to cache directory (lib will do that for you in future versions)
-
-    CopyAsset copyAsset = new CopyAssetThreadImpl(context, new Handler());
-    copyAsset.copy(asset, new File(getCacheDir(), "sample.pdf").getAbsolutePath());
-
-2a.- Create your **PDFViewPager** passing your PDF file, located in *assets* (see [sample][8])
-
-    pdfViewPager = new PDFViewPager(this, "sample.pdf");
-
-2b.- Or directly, declare it on your XML layout
-
-    <es.voghdev.pdfviewpager.library.PDFViewPager
-        android:id="@+id/pdfViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:assetFileName="sample.pdf"/>
-
-*again, if you want zoom and pan support*
-
-    <es.voghdev.pdfviewpager.library.PDFViewPagerZoom
-    ... />
-
-3.- Release adapter in *onDestroy*
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
-    }
-
-Usage - PDF's on SD card
-------------------------
-
-![Screenshot][sdcardPDFScreenshot]
-
-Use **PDFViewPager** class to load PDF from your SD card
-
-1.- Create a **PDFViewPager** object, passing the file location in your SD card
-
-    PDFViewPager pdfViewPager = new PDFViewPager(context, getPdfPathOnSDCard());
-
-    protected String getPdfPathOnSDCard() {
-        File f = new File(getExternalFilesDir("pdf"), "adobe.pdf");
-        return f.getAbsolutePath();
     }
 
 TODOs
