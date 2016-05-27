@@ -14,7 +14,7 @@ Installation
 
 Add this line in your *app/build.gradle*
 
-    compile 'es.voghdev.pdfviewpager:library:0.2.1'
+    compile 'es.voghdev.pdfviewpager:library:0.3.0'
 
 Usage
 -----
