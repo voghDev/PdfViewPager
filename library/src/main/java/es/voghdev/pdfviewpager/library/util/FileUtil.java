@@ -28,18 +28,18 @@ import es.voghdev.pdfviewpager.library.BuildConfig;
 
 public class FileUtil {
     public static boolean copyAsset(Context ctx, String assetName, String destinationPath) throws IOException{
-            InputStream in = ctx.getAssets().open(assetName);
-            File f = new File(destinationPath);
-            f.createNewFile();
-            OutputStream out = new FileOutputStream(new File(destinationPath));
+        InputStream in = ctx.getAssets().open(assetName);
+        File f = new File(destinationPath);
+        f.createNewFile();
+        OutputStream out = new FileOutputStream(new File(destinationPath));
 
-            byte[] buffer = new byte[1024];
-            int read;
-            while((read = in.read(buffer)) != -1){
-                out.write(buffer, 0, read);
-            }
-            in.close();
-            out.close();
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1){
+            out.write(buffer, 0, read);
+        }
+        in.close();
+        out.close();
 
         return true;
     }

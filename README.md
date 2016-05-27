@@ -81,13 +81,9 @@ Use **PDFViewPager** class to load PDF from assets
     CopyAsset copyAsset = new CopyAssetThreadImpl(context, new Handler());
     copyAsset.copy(asset, new File(getCacheDir(), "sample.pdf").getAbsolutePath());
 
-2.- Create your **PDFViewPager** passing your PDF file, located in *assets* (see [sample][8])
+2a.- Create your **PDFViewPager** passing your PDF file, located in *assets* (see [sample][8])
 
     pdfViewPager = new PDFViewPager(this, "sample.pdf");
-
-*Now supports Zooming and panning thanks to [sephiroth74/ImageViewZoom][5] library*
-
-    pdfViewPager = new PDFViewPagerZoom(this, "sample.pdf");
 
 2b.- Or directly, declare it on your XML layout
 

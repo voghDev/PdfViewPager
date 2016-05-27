@@ -20,6 +20,14 @@
 - More UI Test coverage for the samples (lib users won't notice that, but I will :P)
 - 0.2.1 uses a fixed version of ImageViewZoom, instead of latest version '+'
 
+0.2.3
+-----
+
+- Drastically improved memory management (Thanks to [fkruege][6]'s implementations').
+- Easier usage having PdfViewPagerZoom as the new PdfViewPager class, because no one wants a PDF without zoom.
+- Refactored to have a more flexible BitmapContainer classes.
+- Added UI tests to memory management (initial idea from [fkruege][6]).
 
 [4]: https://github.com/chrisbanes/PhotoView
 [5]: https://github.com/sephiroth74/ImageViewZoom
+[6]: https://github.com/fkruege/PdfViewPager
