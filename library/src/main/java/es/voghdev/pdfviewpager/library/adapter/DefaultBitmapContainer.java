@@ -23,15 +23,21 @@ import java.lang.ref.WeakReference;
 @Deprecated
 public class DefaultBitmapContainer implements BitmapContainer {
     SparseArray<WeakReference<Bitmap>> bitmaps;
+    private int width;
+    private int height;
+    private Bitmap.Config config;
 
-    public DefaultBitmapContainer() {
+    public DefaultBitmapContainer(int width, int height, Bitmap.Config config) {
+        this.width = width;
+        this.height = height;
+        this.config = config;
         bitmaps = new SparseArray<>();
     }
 
     @Override
     public Bitmap get(int position) {
         if(bitmaps.get(position) == null)
-            throw new IllegalArgumentException("Implementation not supported. Please use SimpleBitmapPool");
+            bitmaps.put(position, new WeakReference<Bitmap>(createNewBitmap(width, height, config)));
 
         return bitmaps.get(position).get();
     }
@@ -55,5 +61,9 @@ public class DefaultBitmapContainer implements BitmapContainer {
             b.recycle();
             bitmaps.remove(position);
         }
+    }
+
+    protected Bitmap createNewBitmap(int width, int height, Bitmap.Config config) {
+        return Bitmap.createBitmap(width, height, config);
     }
 }
