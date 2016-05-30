@@ -36,21 +36,24 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.fail;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class Sample8Tests {
+@RunWith(AndroidJUnit4.class) @LargeTest public class Sample8Tests extends BaseTest {
     @Rule public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
     @Test public void startsEighthSample() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample8_txt)).perform(click());
+        onView(withText(R.string.menu_sample8_txt)).perform(click());
         onView(withId(R.id.pdfViewPagerZoom)).check(matches(isDisplayed()));
     }
 
     @Test
     public void shouldSwipeToLastPageThenGoBackToFistWithoutCrashing() throws Exception {
         startActivity();
-        onView(withText(R.string.sample8_txt)).perform(click());
+        openActionBarMenu();
+
+        onView(withText(R.string.menu_sample8_txt)).perform(click());
 
         try {
             swipeToEnd();

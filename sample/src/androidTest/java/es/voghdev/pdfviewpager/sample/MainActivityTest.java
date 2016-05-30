@@ -15,6 +15,8 @@
  */
 package es.voghdev.pdfviewpager.sample;
 
+import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -27,13 +29,15 @@ import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.PositionAssertions.isBelow;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isClickable;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class MainActivityTest  {
+@RunWith(AndroidJUnit4.class) @LargeTest public class MainActivityTest extends BaseTest {
     @Rule public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
@@ -45,39 +49,37 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
     @Test public void showsSamplesButton2() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withId(R.id.btnSample2)).check(matches(isDisplayed()));
+        onView(withText(R.string.menu_sample2_txt)).check(matches(isDisplayed()));
     }
 
     @Test public void showsSamplesButton3() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample3_txt)).check(isBelow(withId(R.id.btnSample2)));
+        onView(withText(R.string.menu_sample3_txt)).check(matches(isDisplayed()));
     }
 
     @Test public void showsSamplesButton6() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample6_txt)).check(isBelow(withId(R.id.btnSample5)));
+        onView(withText(R.string.menu_sample6_txt)).check(matches(isDisplayed()));
     }
 
     @Test public void showsSamplesButton7() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample7_txt)).check(isBelow(withId(R.id.btnSample6)));
+        onView(withText(R.string.menu_sample7_txt)).check(matches(isDisplayed()));
     }
 
     @Test public void showsSamplesButton8() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample8_txt)).check(isBelow(withId(R.id.btnSample7)));
-    }
-
-
-    @Test public void samplesButton3IsCorrectlyPositioned() {
-        startActivity();
-
-        onView(withText(R.string.sample3_txt)).check(isBelow(withId(R.id.btnSample2)));
+        onView(withText(R.string.menu_sample8_txt)).check(matches(isDisplayed()));
     }
 
     @Test public void showsInitialPdfViewer() {

@@ -14,13 +14,13 @@
     <string name="downloaded_wait">Download Complete. Now opening PDF, Wait a moment please...</string>
     <string name="flaticon_attr">BTW, all icons are from www.flaticon.com</string>
     <string name="txt1">This is a PDF document, declared on XML, set up by code.</string>
-    <string name="sample2_txt">Remote PDF sample</string>
-    <string name="sample3_txt">PDF on your SD sample</string>
-    <string name="sample4_txt">PDF as asset (code) sample</string>
-    <string name="sample5_txt">PDF as asset (XML) sample</string>
-    <string name="sample6_txt">Pre-lollipop PDF download and launch</string>
-    <string name="sample7_txt">Zoomable PDF (ImageViewZoom)</string>
+    <string name="menu_sample2_txt">Open remote PDF sample</string>
+    <string name="menu_sample3_txt">PDF on your SD sample</string>
+    <string name="menu_sample4_txt">PDF as asset (code) sample</string>
+    <string name="menu_sample5_txt">PDF as asset (XML) sample</string>
+    <string name="menu_sample6_txt">Pre-lollipop PDF download and launch</string>
+    <string name="menu_sample7_txt">Zoomable PDF (ImageViewZoom)</string>
+    <string name="menu_sample8_txt">Zoomable PDF (PhotoView)</string>
     <string name="dummy_msg">This sample PDF here &gt;&gt;\nis declared by code</string>
     <string name="zoomable_asset_on_xml">Zoomable PDF on XML Example</string>
-    <string name="sample8_txt">Zoomable PDF (PhotoView)</string>
 </resources>

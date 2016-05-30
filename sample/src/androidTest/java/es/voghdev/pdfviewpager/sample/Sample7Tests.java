@@ -35,14 +35,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.StringContains.containsString;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class Sample7Tests {
+@RunWith(AndroidJUnit4.class) @LargeTest public class Sample7Tests extends BaseTest{
     @Rule public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
     @Test public void startsSeventhSample() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample7_txt)).perform(click());
+        onView(withText(R.string.menu_sample7_txt)).perform(click());
         onView(withClassName(containsString(PDFViewPagerIVZoom.class.getSimpleName()))).check(matches(isDisplayed()));
     }
 

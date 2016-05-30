@@ -17,6 +17,8 @@ package es.voghdev.pdfviewpager;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -51,34 +53,41 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // region OnClick handlers
-    public void onClickSample2(View v){
-        RemotePDFActivity.open(this);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
-    public void onClickSample3(View v){
-        AssetOnSDActivity.open(this);
-    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-    public void onClickSample4(View v){
-        Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
-    }
+        if (id == R.id.action_sample2) {
+            RemotePDFActivity.open(this);
+            return false;
+        }
+        else if(id == R.id.action_sample3){
+            AssetOnSDActivity.open(this);
+            return false;
+        }
+        else if(id == R.id.action_sample4){
+            Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
+        }
+        else if(id == R.id.action_sample5){
+            AssetOnXMLActivity.open(this);
+            ZoomablePDFOnXMLActivity.open(this);
+        }
+        else if(id == R.id.action_sample6){
+            LegacyPDFActivity.open(this);
+        }
+        else if(id == R.id.action_sample7){
+            ZoomablePDFActivityIVZoom.open(this);
+        }
+        else if(id == R.id.action_sample8){
+            ZoomablePDFActivityPhotoView.open(this);
+        }
 
-    public void onClickSample5(View v){
-        AssetOnXMLActivity.open(this);
-        ZoomablePDFOnXMLActivity.open(this);
+        return super.onOptionsItemSelected(item);
     }
-
-    public void onClickSample6(View v){
-        LegacyPDFActivity.open(this);
-    }
-
-    public void onClickSample7(View v){
-        ZoomablePDFActivityIVZoom.open(this);
-    }
-
-    public void onClickSample8(View v){
-        ZoomablePDFActivityPhotoView.open(this);
-    }
-    // endregion
 }

@@ -15,6 +15,7 @@
  */
 package es.voghdev.pdfviewpager.sample;
 
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
@@ -33,6 +34,7 @@ import es.voghdev.pdfviewpager.R;
 import es.voghdev.pdfviewpager.sample.idlingresource.WaitIdlingResource;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.action.ViewActions.swipeRight;
@@ -43,7 +45,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.fail;
 import static org.hamcrest.CoreMatchers.not;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class Sample2Tests {
+@RunWith(AndroidJUnit4.class) @LargeTest public class Sample2Tests extends BaseTest{
     private static final int N_PAGES = 5;
 
     WaitIdlingResource idlingResource;
@@ -53,23 +55,26 @@ import static org.hamcrest.CoreMatchers.not;
 
     @Test public void startsSecondSample() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample2_txt)).perform(click());
+        onView(withText(R.string.menu_sample2_txt)).perform(click());
         onView(withId(R.id.et_pdfUrl)).check(matches(isDisplayed()));
     }
 
     @Test public void hidesDownloadButtonAfterClick() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample2_txt)).perform(click());
+        onView(withText(R.string.menu_sample2_txt)).perform(click());
         onView(withId(R.id.btn_download)).perform(click());
         onView(withId(R.id.btn_download)).check(matches(not(isDisplayed())));
     }
 
     @Test public void showsPdfAfterDownload() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample2_txt)).perform(click());
+        onView(withText(R.string.menu_sample2_txt)).perform(click());
         onView(withId(R.id.btn_download)).perform(click());
         idlingResource = new WaitIdlingResource(System.currentTimeMillis(), 1500);
         Espresso.registerIdlingResources(idlingResource);
@@ -79,8 +84,9 @@ import static org.hamcrest.CoreMatchers.not;
 
     @Test public void swipesPdfToLastPageAndBackWithNoCrashesWhenDownloadIsCompleted() {
         startActivity();
+        openActionBarMenu();
 
-        onView(withText(R.string.sample2_txt)).perform(click());
+        onView(withText(R.string.menu_sample2_txt)).perform(click());
         onView(withId(R.id.btn_download)).perform(click());
         idlingResource = new WaitIdlingResource(System.currentTimeMillis(), 1500);
         Espresso.registerIdlingResources(idlingResource);
