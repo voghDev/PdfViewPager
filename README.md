@@ -126,6 +126,7 @@ Remote PDF's from a URL
 TODOs
 -----
 
+- [ ] Make initial Pdf scale setable by code *(requested by various users on issues)*
 - [X] Load PDF documents from SD card
 - [X] Make PDF documents zoomable with pinch and double tap (first approach made possible thanks to [ImageViewZoom][5]
 - [ ] Unify all features in only one **PDFViewPager** class
