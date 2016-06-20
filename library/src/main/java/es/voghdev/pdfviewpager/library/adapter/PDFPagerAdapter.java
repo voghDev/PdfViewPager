@@ -33,6 +33,10 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
 
     SparseArray<WeakReference<PhotoViewAttacher>> attachers;
 
+    public PDFPagerAdapter(Context context, String pdfPath) {
+        super(context, pdfPath);
+    }
+
     public PDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
         super(context, pdfPath, offScreenSize);
         attachers = new SparseArray<>();

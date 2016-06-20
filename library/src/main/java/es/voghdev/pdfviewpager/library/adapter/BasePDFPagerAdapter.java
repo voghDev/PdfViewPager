@@ -37,6 +37,7 @@ import es.voghdev.pdfviewpager.library.R;
 public class BasePDFPagerAdapter extends PagerAdapter {
     private static final int FIRST_PAGE = 0;
     private static final float DEFAULT_QUALITY = 2.0f;
+    private static final int DEFAULT_OFFSCREENSIZE = 1;
 
     String pdfPath;
     Context context;
@@ -47,6 +48,18 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     protected float renderQuality;
     protected int offScreenSize;
 
+    public BasePDFPagerAdapter(Context context, String pdfPath) {
+        this.pdfPath = pdfPath;
+        this.context = context;
+        this.renderQuality = DEFAULT_QUALITY;
+        this.offScreenSize = DEFAULT_OFFSCREENSIZE;
+
+        init();
+    }
+
+    /**
+     * This constructor was added for those who want to customize ViewPager's offScreenSize attr
+     */
     public BasePDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
         this.pdfPath = pdfPath;
         this.context = context;
@@ -136,7 +149,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        // b.recycle() causes crashes if called here.
+        // bitmap.recycle() causes crashes if called here.
         // All bitmaps are recycled in close().
     }
 

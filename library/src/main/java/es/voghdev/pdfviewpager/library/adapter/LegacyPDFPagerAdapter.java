@@ -32,6 +32,9 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouch;
  */
 @Deprecated
 public class LegacyPDFPagerAdapter extends BasePDFPagerAdapter {
+    public LegacyPDFPagerAdapter(Context context, String pdfPath) {
+        super(context, pdfPath);
+    }
 
     public LegacyPDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
         super(context, pdfPath, offScreenSize);
