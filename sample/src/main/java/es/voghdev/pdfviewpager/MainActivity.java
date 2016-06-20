@@ -15,7 +15,9 @@
  */
 package es.voghdev.pdfviewpager;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,11 +38,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.std_example);
         setContentView(R.layout.activity_main);
+        configureActionBar();
 
         pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
 
         adapter = new PDFPagerAdapter(this, "sample.pdf", pdfViewPager.getOffscreenPageLimit());
         pdfViewPager.setAdapter(adapter);
+    }
+
+    private void configureActionBar() {
+        int color = getResources().getColor(R.color.pdfViewPager_background_color);
+        ActionBar ab = getSupportActionBar();
+        ab.setBackgroundDrawable(new ColorDrawable(color));
     }
 
     @Override
