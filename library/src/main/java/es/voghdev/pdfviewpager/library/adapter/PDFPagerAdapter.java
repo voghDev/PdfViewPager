@@ -17,6 +17,7 @@ package es.voghdev.pdfviewpager.library.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.RectF;
 import android.graphics.pdf.PdfRenderer;
 import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
@@ -29,17 +30,27 @@ import java.lang.ref.WeakReference;
 import es.voghdev.pdfviewpager.library.R;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class PDFPagerAdapter extends BasePDFPagerAdapter {
+public class PDFPagerAdapter extends BasePDFPagerAdapter implements PhotoViewAttacher.OnMatrixChangedListener{
+
+    private static final float DEFAULT_SCALE = 1.0f;
 
     SparseArray<WeakReference<PhotoViewAttacher>> attachers;
+    float centerX = 0f, centerY = 0f;
+    float scale = DEFAULT_SCALE;
 
     public PDFPagerAdapter(Context context, String pdfPath) {
         super(context, pdfPath);
+        attachers = new SparseArray<>();
     }
 
     public PDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
         super(context, pdfPath, offScreenSize);
         attachers = new SparseArray<>();
+    }
+    public PDFPagerAdapter(Context context, String pdfPath, float scale) {
+        super(context, pdfPath);
+        attachers = new SparseArray<>();
+        this.scale = scale;
     }
 
     @Override
@@ -58,6 +69,8 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         page.close();
 
         PhotoViewAttacher attacher = new PhotoViewAttacher(iv);
+        attacher.setScale(scale, centerX, centerY, true);
+        attacher.setOnMatrixChangeListener(this);
 
         attachers.put(position, new WeakReference<PhotoViewAttacher>(attacher));
 
@@ -74,6 +87,14 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         if(attachers != null){
             attachers.clear();
             attachers = null;
+        }
+    }
+
+    @Override
+    public void onMatrixChanged(RectF rect) {
+        if(scale != DEFAULT_SCALE) {
+            centerX = rect.centerX();
+            centerY = rect.centerY();
         }
     }
 }

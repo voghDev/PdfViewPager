@@ -20,14 +20,20 @@
 - More UI Test coverage for the samples (lib users won't notice that, but I will :P)
 - 0.2.1 uses a fixed version of ImageViewZoom, instead of latest version '+'
 
-0.3.0 (upload to maven central in progress)
--------------------------------------------
+0.3.0
+-----
 
 - Drastically improved memory management (Thanks to [fkruege][6]'s implementations').
 - Easier usage having PDFPagerAdapterZoom as the new PDFPagerAdapter class, because no one wants a PDF without zoom.
 - Refactored to have a more flexible BitmapContainer classes.
 - Added UI tests to memory management (initial idea from [fkruege][6]).
 - Renamed the old PdfPagerAdapterIVZoom to LegacyPDFPagerAdapter. It is deprecated, but you can still use it.
+
+1.0.0 (in development)
+----------------------
+
+- PDF scale can now be set
+- Released all PhotoView resources to avoid possible leaks
 
 [4]: https://github.com/chrisbanes/PhotoView
 [5]: https://github.com/sephiroth74/ImageViewZoom
