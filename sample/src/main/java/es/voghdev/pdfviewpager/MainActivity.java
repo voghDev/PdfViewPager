@@ -21,7 +21,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
 
-        adapter = new PDFPagerAdapter(this, "sample.pdf", pdfViewPager.getOffscreenPageLimit());
+        adapter = new PDFPagerAdapter(this, "sample.pdf");
         pdfViewPager.setAdapter(adapter);
     }
 
