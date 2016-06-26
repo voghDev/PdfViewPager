@@ -30,7 +30,8 @@ import java.lang.ref.WeakReference;
 import es.voghdev.pdfviewpager.library.R;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class PDFPagerAdapter extends BasePDFPagerAdapter implements PhotoViewAttacher.OnMatrixChangedListener{
+public class PDFPagerAdapter extends BasePDFPagerAdapter
+        implements PhotoViewAttacher.OnMatrixChangedListener{
 
     SparseArray<WeakReference<PhotoViewAttacher>> attachers;
     PdfScale scale = new PdfScale();

@@ -16,15 +16,12 @@
 package es.voghdev.pdfviewpager.library.util;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import es.voghdev.pdfviewpager.library.BuildConfig;
 
 public class FileUtil {
     public static boolean copyAsset(Context ctx, String assetName, String destinationPath) throws IOException{

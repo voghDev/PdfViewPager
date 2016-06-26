@@ -23,7 +23,6 @@ import android.util.AttributeSet;
 
 import java.io.File;
 
-import es.voghdev.pdfviewpager.library.R;
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
 import es.voghdev.pdfviewpager.library.util.FileUtil;
