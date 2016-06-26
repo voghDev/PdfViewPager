@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configureActionBar() {
-        int color = getResources().getColor(R.color.pdfViewPager_background_color);
+        int color = getResources().getColor(R.color.pdfViewPager_ab_color);
         ActionBar ab = getSupportActionBar();
         ab.setBackgroundDrawable(new ColorDrawable(color));
     }
@@ -75,25 +75,27 @@ public class MainActivity extends AppCompatActivity {
             RemotePDFActivity.open(this);
             return false;
         }
-        else if(id == R.id.action_sample3){
+        else if(id == R.id.action_sample3) {
             AssetOnSDActivity.open(this);
             return false;
         }
-        else if(id == R.id.action_sample4){
+        else if(id == R.id.action_sample4) {
             Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
         }
-        else if(id == R.id.action_sample5){
+        else if(id == R.id.action_sample5) {
             AssetOnXMLActivity.open(this);
-            ZoomablePDFOnXMLActivity.open(this);
         }
-        else if(id == R.id.action_sample6){
+        else if(id == R.id.action_sample6) {
             LegacyPDFActivity.open(this);
         }
-        else if(id == R.id.action_sample7){
+        else if(id == R.id.action_sample7) {
             ZoomablePDFActivityIVZoom.open(this);
         }
-        else if(id == R.id.action_sample8){
+        else if(id == R.id.action_sample8) {
             ZoomablePDFActivityPhotoView.open(this);
+        }
+        else if(id == R.id.action_sample9) {
+            PDFWithScaleActivity.open(this);
         }
 
         return super.onOptionsItemSelected(item);

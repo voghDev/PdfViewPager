@@ -25,70 +25,27 @@ import org.junit.runner.RunWith;
 
 import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
+import es.voghdev.pdfviewpager.library.PDFViewPager;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.core.StringContains.containsString;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class MainActivityTest extends BaseTest {
+@RunWith(AndroidJUnit4.class) @LargeTest public class Sample9Tests extends BaseTest {
     @Rule public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
-    @Test public void showsSamplesTitle() {
-        startActivity();
-
-        onView(withText(R.string.txt1)).check(matches(isDisplayed()));
-    }
-
-    @Test public void showsSamplesButton2() {
+    @Test public void startsNinethSample() {
         startActivity();
         openActionBarMenu();
 
-        onView(withText(R.string.menu_sample2_txt)).check(matches(isDisplayed()));
-    }
-
-    @Test public void showsSamplesButton3() {
-        startActivity();
-        openActionBarMenu();
-
-        onView(withText(R.string.menu_sample3_txt)).check(matches(isDisplayed()));
-    }
-
-    @Test public void showsSamplesButton6() {
-        startActivity();
-        openActionBarMenu();
-
-        onView(withText(R.string.menu_sample6_txt)).check(matches(isDisplayed()));
-    }
-
-    @Test public void showsSamplesButton7() {
-        startActivity();
-        openActionBarMenu();
-
-        onView(withText(R.string.menu_sample7_txt)).check(matches(isDisplayed()));
-    }
-
-    @Test public void showsSamplesButton8() {
-        startActivity();
-        openActionBarMenu();
-
-        onView(withText(R.string.menu_sample8_txt)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void showsSamplesButton9() throws Exception {
-        startActivity();
-        openActionBarMenu();
-
-        onView(withText(R.string.menu_sample9_txt)).check(matches(isDisplayed()));
-    }
-
-    @Test public void showsInitialPdfViewer() {
-        startActivity();
-
-        onView(withId(R.id.pdfViewPager)).check(matches(isDisplayed()));
+        onView(withText(R.string.menu_sample9_txt)).perform(click());
+        onView(withClassName(containsString(PDFViewPager.class.getSimpleName()))).check(matches(isDisplayed()));
     }
 
     private MainActivity startActivity() {

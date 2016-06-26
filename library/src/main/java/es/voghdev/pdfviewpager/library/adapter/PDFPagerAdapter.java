@@ -32,11 +32,8 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PDFPagerAdapter extends BasePDFPagerAdapter implements PhotoViewAttacher.OnMatrixChangedListener{
 
-    private static final float DEFAULT_SCALE = 1.0f;
-
     SparseArray<WeakReference<PhotoViewAttacher>> attachers;
-    float centerX = 0f, centerY = 0f;
-    float scale = DEFAULT_SCALE;
+    PdfScale scale = new PdfScale();
 
     public PDFPagerAdapter(Context context, String pdfPath) {
         super(context, pdfPath);
@@ -47,7 +44,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter implements PhotoViewAtt
         super(context, pdfPath, offScreenSize);
         attachers = new SparseArray<>();
     }
-    public PDFPagerAdapter(Context context, String pdfPath, float scale) {
+    public PDFPagerAdapter(Context context, String pdfPath, PdfScale scale) {
         super(context, pdfPath);
         attachers = new SparseArray<>();
         this.scale = scale;
@@ -69,7 +66,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter implements PhotoViewAtt
         page.close();
 
         PhotoViewAttacher attacher = new PhotoViewAttacher(iv);
-        attacher.setScale(scale, centerX, centerY, true);
+        attacher.setScale(scale.getScale(), scale.getCenterX(), scale.getCenterY(), true);
         attacher.setOnMatrixChangeListener(this);
 
         attachers.put(position, new WeakReference<PhotoViewAttacher>(attacher));
@@ -92,9 +89,9 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter implements PhotoViewAtt
 
     @Override
     public void onMatrixChanged(RectF rect) {
-        if(scale != DEFAULT_SCALE) {
-            centerX = rect.centerX();
-            centerY = rect.centerY();
+        if(scale.getScale() != PdfScale.DEFAULT_SCALE) {
+            scale.setCenterX(rect.centerX());
+            scale.setCenterY(rect.centerY());
         }
     }
 }

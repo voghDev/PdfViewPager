@@ -49,7 +49,7 @@ import static org.junit.Assert.fail;
     }
 
     @Test
-    public void shouldSwipeToLastPageThenGoBackToFistWithoutCrashing() throws Exception {
+    public void shouldSwipeToLastPageThenGoBackToFirstWithoutCrashing() throws Exception {
         startActivity();
         openActionBarMenu();
 

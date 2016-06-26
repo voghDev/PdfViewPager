@@ -30,4 +30,8 @@
           android:title="@string/menu_sample8_txt"
           android:icon="@android:drawable/ic_media_play" />
 
+    <item android:id="@+id/action_sample9"
+          android:title="@string/menu_sample9_txt"
+          android:icon="@android:drawable/ic_media_play" />
+
 </menu>

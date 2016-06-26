@@ -15,7 +15,6 @@
  */
 package es.voghdev.pdfviewpager.sample;
 
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
@@ -34,7 +33,6 @@ import es.voghdev.pdfviewpager.R;
 import es.voghdev.pdfviewpager.sample.idlingresource.WaitIdlingResource;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.swipeLeft;
 import static android.support.test.espresso.action.ViewActions.swipeRight;
@@ -42,8 +40,8 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.fail;
 import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.fail;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample2Tests extends BaseTest{
     private static final int N_PAGES = 5;
