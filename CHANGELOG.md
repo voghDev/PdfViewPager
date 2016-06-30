@@ -29,11 +29,19 @@
 - Added UI tests to memory management (initial idea from [fkruege][6]).
 - Renamed the old PdfPagerAdapterIVZoom to LegacyPDFPagerAdapter. It is deprecated, but you can still use it.
 
-1.0.0 (in development)
-----------------------
+1.0.0
+-----
 
-- PDF scale can now be set
-- Released all PhotoView resources to avoid possible leaks
+- PDF scale can now be set.
+- Released all PhotoView resources to avoid possible leaks.
+
+1.0.1 (next planned features)
+-----------------------------
+
+- Definitely eliminate LegacyPDFPagerAdapter and PdfViewPagerIVZoom classes, which were deprecated.
+- Refactor PDFPagerAdapter to a Builder pattern, for constructing it in a more comfortable way.
+- Add a "scale" parameter to PDFViewPagerZoom in XML files.
+- Add "autoAssignScale" parameter that makes the widget remember last centerX and centerY.
 
 [4]: https://github.com/chrisbanes/PhotoView
 [5]: https://github.com/sephiroth74/ImageViewZoom

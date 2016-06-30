@@ -14,7 +14,7 @@ Installation
 
 Add this line in your *app/build.gradle*
 
-    compile 'es.voghdev.pdfviewpager:library:0.3.0'
+    compile 'es.voghdev.pdfviewpager:library:1.0.0'
 
 Usage
 -----
@@ -126,7 +126,7 @@ Remote PDF's from a URL
 TODOs
 -----
 
-- [ ] Make initial Pdf scale setable by code *(requested by various users on issues)*
+- [X] Make initial Pdf scale setable by code *(requested by various users on issues)*
 - [X] Load PDF documents from SD card
 - [X] Make PDF documents zoomable with pinch and double tap (first approach made possible thanks to [ImageViewZoom][5]
 - [ ] Unify all features in only one **PDFViewPager** class
