@@ -91,8 +91,8 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
     @Override
     public void onMatrixChanged(RectF rect) {
         if(scale.getScale() != PdfScale.DEFAULT_SCALE) {
-            scale.setCenterX(rect.centerX());
-            scale.setCenterY(rect.centerY());
+//            scale.setCenterX(rect.centerX());
+//            scale.setCenterY(rect.centerY());
         }
     }
 }
