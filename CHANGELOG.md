@@ -38,6 +38,7 @@
 1.0.1 (next planned features)
 -----------------------------
 
+- Upload new screenshots as [sample][7] project looks much better now
 - Definitely eliminate LegacyPDFPagerAdapter and PdfViewPagerIVZoom classes, which were deprecated.
 - Refactor PDFPagerAdapter to a Builder pattern, for constructing it in a more comfortable way.
 - Add a "scale" parameter to PDFViewPagerZoom in XML files.
@@ -46,3 +47,4 @@
 [4]: https://github.com/chrisbanes/PhotoView
 [5]: https://github.com/sephiroth74/ImageViewZoom
 [6]: https://github.com/fkruege/
+[7]: https://github.com/voghDev/PdfViewPager/tree/master/sample
