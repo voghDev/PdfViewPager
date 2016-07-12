@@ -33,6 +33,8 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 public class PDFPagerAdapter extends BasePDFPagerAdapter
         implements PhotoViewAttacher.OnMatrixChangedListener{
 
+    private static final float DEFAULT_SCALE = 1f;
+
     SparseArray<WeakReference<PhotoViewAttacher>> attachers;
     PdfScale scale = new PdfScale();
 
@@ -93,6 +95,66 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
         if(scale.getScale() != PdfScale.DEFAULT_SCALE) {
 //            scale.setCenterX(rect.centerX());
 //            scale.setCenterY(rect.centerY());
+        }
+    }
+
+    public class Builder {
+        Context context;
+        String pdfPath = "";
+        float scale = DEFAULT_SCALE;
+        float centerX = 0f, centerY = 0f;
+        int offScreenSize = DEFAULT_OFFSCREENSIZE;
+        float renderQuality = DEFAULT_QUALITY;
+
+        public Builder(Context context) {
+            this.context = context;
+        }
+
+        public Builder setScale(float scale) {
+            this.scale = scale;
+            return this;
+        }
+
+        public Builder setScale(PdfScale scale) {
+            this.scale = scale.getScale();
+            this.centerX = scale.getCenterX();
+            this.centerY = scale.getCenterY();
+            return this;
+        }
+
+        public Builder setCenterX(float centerX) {
+            this.centerX = centerX;
+            return this;
+        }
+
+        public Builder setCenterY(float centerY) {
+            this.centerY = centerY;
+            return this;
+        }
+
+        public Builder setRenderQuality(float renderQuality) {
+            this.renderQuality = renderQuality;
+            return this;
+        }
+
+        public Builder setOffScreenSize(int offScreenSize) {
+            this.offScreenSize = offScreenSize;
+            return this;
+        }
+
+        public Builder setPdfPath(String path) {
+            this.pdfPath = path;
+            return this;
+        }
+
+        public PDFPagerAdapter create() {
+            PDFPagerAdapter adapter = new PDFPagerAdapter(context, pdfPath);
+            adapter.scale.setScale(scale);
+            adapter.scale.setCenterX(centerX);
+            adapter.scale.setCenterY(centerY);
+            adapter.offScreenSize = offScreenSize;
+            adapter.renderQuality = renderQuality;
+            return adapter;
         }
     }
 }

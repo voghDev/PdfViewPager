@@ -35,9 +35,9 @@ import java.net.URI;
 import es.voghdev.pdfviewpager.library.R;
 
 public class BasePDFPagerAdapter extends PagerAdapter {
-    private static final int FIRST_PAGE = 0;
-    private static final float DEFAULT_QUALITY = 2.0f;
-    private static final int DEFAULT_OFFSCREENSIZE = 1;
+    protected static final int FIRST_PAGE = 0;
+    protected static final float DEFAULT_QUALITY = 2.0f;
+    protected static final int DEFAULT_OFFSCREENSIZE = 1;
 
     String pdfPath;
     Context context;
