@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import java.lang.ref.WeakReference;
 
 import es.voghdev.pdfviewpager.library.R;
+import es.voghdev.pdfviewpager.library.util.EmptyClickListener;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PDFPagerAdapter extends BasePDFPagerAdapter
@@ -37,13 +38,14 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
 
     SparseArray<WeakReference<PhotoViewAttacher>> attachers;
     PdfScale scale = new PdfScale();
+    View.OnClickListener pageClickListener = new EmptyClickListener();
 
     public PDFPagerAdapter(Context context, String pdfPath) {
         super(context, pdfPath);
         attachers = new SparseArray<>();
     }
 
-    public PDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
+    /*public PDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
         super(context, pdfPath, offScreenSize);
         attachers = new SparseArray<>();
     }
@@ -51,7 +53,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
         super(context, pdfPath);
         attachers = new SparseArray<>();
         this.scale = scale;
-    }
+    }*/
 
     @Override
     @SuppressWarnings("NewApi")
@@ -75,6 +77,12 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
         attachers.put(position, new WeakReference<PhotoViewAttacher>(attacher));
 
         iv.setImageBitmap(bitmap);
+        attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+            @Override
+            public void onPhotoTap(View view, float x, float y) {
+                pageClickListener.onClick(view);
+            }
+        });
         attacher.update();
         ((ViewPager) container).addView(v, 0);
 
@@ -98,13 +106,14 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
         }
     }
 
-    public class Builder {
+    public static class Builder {
         Context context;
         String pdfPath = "";
         float scale = DEFAULT_SCALE;
         float centerX = 0f, centerY = 0f;
         int offScreenSize = DEFAULT_OFFSCREENSIZE;
         float renderQuality = DEFAULT_QUALITY;
+        View.OnClickListener pageClickListener = new EmptyClickListener();
 
         public Builder(Context context) {
             this.context = context;
@@ -147,6 +156,12 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
             return this;
         }
 
+        public Builder setOnPageClickListener(View.OnClickListener listener) {
+            if( listener != null )
+                pageClickListener = listener;
+            return this;
+        }
+
         public PDFPagerAdapter create() {
             PDFPagerAdapter adapter = new PDFPagerAdapter(context, pdfPath);
             adapter.scale.setScale(scale);
@@ -154,6 +169,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
             adapter.scale.setCenterY(centerY);
             adapter.offScreenSize = offScreenSize;
             adapter.renderQuality = renderQuality;
+            adapter.pageClickListener = pageClickListener;
             return adapter;
         }
     }

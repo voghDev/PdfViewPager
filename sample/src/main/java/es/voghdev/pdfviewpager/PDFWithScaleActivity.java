@@ -21,6 +21,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.Toast;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
@@ -37,7 +39,17 @@ public class PDFWithScaleActivity extends AppCompatActivity{
         setTitle(R.string.menu_sample9_txt);
         pdfViewPager = new PDFViewPager(this, "moby.pdf");
         setContentView(pdfViewPager);
-        pdfViewPager.setAdapter(new PDFPagerAdapter(this, "moby.pdf", getPdfScale()));
+        pdfViewPager.setAdapter(new PDFPagerAdapter.Builder(this)
+                .setPdfPath("moby.pdf")
+                .setScale(getPdfScale())
+                .setOnPageClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(PDFWithScaleActivity.this, R.string.page_was_clicked, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .create()
+        );
     }
 
     private PdfScale getPdfScale() {

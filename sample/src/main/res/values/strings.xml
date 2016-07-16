@@ -24,4 +24,5 @@
     <string name="menu_sample9_txt">Example with initial scale</string>
     <string name="dummy_msg">This sample PDF here &gt;&gt;\nis declared by code</string>
     <string name="zoomable_asset_on_xml">Zoomable PDF on XML Example</string>
+    <string name="page_was_clicked">Page was clicked</string>
 </resources>
