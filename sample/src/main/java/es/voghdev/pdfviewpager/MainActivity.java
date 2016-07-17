@@ -88,9 +88,6 @@ public class MainActivity extends AppCompatActivity {
         else if(id == R.id.action_sample6) {
             LegacyPDFActivity.open(this);
         }
-        else if(id == R.id.action_sample7) {
-            ZoomablePDFActivityIVZoom.open(this);
-        }
         else if(id == R.id.action_sample8) {
             ZoomablePDFActivityPhotoView.open(this);
         }

@@ -22,10 +22,6 @@
           android:title="@string/menu_sample6_txt"
           android:icon="@android:drawable/ic_media_play" />
 
-    <item android:id="@+id/action_sample7"
-          android:title="@string/menu_sample7_txt"
-          android:icon="@android:drawable/ic_media_play" />
-
     <item android:id="@+id/action_sample8"
           android:title="@string/menu_sample8_txt"
           android:icon="@android:drawable/ic_media_play" />
