@@ -37,6 +37,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+
 import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample9Tests extends BaseTest {
@@ -60,7 +61,6 @@ import static org.hamcrest.core.StringContains.containsString;
         onView(withClassName(containsString(PDFViewPager.class.getSimpleName()))).perform(click());
 
         onView(withText(R.string.page_was_clicked)).inRoot(withDecorView(not(activity.getWindow().getDecorView()))).check(matches(isDisplayed()));
-
     }
 
     private MainActivity startActivity() {
