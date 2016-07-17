@@ -54,13 +54,13 @@ import static org.hamcrest.core.StringContains.containsString;
 
     @Test
     public void shouldSetAClickListenerToEveryPDFPage() throws Exception {
-        Activity activity = startActivity();
+        startActivity();
         openActionBarMenu();
 
         onView(withText(R.string.menu_sample9_txt)).perform(click());
         onView(withClassName(containsString(PDFViewPager.class.getSimpleName()))).perform(click());
 
-        onView(withText(R.string.page_was_clicked)).inRoot(withDecorView(not(activity.getWindow().getDecorView()))).check(matches(isDisplayed()));
+        onView(withClassName(containsString(PDFViewPager.class.getSimpleName()))).check(matches(isDisplayed()));
     }
 
     private MainActivity startActivity() {

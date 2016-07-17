@@ -45,7 +45,8 @@ public class PDFWithScaleActivity extends AppCompatActivity{
                 .setOnPageClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(PDFWithScaleActivity.this, R.string.page_was_clicked, Toast.LENGTH_SHORT).show();
+                        pdfViewPager.setVisibility(View.GONE);
+                        Toast.makeText(PDFWithScaleActivity.this, R.string.page_was_clicked, Toast.LENGTH_LONG).show();
                     }
                 })
                 .create()
