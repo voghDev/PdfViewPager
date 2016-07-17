@@ -43,6 +43,7 @@
 - Refactor PDFPagerAdapter to a Builder pattern, for constructing it in a more comfortable way.
 - Add a "scale" parameter to PDFViewPagerZoom in XML files.
 - Add "autoAssignScale" parameter that makes the widget remember last centerX and centerY.
+- Add an OnClickListener to each page of the PdfViewPager
 
 [4]: https://github.com/chrisbanes/PhotoView
 [5]: https://github.com/sephiroth74/ImageViewZoom
