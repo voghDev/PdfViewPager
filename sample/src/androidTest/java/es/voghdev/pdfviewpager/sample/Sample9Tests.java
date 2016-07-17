@@ -15,7 +15,6 @@
  */
 package es.voghdev.pdfviewpager.sample;
 
-import android.app.Activity;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -31,13 +30,9 @@ import es.voghdev.pdfviewpager.library.PDFViewPager;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.RootMatchers.withDecorView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-
 import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(AndroidJUnit4.class) @LargeTest public class Sample9Tests extends BaseTest {
