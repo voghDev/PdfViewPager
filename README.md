@@ -149,7 +149,7 @@ Developed By
 
 # License
 
-    Copyright 2015 Olmo Gallegos Hernández
+    Copyright 2016 Olmo Gallegos Hernández
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
