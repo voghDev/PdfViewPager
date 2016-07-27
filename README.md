@@ -128,7 +128,7 @@ TODOs
 
 - [X] Make initial Pdf scale setable by code *(requested by various users on issues)*
 - [X] Load PDF documents from SD card
-- [X] Make PDF documents zoomable with pinch and double tap (first approach made possible thanks to [ImageViewZoom][5], final approach with [photoview][11])
+- [X] Make PDF documents zoomable with pinch and double tap (two approaches, [ImageViewZoom][5] and [photoview][11])
 - [X] Unify all features in only one **PDFViewPager** and **PDFPagerAdapter** class
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [X] UI tests
