@@ -63,13 +63,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
         onView(withText(R.string.menu_sample6_txt)).check(matches(isDisplayed()));
     }
 
-    @Test public void showsSamplesButton7() {
-        startActivity();
-        openActionBarMenu();
-
-        onView(withText(R.string.menu_sample7_txt)).check(matches(isDisplayed()));
-    }
-
     @Test public void showsSamplesButton8() {
         startActivity();
         openActionBarMenu();
