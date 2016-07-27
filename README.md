@@ -128,7 +128,7 @@ TODOs
 
 - [X] Make initial Pdf scale setable by code *(requested by various users on issues)*
 - [X] Load PDF documents from SD card
-- [X] Make PDF documents zoomable with pinch and double tap (first approach made possible thanks to [ImageViewZoom][5]
+- [X] Make PDF documents zoomable with pinch and double tap (first approach made possible thanks to [ImageViewZoom][5], final approach with [photoview][11])
 - [X] Unify all features in only one **PDFViewPager** and **PDFPagerAdapter** class
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [X] UI tests
@@ -183,3 +183,4 @@ Contributing
 [8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main/java/es/voghdev/pdfviewpager
 [9]: http://twitter.com/voghDev
 [10]: http://www.mobiledevstories.com
+[11]: https://github.com/chrisbanes/PhotoView
