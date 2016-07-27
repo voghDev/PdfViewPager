@@ -3,6 +3,7 @@
     <declare-styleable name="PDFViewPager">
         <attr name="assetFileName" format="string" /> <!-- Load PDF from Asset -->
         <attr name="pdfUrl" format="string" /> <!-- Load PDF from remote URL -->
+        <attr name="scale" format="float" /> <!-- Set initial scale for PDF -->
     </declare-styleable>
 
     <declare-styleable name="LegacyPDFView">
