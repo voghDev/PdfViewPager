@@ -45,16 +45,6 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
         attachers = new SparseArray<>();
     }
 
-    /*public PDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
-        super(context, pdfPath, offScreenSize);
-        attachers = new SparseArray<>();
-    }
-    public PDFPagerAdapter(Context context, String pdfPath, PdfScale scale) {
-        super(context, pdfPath);
-        attachers = new SparseArray<>();
-        this.scale = scale;
-    }*/
-
     @Override
     @SuppressWarnings("NewApi")
     public Object instantiateItem(ViewGroup container, int position) {
