@@ -35,8 +35,8 @@
 - PDF scale can now be set.
 - Released all PhotoView resources to avoid possible leaks.
 
-1.0.1 (next planned features)
------------------------------
+1.0.1
+-----
 
 - Upload new screenshots as [sample][7] project looks much better now
 - Definitely eliminate LegacyPDFPagerAdapter and PdfViewPagerIVZoom classes, which were deprecated.
