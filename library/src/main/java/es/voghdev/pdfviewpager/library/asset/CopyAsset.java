@@ -16,10 +16,11 @@
 package es.voghdev.pdfviewpager.library.asset;
 
 public interface CopyAsset {
-    public void copy(String assetName, String destinationPath);
+    void copy(String assetName, String destinationPath);
 
-    public interface Listener{
-        public void success(String assetName, String destinationPath);
-        public void failure(Exception e);
+    interface Listener {
+        void success(String assetName, String destinationPath);
+
+        void failure(Exception e);
     }
 }

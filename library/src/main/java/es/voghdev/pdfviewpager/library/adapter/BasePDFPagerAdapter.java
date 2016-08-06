@@ -73,10 +73,10 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     protected void init() {
         try {
             renderer = new PdfRenderer(getSeekableFileDescriptor(pdfPath));
-            inflater = (LayoutInflater)context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             PdfRendererParams params = extractPdfParamsFromFirstPage(renderer, renderQuality);
             bitmapContainer = new SimpleBitmapPool(params);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -101,15 +101,15 @@ public class BasePDFPagerAdapter extends PagerAdapter {
 
         File pdfCopy = new File(path);
 
-        if(pdfCopy.exists()){
+        if (pdfCopy.exists()) {
             parcelFileDescriptor = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
             return parcelFileDescriptor;
         }
 
-        if(isAnAsset(path)){
+        if (isAnAsset(path)) {
             pdfCopy = new File(context.getCacheDir(), path);
             parcelFileDescriptor = ParcelFileDescriptor.open(pdfCopy, ParcelFileDescriptor.MODE_READ_ONLY);
-        }else{
+        } else {
             URI uri = URI.create(String.format("file://%s", path));
             parcelFileDescriptor = context.getContentResolver().openFileDescriptor(Uri.parse(uri.toString()), "rw");
         }
@@ -127,8 +127,9 @@ public class BasePDFPagerAdapter extends PagerAdapter {
         View v = inflater.inflate(R.layout.view_pdf_page, container, false);
         ImageView iv = (ImageView) v.findViewById(R.id.imageView);
 
-        if(renderer == null || getCount() < position)
+        if (renderer == null || getCount() < position) {
             return v;
+        }
 
         PdfRenderer.Page page = getPDFPage(renderer, position);
 
@@ -154,15 +155,17 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     }
 
     @SuppressWarnings("NewApi")
-    public void close(){
+    public void close() {
         releaseAllBitmaps();
-        if(renderer != null)
+        if (renderer != null) {
             renderer.close();
+        }
     }
 
     protected void releaseAllBitmaps() {
-        if(bitmapContainer != null)
+        if (bitmapContainer != null) {
             bitmapContainer.clear();
+        }
     }
 
     @Override
@@ -173,6 +176,6 @@ public class BasePDFPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == (View)object;
+        return view == (View) object;
     }
 }

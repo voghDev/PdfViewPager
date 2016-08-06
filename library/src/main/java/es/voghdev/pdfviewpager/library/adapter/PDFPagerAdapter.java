@@ -32,7 +32,7 @@ import es.voghdev.pdfviewpager.library.util.EmptyClickListener;
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PDFPagerAdapter extends BasePDFPagerAdapter
-        implements PhotoViewAttacher.OnMatrixChangedListener{
+        implements PhotoViewAttacher.OnMatrixChangedListener {
 
     private static final float DEFAULT_SCALE = 1f;
 
@@ -51,8 +51,9 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
         View v = inflater.inflate(R.layout.view_pdf_page, container, false);
         ImageView iv = (ImageView) v.findViewById(R.id.imageView);
 
-        if(renderer == null || getCount() < position)
+        if (renderer == null || getCount() < position) {
             return v;
+        }
 
         PdfRenderer.Page page = getPDFPage(renderer, position);
 
@@ -82,7 +83,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
     @Override
     public void close() {
         super.close();
-        if(attachers != null){
+        if (attachers != null) {
             attachers.clear();
             attachers = null;
         }
@@ -90,7 +91,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
 
     @Override
     public void onMatrixChanged(RectF rect) {
-        if(scale.getScale() != PdfScale.DEFAULT_SCALE) {
+        if (scale.getScale() != PdfScale.DEFAULT_SCALE) {
 //            scale.setCenterX(rect.centerX());
 //            scale.setCenterY(rect.centerY());
         }
@@ -147,8 +148,9 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
         }
 
         public Builder setOnPageClickListener(View.OnClickListener listener) {
-            if( listener != null )
+            if (listener != null) {
                 pageClickListener = listener;
+            }
             return this;
         }
 

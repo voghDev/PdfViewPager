@@ -46,18 +46,20 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
 
     private void init(String pdfUrl) {
         DownloadFile downloadFile = new DownloadFileUrlConnectionImpl(context, new Handler(), this);
-        downloadFile.download(pdfUrl, new File(context.getCacheDir(), FileUtil.extractFileNameFromURL(pdfUrl)).getAbsolutePath());
+        downloadFile.download(pdfUrl,
+                new File(context.getCacheDir(), FileUtil.extractFileNameFromURL(pdfUrl)).getAbsolutePath());
     }
 
-    private void init(AttributeSet attrs){
-        if(attrs != null){
+    private void init(AttributeSet attrs) {
+        if (attrs != null) {
             TypedArray a;
 
             a = context.obtainStyledAttributes(attrs, R.styleable.PDFViewPager);
             String pdfUrl = a.getString(R.styleable.PDFViewPager_pdfUrl);
 
-            if( pdfUrl != null && pdfUrl.length() > 0)
+            if (pdfUrl != null && pdfUrl.length() > 0) {
                 init(pdfUrl);
+            }
         }
     }
 
@@ -76,9 +78,14 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         listener.onProgressUpdate(progress, total);
     }
 
-    public class NullListener implements DownloadFile.Listener{
-        public void onSuccess(String url, String destinationPath) {}
-        public void onFailure(Exception e) {}
-        public void onProgressUpdate(int progress, int total) {}
+    public class NullListener implements DownloadFile.Listener {
+        public void onSuccess(String url, String destinationPath) {
+        }
+
+        public void onFailure(Exception e) {
+        }
+
+        public void onProgressUpdate(int progress, int total) {
+        }
     }
 }

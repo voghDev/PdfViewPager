@@ -59,17 +59,21 @@ public class LegacyPDFView extends LinearLayout implements DownloadFile.Listener
     private void init(AttributeSet attrs) {
         View v = inflate(getContext(), getLayoutId(), this);
 
-        if(viewFound(v, R.id.legacy_pdf_textView))
+        if (viewFound(v, R.id.legacy_pdf_textView)) {
             textView = (TextView) v.findViewById(R.id.legacy_pdf_textView);
-        if(viewFound(v, R.id.legacy_pdf_button))
+        }
+        if (viewFound(v, R.id.legacy_pdf_button)) {
             button = (Button) v.findViewById(R.id.legacy_pdf_button);
-        if(viewFound(v, R.id.legacy_pdf_progressBar))
+        }
+        if (viewFound(v, R.id.legacy_pdf_progressBar)) {
             progressBar = (ProgressBar) v.findViewById(R.id.legacy_pdf_progressBar);
+        }
 
-        if(downloadFile == null)
+        if (downloadFile == null) {
             downloadFile = new DownloadFileUrlConnectionImpl(getContext(), new Handler(), this);
+        }
 
-        if (attrs != null){
+        if (attrs != null) {
             TypedArray a;
 
             a = getContext().obtainStyledAttributes(attrs, R.styleable.LegacyPDFView);
@@ -78,36 +82,36 @@ public class LegacyPDFView extends LinearLayout implements DownloadFile.Listener
         }
     }
 
-    protected boolean viewFound(View root, int id){
+    protected boolean viewFound(View root, int id) {
         return root.findViewById(id) != null;
     }
 
-    public void setOnClickListener(OnClickListener l){
+    public void setOnClickListener(OnClickListener l) {
         getButton().setOnClickListener(l);
     }
 
-    public int getMax(){
+    public int getMax() {
         return getProgressBar().getMax();
     }
 
-    public void setMax(int max){
+    public void setMax(int max) {
         getProgressBar().setMax(max);
     }
 
-    public void setProgress(int progress){
+    public void setProgress(int progress) {
         getProgressBar().setProgress(progress);
     }
 
-    public void setText(String text){
+    public void setText(String text) {
         getTextView().setText(text);
     }
 
-    public void setText(int resId){
+    public void setText(int resId) {
         getTextView().setText(resId);
     }
 
     //region overridable methods - You can customize this view by adding a subclass with your own implementations
-    protected int getLayoutId(){
+    protected int getLayoutId() {
         return R.layout.view_legacy_pdf;
     }
 
@@ -137,8 +141,9 @@ public class LegacyPDFView extends LinearLayout implements DownloadFile.Listener
 
     @Override
     public void onProgressUpdate(int progress, int total) {
-        if(getMax() != total)
+        if (getMax() != total) {
             setMax(total);
+        }
 
         setProgress(progress);
     }

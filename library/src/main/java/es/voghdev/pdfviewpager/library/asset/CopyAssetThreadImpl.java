@@ -30,8 +30,9 @@ public class CopyAssetThreadImpl implements CopyAsset {
     public CopyAssetThreadImpl(Context context, Handler uiThread, Listener listener) {
         this.context = context;
         this.uiThread = uiThread;
-        if(listener != null)
+        if (listener != null) {
             this.listener = listener;
+        }
     }
 
     public CopyAssetThreadImpl(Context context, Handler uiThread) {
@@ -47,7 +48,7 @@ public class CopyAssetThreadImpl implements CopyAsset {
                 try {
                     FileUtil.copyAsset(context, assetName, destinationPath);
                     notifySuccess(assetName, destinationPath);
-                }catch(IOException e) {
+                } catch (IOException e) {
                     notifyError(e);
                 }
             }
@@ -55,8 +56,9 @@ public class CopyAssetThreadImpl implements CopyAsset {
     }
 
     private void notifySuccess(final String assetName, final String destinationPath) {
-        if(uiThread == null)
+        if (uiThread == null) {
             return;
+        }
 
         uiThread.post(new Runnable() {
             @Override
@@ -67,8 +69,9 @@ public class CopyAssetThreadImpl implements CopyAsset {
     }
 
     private void notifyError(final IOException e) {
-        if(uiThread == null)
+        if (uiThread == null) {
             return;
+        }
 
         uiThread.post(new Runnable() {
             @Override
@@ -78,8 +81,11 @@ public class CopyAssetThreadImpl implements CopyAsset {
         });
     }
 
-    protected class NullListener implements Listener{
-        public void success(String assetName, String destinationPath) {}
-        public void failure(Exception e) {}
+    protected class NullListener implements Listener {
+        public void success(String assetName, String destinationPath) {
+        }
+
+        public void failure(Exception e) {
+        }
     }
 }

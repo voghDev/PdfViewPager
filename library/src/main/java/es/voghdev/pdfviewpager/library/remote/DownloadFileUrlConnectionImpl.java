@@ -48,7 +48,7 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try{
+                try {
                     File file = new File(destinationPath);
                     FileOutputStream fileOutput = new FileOutputStream(file);
                     HttpURLConnection urlConnection = null;
@@ -61,11 +61,11 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
                     int bufferLength = 0;
                     InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-                    while ( (bufferLength = in.read(buffer)) > 0 ) {
+                    while ((bufferLength = in.read(buffer)) > 0) {
                         fileOutput.write(buffer, 0, bufferLength);
                         downloadedSize += bufferLength;
                         counter += bufferLength;
-                        if(listener != null && counter > NOTIFY_PERIOD){
+                        if (listener != null && counter > NOTIFY_PERIOD) {
                             notifyProgressOnUiThread(downloadedSize, totalSize);
                             counter = 0;
                         }
@@ -74,9 +74,9 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
                     urlConnection.disconnect();
                     fileOutput.close();
 
-                }catch(MalformedURLException e){
+                } catch (MalformedURLException e) {
                     notifyFailureOnUiThread(e);
-                }catch(IOException e){
+                } catch (IOException e) {
                     notifyFailureOnUiThread(e);
                 }
 
@@ -86,8 +86,9 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
     }
 
     protected void notifySuccessOnUiThread(final String url, final String destinationPath) {
-        if(uiThread == null)
+        if (uiThread == null) {
             return;
+        }
 
         uiThread.post(new Runnable() {
             @Override
@@ -97,9 +98,10 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
         });
     }
 
-    protected void notifyFailureOnUiThread(final Exception e){
-        if(uiThread == null)
+    protected void notifyFailureOnUiThread(final Exception e) {
+        if (uiThread == null) {
             return;
+        }
 
         uiThread.post(new Runnable() {
             @Override
@@ -110,8 +112,9 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
     }
 
     private void notifyProgressOnUiThread(final int downloadedSize, final int totalSize) {
-        if(uiThread == null)
+        if (uiThread == null) {
             return;
+        }
 
         uiThread.post(new Runnable() {
             @Override
@@ -121,9 +124,14 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
         });
     }
 
-    protected class NullListener implements Listener{
-        public void onSuccess(String url, String destinationPath) {}
-        public void onFailure(Exception e) {}
-        public void onProgressUpdate(int progress, int total) {}
+    protected class NullListener implements Listener {
+        public void onSuccess(String url, String destinationPath) {
+        }
+
+        public void onFailure(Exception e) {
+        }
+
+        public void onProgressUpdate(int progress, int total) {
+        }
     }
 }

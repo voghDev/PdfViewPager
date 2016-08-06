@@ -16,11 +16,13 @@
 package es.voghdev.pdfviewpager.library.remote;
 
 public interface DownloadFile {
-    public void download(String url, String destinationPath);
+    void download(String url, String destinationPath);
 
-    public interface Listener{
-        public void onSuccess(String url, String destinationPath);
-        public void onFailure(Exception e);
-        public void onProgressUpdate(int progress, int total);
+    interface Listener {
+        void onSuccess(String url, String destinationPath);
+
+        void onFailure(Exception e);
+
+        void onProgressUpdate(int progress, int total);
     }
 }

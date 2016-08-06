@@ -24,7 +24,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class FileUtil {
-    public static boolean copyAsset(Context ctx, String assetName, String destinationPath) throws IOException{
+    public static boolean copyAsset(Context ctx, String assetName, String destinationPath) throws IOException {
         InputStream in = ctx.getAssets().open(assetName);
         File f = new File(destinationPath);
         f.createNewFile();
@@ -32,7 +32,7 @@ public class FileUtil {
 
         byte[] buffer = new byte[1024];
         int read;
-        while((read = in.read(buffer)) != -1){
+        while ((read = in.read(buffer)) != -1) {
             out.write(buffer, 0, read);
         }
         in.close();
@@ -41,7 +41,7 @@ public class FileUtil {
         return true;
     }
 
-    public static String extractFileNameFromURL(String url){
+    public static String extractFileNameFromURL(String url) {
         return url.substring(url.lastIndexOf('/') + 1);
     }
 }

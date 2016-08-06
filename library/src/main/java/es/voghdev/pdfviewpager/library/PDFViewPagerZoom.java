@@ -32,7 +32,7 @@ public class PDFViewPagerZoom extends PDFViewPager {
         super(context, attrs);
     }
 
-    protected void initAdapter(Context context, String pdfPath){
+    protected void initAdapter(Context context, String pdfPath) {
         setAdapter(new PDFPagerAdapter.Builder(context)
                 .setPdfPath(pdfPath)
                 .setOffScreenSize(getOffscreenPageLimit())
@@ -40,20 +40,20 @@ public class PDFViewPagerZoom extends PDFViewPager {
         );
     }
 
-    protected void init(AttributeSet attrs){
-        if(isInEditMode()) {
+    protected void init(AttributeSet attrs) {
+        if (isInEditMode()) {
             setBackgroundResource(R.drawable.flaticon_pdf_dummy);
             return;
         }
 
-        if(attrs != null){
+        if (attrs != null) {
             TypedArray a;
 
             a = context.obtainStyledAttributes(attrs, R.styleable.PDFViewPager);
             String assetFileName = a.getString(R.styleable.PDFViewPager_assetFileName);
             float scale = a.getFloat(R.styleable.PDFViewPager_scale, PdfScale.DEFAULT_SCALE);
 
-            if( assetFileName != null && assetFileName.length() > 0 ) {
+            if (assetFileName != null && assetFileName.length() > 0) {
                 setAdapter(new PDFPagerAdapter.Builder(context)
                         .setPdfPath(assetFileName)
                         .setScale(scale)
