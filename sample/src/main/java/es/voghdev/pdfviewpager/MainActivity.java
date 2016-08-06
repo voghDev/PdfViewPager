@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     BasePDFPagerAdapter adapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.std_example);
         setContentView(R.layout.activity_main);
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if(adapter != null) {
+        if (adapter != null) {
             adapter.close();
             adapter = null;
         }
@@ -74,24 +73,18 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_sample2) {
             RemotePDFActivity.open(this);
             return false;
-        }
-        else if(id == R.id.action_sample3) {
+        } else if (id == R.id.action_sample3) {
             AssetOnSDActivity.open(this);
             return false;
-        }
-        else if(id == R.id.action_sample4) {
+        } else if (id == R.id.action_sample4) {
             Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
-        }
-        else if(id == R.id.action_sample5) {
+        } else if (id == R.id.action_sample5) {
             AssetOnXMLActivity.open(this);
-        }
-        else if(id == R.id.action_sample6) {
+        } else if (id == R.id.action_sample6) {
             LegacyPDFActivity.open(this);
-        }
-        else if(id == R.id.action_sample8) {
+        } else if (id == R.id.action_sample8) {
             ZoomablePDFActivityPhotoView.open(this);
-        }
-        else if(id == R.id.action_sample9) {
+        } else if (id == R.id.action_sample9) {
             PDFWithScaleActivity.open(this);
         }
 

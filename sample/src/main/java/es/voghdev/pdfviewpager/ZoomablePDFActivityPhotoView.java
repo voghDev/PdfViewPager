@@ -23,7 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 
-public class ZoomablePDFActivityPhotoView extends AppCompatActivity{
+public class ZoomablePDFActivityPhotoView extends AppCompatActivity {
     PDFViewPager pdfViewPager;
 
     @Override
@@ -40,13 +40,13 @@ public class ZoomablePDFActivityPhotoView extends AppCompatActivity{
         super.onDestroy();
 
         BasePDFPagerAdapter adapter = (BasePDFPagerAdapter) pdfViewPager.getAdapter();
-        if(adapter != null) {
+        if (adapter != null) {
             adapter.close();
             adapter = null;
         }
     }
 
-    public static void open(Context context){
+    public static void open(Context context) {
         Intent i = new Intent(context, ZoomablePDFActivityPhotoView.class);
         context.startActivity(i);
     }

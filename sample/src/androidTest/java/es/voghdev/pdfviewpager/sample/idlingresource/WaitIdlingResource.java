@@ -23,8 +23,9 @@ public class WaitIdlingResource implements IdlingResource {
     @Override
     public boolean isIdleNow() {
         long ellapsed = (System.currentTimeMillis() - startMillisecs);
-        if(ellapsed > waitTime)
+        if (ellapsed > waitTime) {
             resourceCallback.onTransitionToIdle();
+        }
         return ellapsed > waitTime;
     }
 

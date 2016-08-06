@@ -34,14 +34,14 @@ import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
 /**
  * Sample Activity for API Levels under 21
  */
-public class LegacyPDFActivity extends AppCompatActivity implements DownloadFile.Listener{
+public class LegacyPDFActivity extends AppCompatActivity implements DownloadFile.Listener {
     Button button;
     ProgressBar progressBar;
     TextView textView;
     DownloadFile downloadFile;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.legacy_pdf);
         setContentView(R.layout.activity_legacy);
@@ -53,7 +53,8 @@ public class LegacyPDFActivity extends AppCompatActivity implements DownloadFile
             @Override
             public void onClick(View view) {
                 button.setVisibility(View.INVISIBLE);
-                downloadFile.download(getString(R.string.sample_pdf_url), new File(getExternalFilesDir("pdf"), "legacy.pdf").getAbsolutePath());
+                downloadFile.download(getString(R.string.sample_pdf_url),
+                        new File(getExternalFilesDir("pdf"), "legacy.pdf").getAbsolutePath());
                 textView.setText(R.string.downloading);
             }
         });
@@ -66,7 +67,7 @@ public class LegacyPDFActivity extends AppCompatActivity implements DownloadFile
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
-    public static void open(Context context){
+    public static void open(Context context) {
         Intent i = new Intent(context, LegacyPDFActivity.class);
         context.startActivity(i);
     }
@@ -91,13 +92,14 @@ public class LegacyPDFActivity extends AppCompatActivity implements DownloadFile
     public void onFailure(Exception e) {
         button.setVisibility(View.INVISIBLE);
         progressBar.setProgress(0);
-        textView.setText( String.format("Download error: %s", e.getMessage()) );
+        textView.setText(String.format("Download error: %s", e.getMessage()));
     }
 
     @Override
     public void onProgressUpdate(int progress, int total) {
-        if(progressBar.getMax() != total )
+        if (progressBar.getMax() != total) {
             progressBar.setMax(total);
+        }
         progressBar.setProgress(progress);
     }
 }

@@ -23,8 +23,8 @@ import java.io.File;
 import es.voghdev.pdfviewpager.library.asset.CopyAsset;
 import es.voghdev.pdfviewpager.library.asset.CopyAssetThreadImpl;
 
-public class SampleApplication extends Application{
-    final String[] sampleAssets = {"adobe.pdf","sample.pdf","moby.pdf"};
+public class SampleApplication extends Application {
+    final String[] sampleAssets = {"adobe.pdf", "sample.pdf", "moby.pdf"};
 
     @Override
     public void onCreate() {
@@ -35,7 +35,7 @@ public class SampleApplication extends Application{
 
     private void initSampleAssets() {
         CopyAsset copyAsset = new CopyAssetThreadImpl(this, new Handler());
-        for(String asset : sampleAssets){
+        for (String asset : sampleAssets) {
             copyAsset.copy(asset, new File(getCacheDir(), asset).getAbsolutePath());
         }
     }

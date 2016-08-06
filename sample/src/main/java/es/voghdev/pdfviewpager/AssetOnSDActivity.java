@@ -30,14 +30,14 @@ import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.asset.CopyAsset;
 import es.voghdev.pdfviewpager.library.asset.CopyAssetThreadImpl;
 
-public class AssetOnSDActivity extends AppCompatActivity{
-    final String[] sampleAssets = {"adobe.pdf","sample.pdf"};
+public class AssetOnSDActivity extends AppCompatActivity {
+    final String[] sampleAssets = {"adobe.pdf", "sample.pdf"};
 
     PDFViewPager pdfViewPager;
     File pdfFolder;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.asset_on_sd);
         setContentView(R.layout.activity_asset_on_sd);
@@ -62,7 +62,7 @@ public class AssetOnSDActivity extends AppCompatActivity{
             }
         });
 
-        for(String asset : sampleAssets){
+        for (String asset : sampleAssets) {
             copyAsset.copy(asset, new File(pdfFolder, asset).getAbsolutePath());
         }
     }
@@ -79,7 +79,7 @@ public class AssetOnSDActivity extends AppCompatActivity{
         ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
     }
 
-    public static void open(Context context){
+    public static void open(Context context) {
         Intent i = new Intent(context, AssetOnSDActivity.class);
         context.startActivity(i);
     }

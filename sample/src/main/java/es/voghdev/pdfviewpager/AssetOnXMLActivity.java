@@ -23,11 +23,11 @@ import android.support.v7.app.AppCompatActivity;
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 
-public class AssetOnXMLActivity extends AppCompatActivity{
+public class AssetOnXMLActivity extends AppCompatActivity {
     PDFViewPager pdfViewPager;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.asset_on_xml);
         setContentView(R.layout.activity_asset_on_xml);
@@ -42,7 +42,7 @@ public class AssetOnXMLActivity extends AppCompatActivity{
         ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
     }
 
-    public static void open(Context context){
+    public static void open(Context context) {
         Intent i = new Intent(context, AssetOnXMLActivity.class);
         context.startActivity(i);
     }

@@ -37,7 +37,7 @@ public class RemotePDFActivity extends AppCompatActivity implements DownloadFile
     PDFPagerAdapter adapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.remote_pdf_example);
         setContentView(R.layout.activity_remote_pdf);
@@ -53,8 +53,9 @@ public class RemotePDFActivity extends AppCompatActivity implements DownloadFile
     protected void onDestroy() {
         super.onDestroy();
 
-        if(adapter != null)
+        if (adapter != null) {
             adapter.close();
+        }
     }
 
     protected void setDownloadButtonListener() {
@@ -74,23 +75,27 @@ public class RemotePDFActivity extends AppCompatActivity implements DownloadFile
         return etPdfUrl.getText().toString().trim();
     }
 
-    public static void open(Context context){
+    public static void open(Context context) {
         Intent i = new Intent(context, RemotePDFActivity.class);
         context.startActivity(i);
     }
 
-    public void showDownloadButton(){
+    public void showDownloadButton() {
         btnDownload.setVisibility(View.VISIBLE);
     }
-    public void hideDownloadButton(){
+
+    public void hideDownloadButton() {
         btnDownload.setVisibility(View.INVISIBLE);
     }
 
-    public void updateLayout(){
+    public void updateLayout() {
         root.removeAllViewsInLayout();
-        root.addView(etPdfUrl, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        root.addView(btnDownload, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        root.addView(remotePDFViewPager, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        root.addView(etPdfUrl,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        root.addView(btnDownload,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        root.addView(remotePDFViewPager,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
     @Override

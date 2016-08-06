@@ -29,7 +29,7 @@ import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.adapter.PdfScale;
 
-public class PDFWithScaleActivity extends AppCompatActivity{
+public class PDFWithScaleActivity extends AppCompatActivity {
     PDFViewPager pdfViewPager;
 
     @Override
@@ -56,7 +56,7 @@ public class PDFWithScaleActivity extends AppCompatActivity{
     private PdfScale getPdfScale() {
         PdfScale scale = new PdfScale();
         scale.setScale(3.0f);
-        scale.setCenterX( getScreenWidth(this) / 2 );
+        scale.setCenterX(getScreenWidth(this) / 2);
         scale.setCenterY(0f);
         return scale;
     }
@@ -66,22 +66,22 @@ public class PDFWithScaleActivity extends AppCompatActivity{
         super.onDestroy();
 
         BasePDFPagerAdapter adapter = (BasePDFPagerAdapter) pdfViewPager.getAdapter();
-        if(adapter != null) {
+        if (adapter != null) {
             adapter.close();
             adapter = null;
         }
     }
 
-    public static void open(Context context){
+    public static void open(Context context) {
         Intent i = new Intent(context, PDFWithScaleActivity.class);
         context.startActivity(i);
     }
 
     public int getScreenWidth(Context ctx) {
-        int w=0;
-        if(ctx instanceof Activity) {
+        int w = 0;
+        if (ctx instanceof Activity) {
             DisplayMetrics displaymetrics = new DisplayMetrics();
-            ((Activity)ctx).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+            ((Activity) ctx).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             w = displaymetrics.widthPixels;
         }
         return w;

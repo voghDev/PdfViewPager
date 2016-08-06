@@ -43,15 +43,19 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.fail;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class Sample2Tests extends BaseTest{
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class Sample2Tests extends BaseTest {
     private static final int N_PAGES = 5;
 
     WaitIdlingResource idlingResource;
 
-    @Rule public IntentsTestRule<MainActivity> activityRule =
+    @Rule
+    public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
-    @Test public void startsSecondSample() {
+    @Test
+    public void startsSecondSample() {
         startActivity();
         openActionBarMenu();
 
@@ -59,7 +63,8 @@ import static org.junit.Assert.fail;
         onView(withId(R.id.et_pdfUrl)).check(matches(isDisplayed()));
     }
 
-    @Test public void hidesDownloadButtonAfterClick() {
+    @Test
+    public void hidesDownloadButtonAfterClick() {
         startActivity();
         openActionBarMenu();
 
@@ -68,7 +73,8 @@ import static org.junit.Assert.fail;
         onView(withId(R.id.btn_download)).check(matches(not(isDisplayed())));
     }
 
-    @Test public void showsPdfAfterDownload() {
+    @Test
+    public void showsPdfAfterDownload() {
         startActivity();
         openActionBarMenu();
 
@@ -80,7 +86,8 @@ import static org.junit.Assert.fail;
         onView(withId(R.id.pdfViewPager)).check(matches(isDisplayed()));
     }
 
-    @Test public void swipesPdfToLastPageAndBackWithNoCrashesWhenDownloadIsCompleted() {
+    @Test
+    public void swipesPdfToLastPageAndBackWithNoCrashesWhenDownloadIsCompleted() {
         startActivity();
         openActionBarMenu();
 

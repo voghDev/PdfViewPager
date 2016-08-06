@@ -32,38 +32,46 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class MainActivityTest extends BaseTest {
-    @Rule public IntentsTestRule<MainActivity> activityRule =
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class MainActivityTest extends BaseTest {
+    @Rule
+    public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
-    @Test public void showsSamplesTitle() {
+    @Test
+    public void showsSamplesTitle() {
         startActivity();
 
         onView(withText(R.string.txt1)).check(matches(isDisplayed()));
     }
 
-    @Test public void showsSamplesButton2() {
+    @Test
+    public void showsSamplesButton2() {
         startActivity();
         openActionBarMenu();
 
         onView(withText(R.string.menu_sample2_txt)).check(matches(isDisplayed()));
     }
 
-    @Test public void showsSamplesButton3() {
+    @Test
+    public void showsSamplesButton3() {
         startActivity();
         openActionBarMenu();
 
         onView(withText(R.string.menu_sample3_txt)).check(matches(isDisplayed()));
     }
 
-    @Test public void showsSamplesButton6() {
+    @Test
+    public void showsSamplesButton6() {
         startActivity();
         openActionBarMenu();
 
         onView(withText(R.string.menu_sample6_txt)).check(matches(isDisplayed()));
     }
 
-    @Test public void showsSamplesButton8() {
+    @Test
+    public void showsSamplesButton8() {
         startActivity();
         openActionBarMenu();
 
@@ -78,7 +86,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
         onView(withText(R.string.menu_sample9_txt)).check(matches(isDisplayed()));
     }
 
-    @Test public void showsInitialPdfViewer() {
+    @Test
+    public void showsInitialPdfViewer() {
         startActivity();
 
         onView(withId(R.id.pdfViewPager)).check(matches(isDisplayed()));
