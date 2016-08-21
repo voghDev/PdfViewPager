@@ -143,10 +143,10 @@ Developed By
 * Olmo Gallegos Hernández - [@voghDev][9] - [mobiledevstories.com][10]
 
 <a href="http://twitter.com/voghDev">
-  <img alt="Follow me on Twitter" src="http://imageshack.us/a/img812/3923/smallth.png" />
+  <img alt="Follow me on Twitter" src="https://image.freepik.com/iconos-gratis/twitter-logo_318-40209.jpg" height="60" width="60" />
 </a>
 <a href="https://www.linkedin.com/profile/view?id=91543271">
-  <img alt="Find me on Linkedin" src="http://imageshack.us/a/img41/7877/smallld.png" />
+  <img alt="Find me on Linkedin" src="https://image.freepik.com/iconos-gratis/boton-del-logotipo-linkedin_318-84979.png" height="60" width="60" />
 </a>
 
 # License
