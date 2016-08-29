@@ -23,7 +23,7 @@
 0.3.0
 -----
 
-- Drastically improved memory management (Thanks to [fkruege][6]'s implementations').
+- Drastically improved memory management (Thanks to [fkruege][6]'s implementations).
 - Easier usage having PDFPagerAdapterZoom as the new PDFPagerAdapter class, because no one wants a PDF without zoom.
 - Refactored to have a more flexible BitmapContainer classes.
 - Added UI tests to memory management (initial idea from [fkruege][6]).
