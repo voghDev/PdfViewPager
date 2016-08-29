@@ -133,7 +133,7 @@ TODOs
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [X] UI tests
 - [ ] Add a CustomView for legacy PDF download and intent call
-- [ ] Add checkstyle, refactor & improve code quality
+- [X] Add checkstyle, refactor & improve code quality
 
 See [changelog][4] for details
 
@@ -168,11 +168,25 @@ Developed By
 Contributing
 ------------
 
+**For noobs (like me some months ago)**
+
     fork the project into your GitHub account
-    checkout your GitHub repo for the project
+    now clone your GitHub repo for this project
     implement your changes
-    commit your changes, push them
+    commit your changes, push them into your repo
     review your code and send me a pull request if you consider it
+
+**For not-so-noobs**
+
+Please make sure that your changes pass both checkstyle and UI tests before submitting them
+
+    ./gradlew checkstyle
+
+    ./gradlew test
+
+And with your Android device connected
+
+    ./gradlew connectedCheck
 
 [remotePDFScreenshot]: ./screenshots/remote.gif
 [localPDFScreenshot]: ./screenshots/local.gif
