@@ -132,8 +132,9 @@ TODOs
 - [X] Unify all features in only one **PDFViewPager** and **PDFPagerAdapter** class
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [X] UI tests
-- [ ] Add a CustomView for legacy PDF download and intent call
 - [X] Add checkstyle, refactor & improve code quality
+- [ ] Add a CustomView for legacy PDF download and intent call
+- [ ] Boost PDF opening & rendering performance using an asnychronous load
 
 See [changelog][4] for details
 
