@@ -61,6 +61,7 @@ proguard/
 .idea
 *.iml
 *.yml
+!.travis.yml
 target
 Thumbs.db
 *.swp
