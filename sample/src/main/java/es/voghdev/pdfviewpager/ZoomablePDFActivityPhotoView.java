@@ -23,7 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 
-public class ZoomablePDFActivityPhotoView extends AppCompatActivity {
+public class ZoomablePDFActivityPhotoView extends BaseSampleActivity {
     PDFViewPager pdfViewPager;
 
     @Override

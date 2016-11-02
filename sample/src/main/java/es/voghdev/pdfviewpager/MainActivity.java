@@ -15,10 +15,7 @@
  */
 package es.voghdev.pdfviewpager;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,7 +24,7 @@ import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseSampleActivity {
     PDFViewPager pdfViewPager;
     BasePDFPagerAdapter adapter;
 
@@ -36,18 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.std_example);
         setContentView(R.layout.activity_main);
-        configureActionBar();
 
         pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
 
         adapter = new PDFPagerAdapter(this, "sample.pdf");
         pdfViewPager.setAdapter(adapter);
-    }
-
-    private void configureActionBar() {
-        int color = getResources().getColor(R.color.pdfViewPager_ab_color);
-        ActionBar ab = getSupportActionBar();
-        ab.setBackgroundDrawable(new ColorDrawable(color));
     }
 
     @Override

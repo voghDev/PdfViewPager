@@ -34,7 +34,7 @@ import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
 /**
  * Sample Activity for API Levels under 21
  */
-public class LegacyPDFActivity extends AppCompatActivity implements DownloadFile.Listener {
+public class LegacyPDFActivity extends BaseSampleActivity implements DownloadFile.Listener {
     Button button;
     ProgressBar progressBar;
     TextView textView;

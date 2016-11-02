@@ -2,4 +2,6 @@
 <resources>
     <color name="pdfViewPager_background_color">@android:color/white</color>
     <color name="pdfViewPager_ab_color">#990000</color>
+    <color name="pdfViewPager_ab_color_lighter">#CC0000</color>
+    <color name="pdfViewPager_ab_color_darker">#660000</color>
 </resources>

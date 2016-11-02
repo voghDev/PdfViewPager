@@ -18,7 +18,6 @@ package es.voghdev.pdfviewpager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +28,7 @@ import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 import es.voghdev.pdfviewpager.library.util.FileUtil;
 
-public class RemotePDFActivity extends AppCompatActivity implements DownloadFile.Listener {
+public class RemotePDFActivity extends BaseSampleActivity implements DownloadFile.Listener {
     LinearLayout root;
     RemotePDFViewPager remotePDFViewPager;
     EditText etPdfUrl;

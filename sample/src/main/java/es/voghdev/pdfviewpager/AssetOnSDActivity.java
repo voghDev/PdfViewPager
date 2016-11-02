@@ -30,7 +30,7 @@ import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.asset.CopyAsset;
 import es.voghdev.pdfviewpager.library.asset.CopyAssetThreadImpl;
 
-public class AssetOnSDActivity extends AppCompatActivity {
+public class AssetOnSDActivity extends BaseSampleActivity {
     final String[] sampleAssets = {"adobe.pdf", "sample.pdf"};
 
     PDFViewPager pdfViewPager;

@@ -29,7 +29,7 @@ import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.adapter.PdfScale;
 
-public class PDFWithScaleActivity extends AppCompatActivity {
+public class PDFWithScaleActivity extends BaseSampleActivity {
     PDFViewPager pdfViewPager;
 
     @Override
