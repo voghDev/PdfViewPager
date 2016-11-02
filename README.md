@@ -49,7 +49,7 @@ It will automatically have zooming and panning capability
     protected void onDestroy() {
         super.onDestroy();
 
-        ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
+        ((PDFPagerAdapter) pdfViewPager.getAdapter()).close();
     }
 
 PDF's on SD card
@@ -70,7 +70,7 @@ PDF's on SD card
         protected void onDestroy() {
             super.onDestroy();
 
-            ((PDFPagerAdapter)pdfViewPager.getAdapter()).close();
+            ((PDFPagerAdapter) pdfViewPager.getAdapter()).close();
         }
 
 Remote PDF's from a URL
