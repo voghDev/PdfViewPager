@@ -60,6 +60,8 @@ public class PDFViewPagerZoom extends PDFViewPager {
                         .setOffScreenSize(getOffscreenPageLimit())
                         .create());
             }
+
+            a.recycle();
         }
     }
 

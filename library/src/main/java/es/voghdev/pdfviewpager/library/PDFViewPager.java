@@ -57,6 +57,8 @@ public class PDFViewPager extends ViewPager {
             if (assetFileName != null && assetFileName.length() > 0) {
                 initAdapter(context, assetFileName);
             }
+
+            a.recycle();
         }
     }
 

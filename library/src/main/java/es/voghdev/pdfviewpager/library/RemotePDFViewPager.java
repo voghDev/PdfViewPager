@@ -60,6 +60,8 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
             if (pdfUrl != null && pdfUrl.length() > 0) {
                 init(pdfUrl);
             }
+
+            a.recycle();
         }
     }
 
