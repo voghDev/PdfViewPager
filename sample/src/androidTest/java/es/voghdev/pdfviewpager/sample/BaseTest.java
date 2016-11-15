@@ -19,9 +19,6 @@ import android.support.test.InstrumentationRegistry;
 
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 
-/**
- * Created by olmo on 30/05/16.
- */
 public abstract class BaseTest {
 
     protected void openActionBarMenu() {
