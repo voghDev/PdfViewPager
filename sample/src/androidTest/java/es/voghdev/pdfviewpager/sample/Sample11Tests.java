@@ -25,7 +25,7 @@ import org.junit.runner.RunWith;
 
 import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
-import es.voghdev.pdfviewpager.library.view.VerticalViewPager;
+import es.voghdev.pdfviewpager.library.VerticalPDFViewPager;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -37,18 +37,18 @@ import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class Sample10Tests extends BaseTest {
+public class Sample11Tests extends BaseTest {
     @Rule
     public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
     @Test
-    public void startsTenthSample() {
+    public void startsEleventhSample() {
         startActivity();
         openActionBarMenu();
 
-        onView(withText(R.string.menu_sample10_txt)).perform(click());
-        onView(withClassName(containsString(VerticalViewPager.class.getSimpleName()))).check(matches(isDisplayed()));
+        onView(withText(R.string.menu_sample11_txt)).perform(click());
+        onView(withClassName(containsString(VerticalPDFViewPager.class.getSimpleName()))).check(matches(isDisplayed()));
     }
 
     private MainActivity startActivity() {

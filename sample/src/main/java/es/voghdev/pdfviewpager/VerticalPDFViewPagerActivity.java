@@ -20,18 +20,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-public class VerticalViewPagerActivity extends BaseSampleActivity {
+public class VerticalPDFViewPagerActivity extends BaseSampleActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_vertical_view_pager);
+        setContentView(R.layout.activity_vertical_pdf_view_pager);
 
-        setTitle("Vertical View Pager");
+        setTitle("Vertical PDF View Pager");
     }
 
     public static void open(Context ctx) {
-        Intent intent = new Intent(ctx, VerticalViewPagerActivity.class);
+        Intent intent = new Intent(ctx, VerticalPDFViewPagerActivity.class);
         ctx.startActivity(intent);
     }
 }

@@ -13,25 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.pdfviewpager;
+package es.voghdev.pdfviewpager.library;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.util.AttributeSet;
 
-public class VerticalViewPagerActivity extends BaseSampleActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+import es.voghdev.pdfviewpager.library.view.VerticalViewPager;
 
-        setContentView(R.layout.activity_vertical_view_pager);
-
-        setTitle("Vertical View Pager");
+public class VerticalPDFViewPager extends VerticalViewPager {
+    public VerticalPDFViewPager(Context context) {
+        super(context);
     }
 
-    public static void open(Context ctx) {
-        Intent intent = new Intent(ctx, VerticalViewPagerActivity.class);
-        ctx.startActivity(intent);
+    public VerticalPDFViewPager(Context context, AttributeSet attrs) {
+        super(context, attrs);
     }
 }

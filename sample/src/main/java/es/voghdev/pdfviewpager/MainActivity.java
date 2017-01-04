@@ -78,6 +78,8 @@ public class MainActivity extends BaseSampleActivity {
             PDFWithScaleActivity.open(this);
         } else if (id == R.id.action_sample10) {
             VerticalViewPagerActivity.open(this);
+        } else if (id == R.id.action_sample11) {
+            VerticalPDFViewPagerActivity.open(this);
         }
 
         return super.onOptionsItemSelected(item);

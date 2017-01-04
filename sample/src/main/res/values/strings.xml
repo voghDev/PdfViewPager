@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">PdfViewPager samples</string>
     <string name="remote_pdf_url">Remote PDF URL</string>
-    <string name="sample_pdf_url">http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf</string>
+    <string name="sample_pdf_url">http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf</string>
     <string name="download">Tap to start download</string>
     <string name="asset_on_sd">Asset on SD card example</string>
     <string name="asset_on_xml">Asset on XML example</string>
@@ -21,7 +21,8 @@
     <string name="menu_sample6_txt">Pre-lollipop PDF download and launch</string>
     <string name="menu_sample8_txt">Zoomable PDF (PhotoView)</string>
     <string name="menu_sample9_txt">Example with initial scale</string>
-    <string name="menu_sample10_txt">Vertical PDF Example</string>
+    <string name="menu_sample10_txt">Vertical View Pager Example</string>
+    <string name="menu_sample11_txt">Vertical PDF Example</string>
     <string name="dummy_msg">This sample PDF here &gt;&gt;\nis declared by code</string>
     <string name="zoomable_asset_on_xml">Zoomable PDF on XML Example</string>
     <string name="page_was_clicked">Page was clicked</string>

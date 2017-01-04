@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/action_sample2"
-          android:title="@string/menu_sample2_txt"
-        android:icon="@android:drawable/ic_media_play" />
+    <item
+        android:id="@+id/action_sample2"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample2_txt" />
 
-    <item android:id="@+id/action_sample3"
-          android:title="@string/menu_sample3_txt"
-          android:icon="@android:drawable/ic_media_play" />
+    <item
+        android:id="@+id/action_sample3"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample3_txt" />
 
-    <item android:id="@+id/action_sample4"
-          android:title="@string/menu_sample4_txt"
-          android:icon="@android:drawable/ic_media_play" />
+    <item
+        android:id="@+id/action_sample4"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample4_txt" />
 
-    <item android:id="@+id/action_sample5"
-          android:title="@string/menu_sample5_txt"
-          android:icon="@android:drawable/ic_media_play" />
+    <item
+        android:id="@+id/action_sample5"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample5_txt" />
 
-    <item android:id="@+id/action_sample6"
-          android:title="@string/menu_sample6_txt"
-          android:icon="@android:drawable/ic_media_play" />
+    <item
+        android:id="@+id/action_sample6"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample6_txt" />
 
-    <item android:id="@+id/action_sample8"
-          android:title="@string/menu_sample8_txt"
-          android:icon="@android:drawable/ic_media_play" />
+    <item
+        android:id="@+id/action_sample8"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample8_txt" />
 
-    <item android:id="@+id/action_sample9"
-          android:title="@string/menu_sample9_txt"
-          android:icon="@android:drawable/ic_media_play" />
+    <item
+        android:id="@+id/action_sample9"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample9_txt" />
 
-    <item android:id="@+id/action_sample10"
-        android:title="@string/menu_sample10_txt"
-        android:icon="@android:drawable/ic_media_play" />
-
+    <item
+        android:id="@+id/action_sample10"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample10_txt" />
+    <item
+        android:id="@+id/action_sample11"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/menu_sample11_txt" />
 
 </menu>
