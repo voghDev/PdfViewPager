@@ -76,6 +76,8 @@ public class MainActivity extends BaseSampleActivity {
             ZoomablePDFActivityPhotoView.open(this);
         } else if (id == R.id.action_sample9) {
             PDFWithScaleActivity.open(this);
+        } else if (id == R.id.action_sample10) {
+            VerticalViewPagerActivity.open(this);
         }
 
         return super.onOptionsItemSelected(item);

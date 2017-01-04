@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package es.voghdev.pdfviewpager.library;
+package es.voghdev.pdfviewpager.library.view;
 
 import android.content.Context;
 import android.content.res.Resources;

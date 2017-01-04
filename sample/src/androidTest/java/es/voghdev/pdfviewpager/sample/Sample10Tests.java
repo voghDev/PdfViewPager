@@ -25,58 +25,31 @@ import org.junit.runner.RunWith;
 
 import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
+import es.voghdev.pdfviewpager.library.PDFViewPager;
+import es.voghdev.pdfviewpager.library.view.VerticalViewPager;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.swipeLeft;
-import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.fail;
+import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class Sample8Tests extends BaseTest {
+public class Sample10Tests extends BaseTest {
     @Rule
     public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
     @Test
-    public void startsEighthSample() {
+    public void startsTenthSample() {
         startActivity();
         openActionBarMenu();
 
-        onView(withText(R.string.menu_sample8_txt)).perform(click());
-        onView(withId(R.id.pdfViewPagerZoom)).check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void shouldSwipeToLastPageThenGoBackToFirstWithoutCrashing() throws Exception {
-        startActivity();
-        openActionBarMenu();
-
-        onView(withText(R.string.menu_sample8_txt)).perform(click());
-
-        try {
-            swipeToEnd();
-            swipeToBeginning();
-        } catch (Exception ex) {
-            fail("Error paging");
-        }
-    }
-
-    private void swipeToEnd() {
-        for (int i = 0; i < 30; i++) {
-            onView(withId(R.id.pdfViewPagerZoom)).perform(swipeLeft());
-        }
-    }
-
-    private void swipeToBeginning() {
-        for (int i = 0; i < 30; i++) {
-            onView(withId(R.id.pdfViewPagerZoom)).perform(swipeRight());
-        }
+        onView(withText(R.string.menu_sample10_txt)).perform(click());
+        onView(withClassName(containsString(VerticalViewPager.class.getSimpleName()))).check(matches(isDisplayed()));
     }
 
     private MainActivity startActivity() {
