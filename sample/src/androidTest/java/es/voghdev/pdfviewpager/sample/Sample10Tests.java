@@ -60,8 +60,8 @@ public class Sample10Tests extends BaseTest {
         onView(withText(R.string.menu_sample10_txt)).perform(click());
 
         try {
-            swipeForward(R.id.pdfViewPager, 5);
-            swipeBackwards(R.id.pdfViewPager, 5);
+            swipeForwardVertically(R.id.verticalViewPager, 3);
+            swipeBackwardsVertically(R.id.verticalViewPager, 3);
         } catch (Exception ex) {
             fail("Error paging");
         }

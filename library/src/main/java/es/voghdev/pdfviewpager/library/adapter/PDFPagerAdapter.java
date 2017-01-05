@@ -75,7 +75,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
             }
         });
         attacher.update();
-        ((ViewPager) container).addView(v, 0);
+        container.addView(v, 0);
 
         return v;
     }

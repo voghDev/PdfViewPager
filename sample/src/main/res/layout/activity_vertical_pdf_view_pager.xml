@@ -11,7 +11,7 @@
         android:text="This is a VerticalViewPager, without PDF Rendering" />
 
     <es.voghdev.pdfviewpager.library.VerticalPDFViewPager
-        android:id="@+id/pdfViewPager"
+        android:id="@+id/verticalPdfViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

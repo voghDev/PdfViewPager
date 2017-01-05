@@ -33,7 +33,6 @@ public class AssetOnSDActivity extends BaseSampleActivity {
     final String[] sampleAssets = {"adobe.pdf", "sample.pdf"};
 
     PDFViewPager pdfViewPager;
-    File pdfFolder;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,6 @@ public class AssetOnSDActivity extends BaseSampleActivity {
         setTitle(R.string.asset_on_sd);
         setContentView(R.layout.activity_asset_on_sd);
 
-        pdfFolder = Environment.getExternalStorageDirectory();
         copyAssetsOnSDCard();
     }
 
@@ -50,7 +48,7 @@ public class AssetOnSDActivity extends BaseSampleActivity {
         CopyAsset copyAsset = new CopyAssetThreadImpl(getApplicationContext(), new Handler(), new CopyAsset.Listener() {
             @Override
             public void success(String assetName, String destinationPath) {
-                pdfViewPager = new PDFViewPager(context, getPdfPathOnSDCard());
+                pdfViewPager = new PDFViewPager(context, getPdfPathOnSDCard(Environment.getExternalStorageDirectory()));
                 setContentView(pdfViewPager);
             }
 
@@ -62,13 +60,8 @@ public class AssetOnSDActivity extends BaseSampleActivity {
         });
 
         for (String asset : sampleAssets) {
-            copyAsset.copy(asset, new File(pdfFolder, asset).getAbsolutePath());
+            copyAsset.copy(asset, new File(Environment.getExternalStorageDirectory(), asset).getAbsolutePath());
         }
-    }
-
-    protected String getPdfPathOnSDCard() {
-        File f = new File(pdfFolder, "adobe.pdf");
-        return f.getAbsolutePath();
     }
 
     @Override

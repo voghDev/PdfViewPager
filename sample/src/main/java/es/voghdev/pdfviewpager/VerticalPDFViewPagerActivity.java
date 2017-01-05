@@ -20,7 +20,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import es.voghdev.pdfviewpager.library.VerticalPDFViewPager;
+import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
+
 public class VerticalPDFViewPagerActivity extends BaseSampleActivity {
+    VerticalPDFViewPager pdfViewPager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +34,22 @@ public class VerticalPDFViewPagerActivity extends BaseSampleActivity {
         setContentView(R.layout.activity_vertical_pdf_view_pager);
 
         setTitle("Vertical PDF View Pager");
+
+        configureVerticalPdfViewPager();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
+    }
+
+    protected void configureVerticalPdfViewPager() {
+        pdfViewPager = (VerticalPDFViewPager) findViewById(R.id.verticalPdfViewPager);
+        pdfViewPager.setAdapter(new PDFPagerAdapter.Builder(this)
+                .setPdfPath(getPdfPathOnSDCard())
+                .create());
     }
 
     public static void open(Context ctx) {

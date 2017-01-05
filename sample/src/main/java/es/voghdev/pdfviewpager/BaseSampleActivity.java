@@ -17,10 +17,13 @@ package es.voghdev.pdfviewpager;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+
+import java.io.File;
 
 public class BaseSampleActivity extends AppCompatActivity {
 
@@ -35,5 +38,14 @@ public class BaseSampleActivity extends AppCompatActivity {
         int color = ContextCompat.getColor(this, R.color.pdfViewPager_ab_color);
         ActionBar ab = getSupportActionBar();
         ab.setBackgroundDrawable(new ColorDrawable(color));
+    }
+
+    protected String getPdfPathOnSDCard() {
+        return getPdfPathOnSDCard(Environment.getExternalStorageDirectory());
+    }
+
+    protected String getPdfPathOnSDCard(File pdfFolder) {
+        File f = new File(pdfFolder, "adobe.pdf");
+        return f.getAbsolutePath();
     }
 }

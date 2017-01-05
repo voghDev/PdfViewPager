@@ -38,7 +38,7 @@ public class VerticalViewPagerActivity extends BaseSampleActivity {
         configureVerticalViewPager();
     }
 
-    private void configureVerticalViewPager() {
+    protected void configureVerticalViewPager() {
         VerticalViewPager verticalViewPager = (VerticalViewPager) findViewById(R.id.verticalViewPager);
         SampleAdapter adapter = new SampleAdapter(this);
         verticalViewPager.setAdapter(adapter);
@@ -78,7 +78,7 @@ public class VerticalViewPagerActivity extends BaseSampleActivity {
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            super.destroyItem(container, position, object);
+
         }
     }
 
