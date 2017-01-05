@@ -17,11 +17,29 @@ package es.voghdev.pdfviewpager.sample;
 
 import android.support.test.InstrumentationRegistry;
 
+import es.voghdev.pdfviewpager.R;
+
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static android.support.test.espresso.action.ViewActions.swipeLeft;
+import static android.support.test.espresso.action.ViewActions.swipeRight;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 public abstract class BaseTest {
 
     protected void openActionBarMenu() {
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getTargetContext());
+    }
+
+    protected void swipeForward(int viewId, int pages) {
+        for (int i = 0; i < pages; i++) {
+            onView(withId(viewId)).perform(swipeLeft());
+        }
+    }
+
+    protected void swipeBackwards(int viewId, int pages) {
+        for (int i = 0; i < pages; i++) {
+            onView(withId(viewId)).perform(swipeRight());
+        }
     }
 }

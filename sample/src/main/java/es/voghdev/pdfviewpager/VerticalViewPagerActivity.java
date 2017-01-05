@@ -17,8 +17,14 @@ package es.voghdev.pdfviewpager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+
+import es.voghdev.pdfviewpager.library.view.VerticalViewPager;
 
 public class VerticalViewPagerActivity extends BaseSampleActivity {
     @Override
@@ -28,10 +34,52 @@ public class VerticalViewPagerActivity extends BaseSampleActivity {
         setContentView(R.layout.activity_vertical_view_pager);
 
         setTitle("Vertical View Pager");
+
+        configureVerticalViewPager();
+    }
+
+    private void configureVerticalViewPager() {
+        VerticalViewPager verticalViewPager = (VerticalViewPager) findViewById(R.id.verticalViewPager);
+        SampleAdapter adapter = new SampleAdapter(this);
+        verticalViewPager.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public static void open(Context ctx) {
         Intent intent = new Intent(ctx, VerticalViewPagerActivity.class);
         ctx.startActivity(intent);
     }
+
+    protected class SampleAdapter extends PagerAdapter {
+        final int[] colors = {Color.BLUE, Color.RED, Color.GREEN, Color.CYAN};
+        Context context;
+
+        public SampleAdapter(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return (View) object == view;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View v = new View(context);
+            v.setBackgroundColor(colors[position]);
+            container.addView(v);
+            return v;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            super.destroyItem(container, position, object);
+        }
+    }
+
 }

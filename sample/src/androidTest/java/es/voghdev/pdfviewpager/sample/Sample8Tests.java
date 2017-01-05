@@ -60,22 +60,10 @@ public class Sample8Tests extends BaseTest {
         onView(withText(R.string.menu_sample8_txt)).perform(click());
 
         try {
-            swipeToEnd();
-            swipeToBeginning();
+            swipeForward(R.id.pdfViewPagerZoom, 30);
+            swipeBackwards(R.id.pdfViewPagerZoom, 30);
         } catch (Exception ex) {
             fail("Error paging");
-        }
-    }
-
-    private void swipeToEnd() {
-        for (int i = 0; i < 30; i++) {
-            onView(withId(R.id.pdfViewPagerZoom)).perform(swipeLeft());
-        }
-    }
-
-    private void swipeToBeginning() {
-        for (int i = 0; i < 30; i++) {
-            onView(withId(R.id.pdfViewPagerZoom)).perform(swipeRight());
         }
     }
 

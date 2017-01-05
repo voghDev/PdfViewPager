@@ -34,6 +34,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.StringContains.containsString;
+import static org.junit.Assert.fail;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -49,6 +50,21 @@ public class Sample10Tests extends BaseTest {
 
         onView(withText(R.string.menu_sample10_txt)).perform(click());
         onView(withClassName(containsString(VerticalViewPager.class.getSimpleName()))).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void shouldSwipeToLastPageThenGoBackToFirstWithoutCrashing() throws Exception {
+        startActivity();
+        openActionBarMenu();
+
+        onView(withText(R.string.menu_sample10_txt)).perform(click());
+
+        try {
+            swipeForward(R.id.pdfViewPager, 5);
+            swipeBackwards(R.id.pdfViewPager, 5);
+        } catch (Exception ex) {
+            fail("Error paging");
+        }
     }
 
     private MainActivity startActivity() {
