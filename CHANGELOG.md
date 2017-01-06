@@ -44,6 +44,13 @@
 - Add a "scale" parameter to PDFViewPagerZoom in XML files.
 - Add an OnClickListener to each page of the PdfViewPager
 
+1.1.0
+-----
+
+- Add a VerticalViewPager and a VerticalPDFViewPager that can scroll pages vertically
+- Add UI Tests for these new classes
+- Change PDF document downloaded in samples, as it wasn't available anymore
+
 [4]: https://github.com/chrisbanes/PhotoView
 [5]: https://github.com/sephiroth74/ImageViewZoom
 [6]: https://github.com/fkruege/
