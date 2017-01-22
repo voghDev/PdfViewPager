@@ -44,8 +44,15 @@
 - Add a "scale" parameter to PDFViewPagerZoom in XML files.
 - Add an OnClickListener to each page of the PdfViewPager
 
-1.1.0
+1.0.2
 -----
+- Add a temporary VerticalViewPager and VerticalPDFViewPager
+- Add UI Tests
+- Fix some conflicts related to android:allowBackup in AndroidManifest.xml
+- Refactor VerticalViewPager to make it pass checkstyle rules
+
+1.1.0 (planned to be the next release)
+--------------------------------------
 
 - Add a VerticalViewPager and a VerticalPDFViewPager that can scroll pages vertically
 - Add UI Tests for these new classes
