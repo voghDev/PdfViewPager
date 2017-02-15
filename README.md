@@ -143,7 +143,7 @@ See [changelog][4] for details
 Developed By
 ------------
 
-* Olmo Gallegos Hernández - [@voghDev][9] - [mobiledevstories.com][10]
+* Olmo Gallegos Hernández - [voghDev][9] - [mobiledevstories.com][10]
 
 <a href="http://twitter.com/voghDev">
   <img alt="Follow me on Twitter" src="https://image.freepik.com/iconos-gratis/twitter-logo_318-40209.jpg" height="60" width="60" />
@@ -200,6 +200,6 @@ And with your Android device connected
 [6]: http://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html
 [7]: https://github.com/voghDev/PdfViewPager/blob/master/sample/src/main/java/es/voghdev/pdfviewpager/LegacyPDFActivity.java
 [8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main/java/es/voghdev/pdfviewpager
-[9]: http://twitter.com/voghDev
+[9]: https://github.com/voghDev
 [10]: http://www.mobiledevstories.com
 [11]: https://github.com/chrisbanes/PhotoView
