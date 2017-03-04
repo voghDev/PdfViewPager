@@ -125,6 +125,13 @@ Remote PDF's from a URL
         adapter.close();
     }
 
+Usage in Kotlin
+---------------
+
+As you might figure out, the library is fully usable in Kotlin programming language. You can find example code [here][12].
+
+Just import the library as a gradle dependency as you would do in Java.
+
 TODOs
 -----
 
@@ -203,3 +210,4 @@ And with your Android device connected
 [9]: http://twitter.com/voghDev
 [10]: http://www.mobiledevstories.com
 [11]: https://github.com/chrisbanes/PhotoView
+[12]: https://github.com/voghDev/HelloKotlin/blob/pdfviewpager/app/src/main/java/es/voghdev/hellokotlin/PdfViewPagerActivity.kt
