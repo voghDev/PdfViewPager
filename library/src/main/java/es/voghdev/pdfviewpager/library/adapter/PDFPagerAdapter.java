@@ -16,6 +16,7 @@
 package es.voghdev.pdfviewpager.library.adapter;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.graphics.pdf.PdfRenderer;
@@ -74,6 +75,45 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
                 pageClickListener.onClick(view);
             }
         });
+
+        if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+
+            try {
+
+                page = getPDFPage(renderer, position + 1);
+
+                iv = (ImageView) v.findViewById(R.id.imageView2);
+
+
+                bitmap = bitmapContainer.get(position + 1);
+                page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+                page.close();
+
+                attacher = new PhotoViewAttacher(iv);
+                attacher.setScale(scale.getScale(), scale.getCenterX(), scale.getCenterY(), true);
+                attacher.setOnMatrixChangeListener(this);
+
+                attachers.put(position, new WeakReference<PhotoViewAttacher>(attacher));
+
+                iv.setImageBitmap(bitmap);
+                attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+                    @Override
+                    public void onPhotoTap(View view, float x, float y) {
+                        pageClickListener.onClick(view);
+                    }
+                });
+
+            } catch (IllegalArgumentException e) {
+
+
+
+            }
+
+        }
+
+
+
+
         attacher.update();
         ((ViewPager) container).addView(v, 0);
 
