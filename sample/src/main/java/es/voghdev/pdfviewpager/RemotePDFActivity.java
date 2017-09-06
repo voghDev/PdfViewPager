@@ -65,8 +65,6 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //remotePDFViewPager = new RemotePDFViewPager(ctx, getUrlFromEditText(), listener);
-                //remotePDFViewPager.setId(R.id.pdfViewPager);
                 remotePDFViewPager.initializeDownload(getUrlFromEditText());
                 hideDownloadButton();
             }
