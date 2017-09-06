@@ -80,6 +80,7 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
                     notifyFailureOnUiThread(e);
                 }
 
+
                 notifySuccessOnUiThread(url, destinationPath);
             }
         }).start();

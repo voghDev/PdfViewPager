@@ -18,5 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/download"/>
+
+
+    <es.voghdev.pdfviewpager.library.RemotePDFViewPager
+        android:id="@+id/pdfViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
 

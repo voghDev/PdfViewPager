@@ -44,6 +44,8 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
         root = (LinearLayout) findViewById(R.id.remote_pdf_root);
         etPdfUrl = (EditText) findViewById(R.id.et_pdfUrl);
         btnDownload = (Button) findViewById(R.id.btn_download);
+        remotePDFViewPager = (RemotePDFViewPager) findViewById(R.id.pdfViewPager);
+        remotePDFViewPager.setDownloadFileListener(this);
 
         setDownloadButtonListener();
     }
@@ -63,8 +65,9 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                remotePDFViewPager = new RemotePDFViewPager(ctx, getUrlFromEditText(), listener);
-                remotePDFViewPager.setId(R.id.pdfViewPager);
+                //remotePDFViewPager = new RemotePDFViewPager(ctx, getUrlFromEditText(), listener);
+                //remotePDFViewPager.setId(R.id.pdfViewPager);
+                remotePDFViewPager.initializeDownload(getUrlFromEditText());
                 hideDownloadButton();
             }
         });

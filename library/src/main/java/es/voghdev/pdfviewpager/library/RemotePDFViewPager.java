@@ -31,11 +31,13 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
     protected Context context;
     protected DownloadFile.Listener listener;
 
+    private boolean hasInitialized = false;
+
     public RemotePDFViewPager(Context context, String pdfUrl, DownloadFile.Listener listener) {
         super(context);
         this.context = context;
         this.listener = listener;
-        init(pdfUrl);
+        initializeDownload(pdfUrl);
     }
 
     public RemotePDFViewPager(Context context, AttributeSet attrs) {
@@ -44,10 +46,17 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         init(attrs);
     }
 
-    private void init(String pdfUrl) {
-        DownloadFile downloadFile = new DownloadFileUrlConnectionImpl(context, new Handler(), this);
-        downloadFile.download(pdfUrl,
-                new File(context.getCacheDir(), FileUtil.extractFileNameFromURL(pdfUrl)).getAbsolutePath());
+    public void setDownloadFileListener(DownloadFile.Listener listener) {
+        this.listener = listener;
+    }
+
+    public void initializeDownload(String pdfUrl) {
+        if (!hasInitialized && pdfUrl != null && !pdfUrl.equals("")) {
+            DownloadFile downloadFile = new DownloadFileUrlConnectionImpl(context, new Handler(), this);
+            downloadFile.download(pdfUrl,
+                    new File(context.getCacheDir(), FileUtil.extractFileNameFromURL(pdfUrl)).getAbsolutePath());
+            hasInitialized = true;
+        }
     }
 
     private void init(AttributeSet attrs) {
@@ -58,7 +67,7 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
             String pdfUrl = a.getString(R.styleable.PDFViewPager_pdfUrl);
 
             if (pdfUrl != null && pdfUrl.length() > 0) {
-                init(pdfUrl);
+                initializeDownload(pdfUrl);
             }
 
             a.recycle();
