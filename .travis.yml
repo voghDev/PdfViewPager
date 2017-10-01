@@ -9,13 +9,14 @@ android:
     - tools
     - platform-tools
     - build-tools-25.0.3
-    - android-25
+    - android-24
     - extra-google-m2repository
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-22
+    - sys-img-armeabi-v7a-android-24
 
 before_script:
-  - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
+  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
   - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell settings put global window_animation_scale 0 &
