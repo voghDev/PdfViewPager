@@ -12,7 +12,7 @@ android:
     - android-25
     - extra-google-m2repository
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-19
+    - sys-img-armeabi-v7a-android-22
 
 before_script:
   - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
