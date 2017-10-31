@@ -31,7 +31,6 @@ import es.voghdev.pdfviewpager.library.util.FileUtil;
 public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listener {
     protected Context context;
     protected DownloadFile.Listener listener;
-    private Map<String, String> headers;
 
     public RemotePDFViewPager(Context context, String pdfUrl, DownloadFile.Listener listener) {
         super(context);
@@ -47,7 +46,6 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         super(context);
         this.context = context;
         this.listener = listener;
-        this.headers = headers;
         init(pdfUrl, headers);
     }
 
