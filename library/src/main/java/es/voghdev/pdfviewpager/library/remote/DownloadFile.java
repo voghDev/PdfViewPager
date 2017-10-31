@@ -15,8 +15,12 @@
  */
 package es.voghdev.pdfviewpager.library.remote;
 
+import java.util.Map;
+
 public interface DownloadFile {
     void download(String url, String destinationPath);
+
+    void download(String url, String destinationPath, Map<String, String> headers);
 
     interface Listener {
         void onSuccess(String url, String destinationPath);

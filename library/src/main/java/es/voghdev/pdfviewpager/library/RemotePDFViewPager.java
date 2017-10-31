@@ -22,6 +22,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
 import java.io.File;
+import java.util.Map;
 
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
@@ -30,12 +31,21 @@ import es.voghdev.pdfviewpager.library.util.FileUtil;
 public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listener {
     protected Context context;
     protected DownloadFile.Listener listener;
+    private Map<String, String> headers;
 
     public RemotePDFViewPager(Context context, String pdfUrl, DownloadFile.Listener listener) {
         super(context);
         this.context = context;
         this.listener = listener;
         init(pdfUrl);
+    }
+
+    public RemotePDFViewPager(Context context, String pdfUrl, DownloadFile.Listener listener, Map<String, String> headers) {
+        super(context);
+        this.context = context;
+        this.listener = listener;
+        this.headers = headers;
+        init(pdfUrl, headers);
     }
 
     public RemotePDFViewPager(Context context, AttributeSet attrs) {
@@ -48,6 +58,12 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         DownloadFile downloadFile = new DownloadFileUrlConnectionImpl(context, new Handler(), this);
         downloadFile.download(pdfUrl,
                 new File(context.getCacheDir(), FileUtil.extractFileNameFromURL(pdfUrl)).getAbsolutePath());
+    }
+
+    private void init(String pdfUrl, Map<String, String> headers) {
+        DownloadFile downloadFile = new DownloadFileUrlConnectionImpl(context, new Handler(), this);
+        downloadFile.download(pdfUrl,
+                new File(context.getCacheDir(), FileUtil.extractFileNameFromURL(pdfUrl)).getAbsolutePath(), headers);
     }
 
     private void init(AttributeSet attrs) {

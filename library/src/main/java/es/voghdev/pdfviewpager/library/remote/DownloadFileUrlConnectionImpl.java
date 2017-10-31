@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 public class DownloadFileUrlConnectionImpl implements DownloadFile {
     private static final int KILOBYTE = 1024;
@@ -45,15 +46,38 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
 
     @Override
     public void download(final String url, final String destinationPath) {
+        try {
+            URL urlObj = new URL(url);
+            HttpURLConnection urlConnection = (HttpURLConnection) urlObj.openConnection();
+            download(urlConnection, destinationPath);
+
+        } catch (IOException e) {
+            notifyFailureOnUiThread(e);
+        }
+    }
+
+    @Override
+    public void download(final String url, final String destinationPath, final Map<String, String> headers) {
+        try {
+            URL urlObj = new URL(url);
+            HttpURLConnection urlConnection = (HttpURLConnection) urlObj.openConnection();
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                urlConnection.setRequestProperty(entry.getKey(), entry.getValue());
+            }
+            download(urlConnection, destinationPath);
+
+        } catch (IOException e) {
+            notifyFailureOnUiThread(e);
+        }
+    }
+
+    private void download(final HttpURLConnection urlConnection, final String destinationPath) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     File file = new File(destinationPath);
                     FileOutputStream fileOutput = new FileOutputStream(file);
-                    HttpURLConnection urlConnection = null;
-                    URL urlObj = new URL(url);
-                    urlConnection = (HttpURLConnection) urlObj.openConnection();
                     int totalSize = urlConnection.getContentLength();
                     int downloadedSize = 0;
                     int counter = 0;
@@ -80,9 +104,10 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
                     notifyFailureOnUiThread(e);
                 }
 
-                notifySuccessOnUiThread(url, destinationPath);
+                notifySuccessOnUiThread(urlConnection.getURL().toString(), destinationPath);
             }
         }).start();
+
     }
 
     protected void notifySuccessOnUiThread(final String url, final String destinationPath) {
