@@ -16,7 +16,6 @@
 package es.voghdev.pdfviewpager.library.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
