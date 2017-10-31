@@ -40,9 +40,9 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
     }
 
     public RemotePDFViewPager(Context context,
-			String pdfUrl,
-			DownloadFile.Listener listener,
-			Map<String, String> headers) {
+            String pdfUrl,
+            DownloadFile.Listener listener,
+            Map<String, String> headers) {
         super(context);
         this.context = context;
         this.listener = listener;
