@@ -94,12 +94,15 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
 
     public class NullListener implements DownloadFile.Listener {
         public void onSuccess(String url, String destinationPath) {
+            /* Empty */
         }
 
         public void onFailure(Exception e) {
+            /* Empty */
         }
 
         public void onProgressUpdate(int progress, int total) {
+            /* Empty */
         }
     }
 }
