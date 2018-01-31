@@ -36,6 +36,7 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         super(context);
         this.context = context;
         this.listener = listener;
+
         init(new DownloadFileUrlConnectionImpl(context, new Handler(), this), pdfUrl);
     }
 
@@ -43,12 +44,14 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         super(context);
         this.context = context;
         this.listener = listener;
+
         init(downloadFile, pdfUrl);
     }
 
     public RemotePDFViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+
         init(attrs);
     }
 
