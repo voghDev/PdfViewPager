@@ -79,7 +79,7 @@ Remote PDF's from a URL
 
 ![Screenshot][remotePDFScreenshot]
 
-1.- Add INTERNET, READ_EXTERNAL_STORAGE and WRITE_EXTERNAL_STORAGE permissions on your AndroidManifest.xml
+1.- Add `INTERNET`, `READ_EXTERNAL_STORAGE` and `WRITE_EXTERNAL_STORAGE` permissions on your AndroidManifest.xml
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -91,8 +91,10 @@ Remote PDF's from a URL
 
 3.- Create a **RemotePDFViewPager** object
 
+    String url = "http://www.cals.uidaho.edu/edComm/curricula/CustRel_curriculum/content/sample.pdf";
+    
     RemotePDFViewPager remotePDFViewPager =
-          new RemotePDFViewPager(context, "http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf", this);
+          new RemotePDFViewPager(context, url, this);
 
 4.- Configure the corresponding callbacks and they will be called on each situation.
 
