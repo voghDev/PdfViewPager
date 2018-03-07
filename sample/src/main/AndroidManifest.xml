@@ -24,5 +24,7 @@
         <activity android:name=".LegacyPDFActivity" android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
         <activity android:name=".ZoomablePDFActivityPhotoView" android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
         <activity android:name=".PDFWithScaleActivity" android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
+        <activity android:name=".VerticalViewPagerActivity" android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
+        <activity android:name=".VerticalPDFViewPagerActivity" android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
     </application>
 </manifest>
