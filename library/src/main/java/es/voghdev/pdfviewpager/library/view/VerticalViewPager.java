@@ -1608,64 +1608,12 @@ public class VerticalViewPager extends ViewGroup {
 
         switch (action) {
             case MotionEvent.ACTION_MOVE: {
-                
-
-                
-                final int activePointerId = mActivePointerId;
-                if (activePointerId == INVALID_POINTER) {
-                    
-                    break;
-                }
-
-                final int pointerIndex = MotionEventCompat.findPointerIndex(ev, activePointerId);
-                final float y = MotionEventCompat.getY(ev, pointerIndex);
-                final float dy = y - mLastMotionY;
-                final float yDiff = Math.abs(dy);
-                final float x = MotionEventCompat.getX(ev, pointerIndex);
-                final float xDiff = Math.abs(x - mInitialMotionX);
-                if (DEBUG) {
-                    Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
-                }
-
-                if (dy != 0 && !isGutterDrag(mLastMotionY, dy)
-                        && canScroll(this, false, (int) dy, (int) x, (int) y)) {
-                    
-                    mLastMotionX = x;
-                    mLastMotionY = y;
-                    mIsUnableToDrag = true;
+                try {
+                    return actionMove(ev);
+                } catch (Exception ex){
                     return false;
                 }
-                if (yDiff > mTouchSlop && yDiff * 0.5f > xDiff) {
-                    if (DEBUG) {
-                        Log.v(TAG, "Starting drag!");
-                    }
-                    mIsBeingDragged = true;
-                    requestParentDisallowInterceptTouchEvent(true);
-                    setScrollState(SCROLL_STATE_DRAGGING);
-                    mLastMotionY = dy > 0 ? mInitialMotionY + mTouchSlop
-                            : mInitialMotionY - mTouchSlop;
-                    mLastMotionX = x;
-                    setScrollingCacheEnabled(true);
-                } else if (xDiff > mTouchSlop) {
-                    
-                    
-                    
-                    
-                    if (DEBUG) {
-                        Log.v(TAG, "Starting unable to drag!");
-                    }
-                    mIsUnableToDrag = true;
-                }
-                if (mIsBeingDragged) {
-                    
-                    if (performDrag(y)) {
-                        ViewCompat.postInvalidateOnAnimation(this);
-                    }
-                }
-                break;
-            }
-
-            case MotionEvent.ACTION_DOWN: {
+            } case MotionEvent.ACTION_DOWN: {
                 
                 mLastMotionX = mInitialMotionX = ev.getX();
                 mLastMotionY = mInitialMotionY = ev.getY();
@@ -1709,6 +1657,61 @@ public class VerticalViewPager extends ViewGroup {
 
         
         return mIsBeingDragged;
+    }
+
+    private boolean actionMove(MotionEvent ev){
+        final int activePointerId = mActivePointerId;
+        if (activePointerId == INVALID_POINTER) {
+            return false;
+        }
+
+        final int pointerIndex = MotionEventCompat.findPointerIndex(ev, activePointerId);
+        final float y = MotionEventCompat.getY(ev, pointerIndex);
+        final float dy = y - mLastMotionY;
+        final float yDiff = Math.abs(dy);
+        final float x = MotionEventCompat.getX(ev, pointerIndex);
+        final float xDiff = Math.abs(x - mInitialMotionX);
+        if (DEBUG) {
+            Log.v(TAG, "Moved x to " + x + "," + y + " diff=" + xDiff + "," + yDiff);
+        }
+
+        if (dy != 0 && !isGutterDrag(mLastMotionY, dy)
+                && canScroll(this, false, (int) dy, (int) x, (int) y)) {
+
+            mLastMotionX = x;
+            mLastMotionY = y;
+            mIsUnableToDrag = true;
+            return false;
+        }
+        if (yDiff > mTouchSlop && yDiff * 0.5f > xDiff) {
+            if (DEBUG) {
+                Log.v(TAG, "Starting drag!");
+            }
+            mIsBeingDragged = true;
+            requestParentDisallowInterceptTouchEvent(true);
+            setScrollState(SCROLL_STATE_DRAGGING);
+            mLastMotionY = dy > 0 ? mInitialMotionY + mTouchSlop
+                    : mInitialMotionY - mTouchSlop;
+            mLastMotionX = x;
+            setScrollingCacheEnabled(true);
+        } else if (xDiff > mTouchSlop) {
+
+
+
+
+            if (DEBUG) {
+                Log.v(TAG, "Starting unable to drag!");
+            }
+            mIsUnableToDrag = true;
+        }
+        if (mIsBeingDragged) {
+
+            if (performDrag(y)) {
+                ViewCompat.postInvalidateOnAnimation(this);
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -1819,7 +1822,7 @@ public class VerticalViewPager extends ViewGroup {
                     scrollToItem(mCurItem, true, 0, false);
                     mActivePointerId = INVALID_POINTER;
                     endDrag();
-                    needsInvalidate = mTopEdge.onRelease() | mBottomEdge.onRelease();
+                    needsInvalidate = mTopEdge.onRelease() || mBottomEdge.onRelease();
                 }
                 break;
             case MotionEventCompat.ACTION_POINTER_DOWN: {

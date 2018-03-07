@@ -68,7 +68,9 @@ public class AssetOnSDActivity extends BaseSampleActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
+        if (pdfViewPager != null) {
+            ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
+        }
     }
 
     public static void open(Context context) {

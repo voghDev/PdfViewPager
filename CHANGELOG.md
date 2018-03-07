@@ -1,20 +1,19 @@
 # PdfViewPager changelog
 
-1.1.0 (planned to be the next release)
---------------------------------------
+1.0.3
+-----
 
-- Add a VerticalViewPager and a VerticalPDFViewPager that can scroll pages vertically
-- Add UI Tests for these new classes
-- Change PDF document downloaded in samples, as it wasn't available anymore
+- Minor version changes from version `1.0.1` of the library
+- Updated gradle version to `2.3.3`
+- Updated build tools version to `25.0.3`
+- Updated support library to `25.4.0`
+- Thanks to [Deadpikle][7] for proposing these changes in [this Pull request](https://github.com/voghDev/PdfViewPager/pull/49)
 
-1.0.2 (unofficial experimental branch)
---------------------------------------
+1.0.2
+-----
 
-- Add an unofficial VerticalViewPager and VerticalPDFViewPager
-- Add UI Tests
-- Fix some conflicts related to android:allowBackup in AndroidManifest.xml
-- Refactor VerticalViewPager to make it pass checkstyle rules
-- Update CHANGELOG.md to place newest versions on the top
+- Experimental branch that includes a vertical version of the widget
+- Can be downloaded by using version 1.0.2 of the dependency, though it is not official yet
 
 1.0.1
 -----
@@ -60,8 +59,8 @@
 
 - Initial PdfViewPager widget, without zooming and panning capabilities
 
-
 [4]: https://github.com/chrisbanes/PhotoView
 [5]: https://github.com/sephiroth74/ImageViewZoom
 [6]: https://github.com/fkruege/
 [7]: https://github.com/voghDev/PdfViewPager/tree/master/sample
+[8]: https://github.com/Deadpikle
