@@ -19,7 +19,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.graphics.pdf.PdfRenderer;
-import android.support.v4.view.ViewPager;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +74,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
             }
         });
         attacher.update();
-        ((ViewPager) container).addView(v, 0);
+        container.addView(v, 0);
 
         return v;
     }

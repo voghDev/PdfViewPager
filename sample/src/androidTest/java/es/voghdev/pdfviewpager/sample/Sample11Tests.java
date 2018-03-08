@@ -25,29 +25,31 @@ import org.junit.runner.RunWith;
 
 import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
+import es.voghdev.pdfviewpager.library.VerticalPDFViewPager;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.fail;
+import static junit.framework.Assert.fail;
+import static org.hamcrest.core.StringContains.containsString;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class Sample8Tests extends BaseTest {
+public class Sample11Tests extends BaseTest {
     @Rule
     public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
     @Test
-    public void startsEighthSample() {
+    public void startsEleventhSample() {
         startActivity();
         openActionBarMenu();
 
-        onView(withText(R.string.menu_sample8_txt)).perform(click());
-        onView(withId(R.id.pdfViewPagerZoom)).check(matches(isDisplayed()));
+        onView(withText(R.string.menu_sample11_txt)).perform(click());
+        onView(withClassName(containsString(VerticalPDFViewPager.class.getSimpleName()))).check(matches(isDisplayed()));
     }
 
     @Test
@@ -55,12 +57,13 @@ public class Sample8Tests extends BaseTest {
         startActivity();
         openActionBarMenu();
 
-        onView(withText(R.string.menu_sample8_txt)).perform(click());
+        onView(withText(R.string.menu_sample11_txt)).perform(click());
 
         try {
-            swipeForward(R.id.pdfViewPagerZoom, 30);
-            swipeBackwards(R.id.pdfViewPagerZoom, 30);
+            swipeForwardVertically(R.id.verticalPdfViewPager, 3);
+            swipeBackwardsVertically(R.id.verticalPdfViewPager, 3);
         } catch (Exception ex) {
+            ex.printStackTrace();
             fail("Error paging");
         }
     }

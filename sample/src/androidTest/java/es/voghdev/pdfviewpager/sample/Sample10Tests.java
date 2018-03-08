@@ -25,29 +25,31 @@ import org.junit.runner.RunWith;
 
 import es.voghdev.pdfviewpager.MainActivity;
 import es.voghdev.pdfviewpager.R;
+import es.voghdev.pdfviewpager.library.view.VerticalViewPager;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.fail;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class Sample8Tests extends BaseTest {
+public class Sample10Tests extends BaseTest {
     @Rule
     public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
     @Test
-    public void startsEighthSample() {
+    public void startsTenthSample() {
         startActivity();
         openActionBarMenu();
 
-        onView(withText(R.string.menu_sample8_txt)).perform(click());
-        onView(withId(R.id.pdfViewPagerZoom)).check(matches(isDisplayed()));
+        onView(withText(R.string.menu_sample10_txt)).perform(click());
+        onView(withClassName(containsString(VerticalViewPager.class.getSimpleName()))).check(matches(isDisplayed()));
     }
 
     @Test
@@ -55,11 +57,11 @@ public class Sample8Tests extends BaseTest {
         startActivity();
         openActionBarMenu();
 
-        onView(withText(R.string.menu_sample8_txt)).perform(click());
+        onView(withText(R.string.menu_sample10_txt)).perform(click());
 
         try {
-            swipeForward(R.id.pdfViewPagerZoom, 30);
-            swipeBackwards(R.id.pdfViewPagerZoom, 30);
+            swipeForwardVertically(R.id.verticalViewPager, 3);
+            swipeBackwardsVertically(R.id.verticalViewPager, 3);
         } catch (Exception ex) {
             fail("Error paging");
         }

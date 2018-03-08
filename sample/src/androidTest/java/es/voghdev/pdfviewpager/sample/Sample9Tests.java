@@ -35,11 +35,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.StringContains.containsString;
 
-@RunWith(AndroidJUnit4.class) @LargeTest public class Sample9Tests extends BaseTest {
-    @Rule public IntentsTestRule<MainActivity> activityRule =
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class Sample9Tests extends BaseTest {
+    @Rule
+    public IntentsTestRule<MainActivity> activityRule =
             new IntentsTestRule<>(MainActivity.class, true, false);
 
-    @Test public void startsNinethSample() {
+    @Test
+    public void startsNinethSample() {
         startActivity();
         openActionBarMenu();
 

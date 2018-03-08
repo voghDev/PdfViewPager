@@ -34,8 +34,6 @@ import es.voghdev.pdfviewpager.sample.idlingresource.WaitIdlingResource;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.swipeLeft;
-import static android.support.test.espresso.action.ViewActions.swipeRight;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -96,22 +94,10 @@ public class Sample2Tests extends BaseTest {
         idlingResource = new WaitIdlingResource(System.currentTimeMillis(), 1500);
         Espresso.registerIdlingResources(idlingResource);
         try {
-            swipeToLastPage();
-            swipeToBeginning();
+            swipeForward(R.id.pdfViewPager, N_PAGES);
+            swipeBackwards(R.id.pdfViewPager, N_PAGES);
         } catch (Exception ex) {
             fail("Remote PDF crashes when paging");
-        }
-    }
-
-    private void swipeToLastPage() {
-        for (int i = 0; i < N_PAGES; i++) {
-            onView(withId(R.id.pdfViewPager)).perform(swipeLeft());
-        }
-    }
-
-    private void swipeToBeginning() {
-        for (int i = 0; i < N_PAGES; i++) {
-            onView(withId(R.id.pdfViewPager)).perform(swipeRight());
         }
     }
 
