@@ -39,11 +39,11 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     protected static final float DEFAULT_QUALITY = 2.0f;
     protected static final int DEFAULT_OFFSCREENSIZE = 1;
 
-    String pdfPath;
-    Context context;
-    PdfRenderer renderer;
-    BitmapContainer bitmapContainer;
-    LayoutInflater inflater;
+    protected String pdfPath;
+    protected Context context;
+    protected PdfRenderer renderer;
+    protected BitmapContainer bitmapContainer;
+    protected LayoutInflater inflater;
 
     protected float renderQuality;
     protected int offScreenSize;
@@ -82,7 +82,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     }
 
     @SuppressWarnings("NewApi")
-    private PdfRendererParams extractPdfParamsFromFirstPage(PdfRenderer renderer, float renderQuality) {
+    protected PdfRendererParams extractPdfParamsFromFirstPage(PdfRenderer renderer, float renderQuality) {
         PdfRenderer.Page samplePage = getPDFPage(renderer, FIRST_PAGE);
         PdfRendererParams params = new PdfRendererParams();
 
@@ -117,7 +117,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
         return parcelFileDescriptor;
     }
 
-    private boolean isAnAsset(String path) {
+    protected boolean isAnAsset(String path) {
         return !path.startsWith("/");
     }
 

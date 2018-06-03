@@ -1,5 +1,10 @@
 # PdfViewPager changelog
 
+1.0.4
+-----
+
+- Minor refactor to fix issue #86
+
 1.0.3
 -----
 
