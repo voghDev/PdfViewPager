@@ -22,6 +22,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
 import java.io.File;
+import java.util.Map;
 
 import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 import es.voghdev.pdfviewpager.library.remote.DownloadFileUrlConnectionImpl;
@@ -51,6 +52,16 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         init(downloadFile, pdfUrl);
     }
 
+    public RemotePDFViewPager(Context context,
+            String pdfUrl,
+            DownloadFile.Listener listener,
+            Map<String, String> headers) {
+        super(context);
+        this.context = context;
+        this.listener = listener;
+        init(pdfUrl, headers);
+    }
+
     public RemotePDFViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
@@ -62,6 +73,12 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         setDownloader(downloadFile);
         downloadFile.download(pdfUrl,
                 new File(context.getCacheDir(), FileUtil.extractFileNameFromURL(pdfUrl)).getAbsolutePath());
+    }
+
+    private void init(String pdfUrl, Map<String, String> headers) {
+        DownloadFile downloadFile = new DownloadFileUrlConnectionImpl(context, new Handler(), this);
+        downloadFile.download(pdfUrl,
+                new File(context.getCacheDir(), FileUtil.extractFileNameFromURL(pdfUrl)).getAbsolutePath(), headers);
     }
 
     private void init(AttributeSet attrs) {

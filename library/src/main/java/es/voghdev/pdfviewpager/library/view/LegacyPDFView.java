@@ -16,7 +16,6 @@
 package es.voghdev.pdfviewpager.library.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
@@ -73,13 +72,13 @@ public class LegacyPDFView extends LinearLayout implements DownloadFile.Listener
             downloadFile = new DownloadFileUrlConnectionImpl(getContext(), new Handler(), this);
         }
 
-        if (attrs != null) {
-            TypedArray a;
+//        if (attrs != null) {
+//            TypedArray a = null;
 
-            a = getContext().obtainStyledAttributes(attrs, R.styleable.LegacyPDFView);
+//            a = getContext().obtainStyledAttributes(attrs, R.styleable.LegacyPDFView);
 
-            a.recycle();
-        }
+//            a.recycle();
+//        }
     }
 
     protected boolean viewFound(View root, int id) {
