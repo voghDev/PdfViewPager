@@ -73,14 +73,13 @@ public class DownloadFileUrlConnectionImpl implements DownloadFile {
 
                     urlConnection.disconnect();
                     fileOutput.close();
-
+                    notifySuccessOnUiThread(url, destinationPath);
                 } catch (MalformedURLException e) {
                     notifyFailureOnUiThread(e);
                 } catch (IOException e) {
                     notifyFailureOnUiThread(e);
                 }
 
-                notifySuccessOnUiThread(url, destinationPath);
             }
         }).start();
     }
