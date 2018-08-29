@@ -20,6 +20,7 @@ import android.content.res.TypedArray;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 
 import java.io.File;
 
@@ -96,6 +97,20 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
     @Override
     public void onProgressUpdate(int progress, int total) {
         listener.onProgressUpdate(progress, total);
+    }
+
+    /**
+     * PDFViewPager uses PhotoView, so this bugfix should be added
+     * Issue explained in https://github.com/chrisbanes/PhotoView
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        try {
+            return super.onInterceptTouchEvent(ev);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public class NullListener implements DownloadFile.Listener {
