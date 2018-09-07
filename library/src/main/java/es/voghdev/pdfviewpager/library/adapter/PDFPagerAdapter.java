@@ -17,39 +17,33 @@ package es.voghdev.pdfviewpager.library.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.RectF;
+import android.graphics.PointF;
 import android.graphics.pdf.PdfRenderer;
-import android.support.v4.view.ViewPager;
-import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import java.lang.ref.WeakReference;
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 import es.voghdev.pdfviewpager.library.R;
 import es.voghdev.pdfviewpager.library.util.EmptyClickListener;
-import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class PDFPagerAdapter extends BasePDFPagerAdapter
-        implements PhotoViewAttacher.OnMatrixChangedListener {
+public class PDFPagerAdapter extends BasePDFPagerAdapter {
 
     private static final float DEFAULT_SCALE = 1f;
 
-    SparseArray<WeakReference<PhotoViewAttacher>> attachers;
     PdfScale scale = new PdfScale();
     View.OnClickListener pageClickListener = new EmptyClickListener();
 
     public PDFPagerAdapter(Context context, String pdfPath) {
         super(context, pdfPath);
-        attachers = new SparseArray<>();
     }
 
     @Override
     @SuppressWarnings("NewApi")
     public Object instantiateItem(ViewGroup container, int position) {
         View v = inflater.inflate(R.layout.view_pdf_page, container, false);
-        ImageView iv = (ImageView) v.findViewById(R.id.imageView);
+        SubsamplingScaleImageView ssiv = v.findViewById(R.id.subsamplingImageView);
 
         if (renderer == null || getCount() < position) {
             return v;
@@ -61,40 +55,18 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
-        PhotoViewAttacher attacher = new PhotoViewAttacher(iv);
-        attacher.setScale(scale.getScale(), scale.getCenterX(), scale.getCenterY(), true);
-        attacher.setOnMatrixChangeListener(this);
-
-        attachers.put(position, new WeakReference<PhotoViewAttacher>(attacher));
-
-        iv.setImageBitmap(bitmap);
-        attacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
+        ssiv.setImage(ImageSource.bitmap(bitmap));
+        ssiv.setScaleAndCenter(scale.getScale(), new PointF(scale.getCenterX(), scale.getCenterY()));
+        ssiv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPhotoTap(View view, float x, float y) {
+            public void onClick(View view) {
                 pageClickListener.onClick(view);
             }
         });
-        attacher.update();
-        ((ViewPager) container).addView(v, 0);
+
+        container.addView(v, 0);
 
         return v;
-    }
-
-    @Override
-    public void close() {
-        super.close();
-        if (attachers != null) {
-            attachers.clear();
-            attachers = null;
-        }
-    }
-
-    @Override
-    public void onMatrixChanged(RectF rect) {
-        if (scale.getScale() != PdfScale.DEFAULT_SCALE) {
-//            scale.setCenterX(rect.centerX());
-//            scale.setCenterY(rect.centerY());
-        }
     }
 
     public static class Builder {

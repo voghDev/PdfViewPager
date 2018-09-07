@@ -41,9 +41,9 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
         setTitle(R.string.remote_pdf_example);
         setContentView(R.layout.activity_remote_pdf);
 
-        root = (LinearLayout) findViewById(R.id.remote_pdf_root);
-        etPdfUrl = (EditText) findViewById(R.id.et_pdfUrl);
-        btnDownload = (Button) findViewById(R.id.btn_download);
+        root = findViewById(R.id.remote_pdf_root);
+        etPdfUrl = findViewById(R.id.et_pdfUrl);
+        btnDownload = findViewById(R.id.btn_download);
 
         setDownloadButtonListener();
     }
