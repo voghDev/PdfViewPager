@@ -1,5 +1,11 @@
 # PdfViewPager changelog
 
+1.0.6
+-----
+
+- Update gradle to 3.1.1, build tools to 27.0.3 and support library to 27.1.0
+- Remove PhotoView library for zoomable images in favor of SubsamplingImageView
+
 1.0.5
 -----
 
