@@ -1,5 +1,15 @@
 # PdfViewPager changelog
 
+1.0.5
+-----
+
+- Fix in DownloadFile implementation to avoid notifying failure then success. Thanks @sunit09 for [reporting it](https://github.com/voghDev/PdfViewPager/issues/72) and @quanit for [providing a fix](https://github.com/voghDev/PdfViewPager/pull/94)
+
+1.0.4
+-----
+
+- Minor refactor to fix issue #86
+
 1.0.3
 -----
 
