@@ -18,7 +18,6 @@
     <string name="menu_sample3_txt">PDF on your SD sample</string>
     <string name="menu_sample4_txt">PDF as asset (code) sample</string>
     <string name="menu_sample5_txt">PDF as asset (XML) sample</string>
-    <string name="menu_sample6_txt">Pre-lollipop PDF download and launch</string>
     <string name="menu_sample8_txt">Zoomable PDF (SubsamplingScaleImageView)</string>
     <string name="menu_sample9_txt">Example with initial scale</string>
     <string name="dummy_msg">This sample PDF here &gt;&gt;\nis declared by code</string>

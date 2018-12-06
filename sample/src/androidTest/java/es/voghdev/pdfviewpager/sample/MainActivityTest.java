@@ -63,14 +63,6 @@ public class MainActivityTest extends BaseTest {
     }
 
     @Test
-    public void showsSamplesButton6() {
-        startActivity();
-        openActionBarMenu();
-
-        onView(withText(R.string.menu_sample6_txt)).check(matches(isDisplayed()));
-    }
-
-    @Test
     public void showsSamplesButton8() {
         startActivity();
         openActionBarMenu();
