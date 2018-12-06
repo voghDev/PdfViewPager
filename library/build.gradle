@@ -60,7 +60,6 @@ task checkstyle(type: Checkstyle) {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.commit451:PhotoView:1.2.4'
 }
 
 // Bintray installing and uploading scripts
