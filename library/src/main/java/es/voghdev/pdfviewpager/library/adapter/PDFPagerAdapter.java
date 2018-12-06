@@ -20,7 +20,10 @@ import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.support.v4.view.ViewPager;
+
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 import es.voghdev.pdfviewpager.library.R;
 import es.voghdev.pdfviewpager.library.util.EmptyClickListener;
@@ -40,7 +43,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
     @SuppressWarnings("NewApi")
     public Object instantiateItem(ViewGroup container, int position) {
         View v = inflater.inflate(R.layout.view_pdf_page, container, false);
-        ImageView iv = (ImageView) v.findViewById(R.id.imageView);
+        SubsamplingScaleImageView ssiv = v.findViewById(R.id.subsamplingImageView);
 
         if (renderer == null || getCount() < position) {
             return v;
@@ -49,10 +52,11 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         PdfRenderer.Page page = getPDFPage(renderer, position);
 
         Bitmap bitmap = bitmapContainer.get(position);
+        ssiv.setImage(ImageSource.bitmap(bitmap));
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
-        iv.setImageBitmap(bitmap);
+        ((ViewPager) container).addView(v, 0);
 
         return v;
     }

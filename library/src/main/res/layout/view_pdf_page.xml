@@ -3,8 +3,15 @@
     android:id="@+id/pdf_page_container"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@color/pdfViewPager_background_color">
+    <!-- Used by BasePDFPagerAdapter. Kept for backwards compatibility -->
     <ImageView
         android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Used by inheriting classes that implement zooming effect -->
+    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        android:id="@+id/subsamplingImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
