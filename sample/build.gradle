@@ -61,3 +61,7 @@ dependencies{
     }
     androidTestImplementation('com.android.support.test.espresso:espresso-intents:2.2.1')
 }
+
+configurations.all {
+    resolutionStrategy.force 'com.android.support:support-annotations:27.1.1'
+}

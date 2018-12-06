@@ -5,8 +5,4 @@
         <attr name="pdfUrl" format="string" /> <!-- Load PDF from remote URL -->
         <attr name="scale" format="float" /> <!-- Set initial scale for PDF -->
     </declare-styleable>
-
-    <declare-styleable name="LegacyPDFView">
-
-    </declare-styleable>
 </resources>
