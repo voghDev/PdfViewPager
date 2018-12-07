@@ -8,7 +8,7 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-25.0.3
+    - build-tools-27.0.3
     - android-24
     - android-22
     - extra-google-google_play_services
