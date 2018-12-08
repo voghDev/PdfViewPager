@@ -1,5 +1,13 @@
 # PdfViewPager changelog
 
+1.0.6
+-----
+
+- Updated gradle version to `3.2.0`
+- Updated support library version to `27.1.1`
+- Removed PhotoView library, it was impossible to compile PdfViewPager with it
+- Added SubsamplingScaleImageView library to implement the zooming features
+
 1.0.5
 -----
 
