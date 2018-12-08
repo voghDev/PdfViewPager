@@ -15,13 +15,13 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-22
-  licenses:
-    - android-sdk-preview-license-.+
-    - android-sdk-license-.+
-    - google-gdk-license-.+
+licenses:
+    - 'android-sdk-license-.+'
+    - 'android-sdk-preview-license-.+'
+    - 'google-gdk-license-.+'
 
 before_install:
-- yes | sdkmanager "platforms;android-27"
+  - yes | sdkmanager "platforms;android-27"
 
 before_script:
   - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a -c 32M
