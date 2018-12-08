@@ -28,12 +28,11 @@ ext {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 7
         versionName "1.0.0"
     }
@@ -59,9 +58,9 @@ task checkstyle(type: Checkstyle) {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.commit451:PhotoView:1.2.4'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
 }
 
 // Bintray installing and uploading scripts

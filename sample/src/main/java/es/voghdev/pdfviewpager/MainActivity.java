@@ -70,8 +70,6 @@ public class MainActivity extends BaseSampleActivity {
             Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
         } else if (id == R.id.action_sample5) {
             AssetOnXMLActivity.open(this);
-        } else if (id == R.id.action_sample6) {
-            LegacyPDFActivity.open(this);
         } else if (id == R.id.action_sample8) {
             ZoomablePDFActivityPhotoView.open(this);
         } else if (id == R.id.action_sample9) {

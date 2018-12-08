@@ -18,10 +18,6 @@
           android:title="@string/menu_sample5_txt"
           android:icon="@android:drawable/ic_media_play" />
 
-    <item android:id="@+id/action_sample6"
-          android:title="@string/menu_sample6_txt"
-          android:icon="@android:drawable/ic_media_play" />
-
     <item android:id="@+id/action_sample8"
           android:title="@string/menu_sample8_txt"
           android:icon="@android:drawable/ic_media_play" />
