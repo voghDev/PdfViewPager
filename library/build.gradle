@@ -59,7 +59,7 @@ task checkstyle(type: Checkstyle) {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
 }
 
