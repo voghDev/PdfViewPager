@@ -35,8 +35,8 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
     PdfScale scale = new PdfScale();
     View.OnClickListener pageClickListener = new EmptyClickListener();
 
-    public PDFPagerAdapter(Context context, String pdfPath) {
-        super(context, pdfPath);
+    public PDFPagerAdapter(Context context, String... pdfPaths) {
+        super(context, pdfPaths);
     }
 
     @Override
@@ -45,13 +45,16 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         View v = inflater.inflate(R.layout.view_pdf_page, container, false);
         SubsamplingScaleImageView ssiv = v.findViewById(R.id.subsamplingImageView);
 
-        if (renderer == null || getCount() < position) {
+        if (getCount() < position) {
             return v;
         }
 
-        PdfRenderer.Page page = getPDFPage(renderer, position);
+        LocalPosition localPosition = getLocalPosition(renderers, position);
+        PdfRenderer.Page page = getPDFPage(renderers.get(localPosition.pdfIndex), localPosition.pageIndex);
 
-        Bitmap bitmap = bitmapContainer.get(position);
+        Bitmap bitmap = bitmapContainers
+                .get(localPosition.pdfIndex)
+                .get(localPosition.pageIndex);
         ssiv.setImage(ImageSource.bitmap(bitmap));
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
@@ -68,7 +71,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
 
     public static class Builder {
         Context context;
-        String pdfPath = "";
+        String[] pdfPaths = new String[0];
         float scale = DEFAULT_SCALE;
         float centerX = 0f, centerY = 0f;
         int offScreenSize = DEFAULT_OFFSCREENSIZE;
@@ -111,8 +114,13 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
             return this;
         }
 
-        public Builder setPdfPath(String path) {
-            this.pdfPath = path;
+        public Builder setPdfPath(String pdfPath) {
+            setPdfPaths(pdfPath);
+            return this;
+        }
+
+        public Builder setPdfPaths(String... pdfPaths) {
+            this.pdfPaths = pdfPaths;
             return this;
         }
 
@@ -124,7 +132,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         }
 
         public PDFPagerAdapter create() {
-            PDFPagerAdapter adapter = new PDFPagerAdapter(context, pdfPath);
+            PDFPagerAdapter adapter = new PDFPagerAdapter(context, pdfPaths);
             adapter.scale.setScale(scale);
             adapter.scale.setCenterX(centerX);
             adapter.scale.setCenterY(centerY);

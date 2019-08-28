@@ -26,10 +26,10 @@ import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 public class PDFViewPager extends ViewPager {
     protected Context context;
 
-    public PDFViewPager(Context context, String pdfPath) {
+    public PDFViewPager(Context context, String... pdfPaths) {
         super(context);
         this.context = context;
-        init(pdfPath);
+        init(pdfPaths);
     }
 
     public PDFViewPager(Context context, AttributeSet attrs) {
@@ -38,8 +38,8 @@ public class PDFViewPager extends ViewPager {
         init(attrs);
     }
 
-    protected void init(String pdfPath) {
-        initAdapter(context, pdfPath);
+    protected void init(String... pdfPaths) {
+        initAdapter(context, pdfPaths);
     }
 
     protected void init(AttributeSet attrs) {
@@ -52,7 +52,7 @@ public class PDFViewPager extends ViewPager {
             TypedArray a;
 
             a = context.obtainStyledAttributes(attrs, R.styleable.PDFViewPager);
-            String assetFileName = a.getString(R.styleable.PDFViewPager_assetFileName);
+            final String assetFileName = a.getString(R.styleable.PDFViewPager_assetFileName);
 
             if (assetFileName != null && assetFileName.length() > 0) {
                 initAdapter(context, assetFileName);
@@ -62,9 +62,9 @@ public class PDFViewPager extends ViewPager {
         }
     }
 
-    protected void initAdapter(Context context, String pdfPath) {
+    protected void initAdapter(Context context, String... pdfPaths) {
         setAdapter(new PDFPagerAdapter.Builder(context)
-                .setPdfPath(pdfPath)
+                .setPdfPaths(pdfPaths)
                 .setOffScreenSize(getOffscreenPageLimit())
                 .create());
     }

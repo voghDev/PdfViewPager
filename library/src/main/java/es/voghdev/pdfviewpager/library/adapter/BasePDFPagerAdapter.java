@@ -31,6 +31,10 @@ import android.widget.ImageView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import es.voghdev.pdfviewpager.library.R;
 
@@ -39,17 +43,17 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     protected static final float DEFAULT_QUALITY = 2.0f;
     protected static final int DEFAULT_OFFSCREENSIZE = 1;
 
-    protected String pdfPath;
+    protected Iterable<String> pdfPaths;
     protected Context context;
-    protected PdfRenderer renderer;
-    protected BitmapContainer bitmapContainer;
+    protected List<PdfRenderer> renderers;
+    protected List<BitmapContainer> bitmapContainers;
     protected LayoutInflater inflater;
 
     protected float renderQuality;
     protected int offScreenSize;
 
-    public BasePDFPagerAdapter(Context context, String pdfPath) {
-        this.pdfPath = pdfPath;
+    public BasePDFPagerAdapter(Context context, String... pdfPaths) {
+        this.pdfPaths = Arrays.asList(pdfPaths);
         this.context = context;
         this.renderQuality = DEFAULT_QUALITY;
         this.offScreenSize = DEFAULT_OFFSCREENSIZE;
@@ -60,8 +64,8 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     /**
      * This constructor was added for those who want to customize ViewPager's offScreenSize attr
      */
-    public BasePDFPagerAdapter(Context context, String pdfPath, int offScreenSize) {
-        this.pdfPath = pdfPath;
+    public BasePDFPagerAdapter(Context context, Iterable<String> pdfPaths, int offScreenSize) {
+        this.pdfPaths = pdfPaths;
         this.context = context;
         this.renderQuality = DEFAULT_QUALITY;
         this.offScreenSize = offScreenSize;
@@ -72,10 +76,15 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     @SuppressWarnings("NewApi")
     protected void init() {
         try {
-            renderer = new PdfRenderer(getSeekableFileDescriptor(pdfPath));
+            renderers = new ArrayList<>();
+            bitmapContainers = new ArrayList<>();
+            for (String pdfPath : pdfPaths) {
+                PdfRenderer renderer = new PdfRenderer(getSeekableFileDescriptor(pdfPath));
+                renderers.add(renderer);
+                PdfRendererParams params = extractPdfParamsFromFirstPage(renderer, renderQuality);
+                bitmapContainers.add(new SimpleBitmapPool(params));
+            }
             inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            PdfRendererParams params = extractPdfParamsFromFirstPage(renderer, renderQuality);
-            bitmapContainer = new SimpleBitmapPool(params);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,13 +136,16 @@ public class BasePDFPagerAdapter extends PagerAdapter {
         View v = inflater.inflate(R.layout.view_pdf_page, container, false);
         ImageView iv = (ImageView) v.findViewById(R.id.imageView);
 
-        if (renderer == null || getCount() < position) {
+        if (getCount() < position) {
             return v;
         }
 
-        PdfRenderer.Page page = getPDFPage(renderer, position);
+        LocalPosition localPosition = getLocalPosition(renderers, position);
+        PdfRenderer.Page page = getPDFPage(renderers.get(localPosition.pdfIndex), localPosition.pageIndex);
 
-        Bitmap bitmap = bitmapContainer.get(position);
+        Bitmap bitmap = bitmapContainers
+                .get(localPosition.pdfIndex)
+                .get(localPosition.pageIndex);
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
@@ -144,8 +156,26 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     }
 
     @SuppressWarnings("NewApi")
-    protected PdfRenderer.Page getPDFPage(PdfRenderer renderer, int position) {
+    PdfRenderer.Page getPDFPage(PdfRenderer renderer, int position) {
         return renderer.openPage(position);
+    }
+
+    LocalPosition getLocalPosition(Iterable<PdfRenderer> renderers, int globalPosition) {
+        Iterator<PdfRenderer> rendererIterator = renderers.iterator();
+        int pdfIndex = 0;
+        int localPageIndex = globalPosition;
+        while (rendererIterator.hasNext()) {
+            PdfRenderer curRenderer = rendererIterator.next();
+
+            if (localPageIndex < curRenderer.getPageCount()) {
+                return new LocalPosition(pdfIndex, localPageIndex);
+            }
+
+            pdfIndex++;
+            localPageIndex -= curRenderer.getPageCount();
+        }
+
+        throw new IndexOutOfBoundsException();
     }
 
     @Override
@@ -157,13 +187,13 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     @SuppressWarnings("NewApi")
     public void close() {
         releaseAllBitmaps();
-        if (renderer != null) {
+        for (PdfRenderer renderer : renderers) {
             renderer.close();
         }
     }
 
     protected void releaseAllBitmaps() {
-        if (bitmapContainer != null) {
+        for(BitmapContainer bitmapContainer: bitmapContainers) {
             bitmapContainer.clear();
         }
     }
@@ -171,11 +201,28 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     @Override
     @SuppressWarnings("NewApi")
     public int getCount() {
-        return renderer != null ? renderer.getPageCount() : 0;
+        int count = 0;
+
+        for (PdfRenderer renderer : renderers) {
+            count += renderer.getPageCount();
+        }
+
+        return count;
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == (View) object;
+    }
+
+    protected class LocalPosition {
+        final int pdfIndex;
+        final int pageIndex;
+
+        LocalPosition(int pdfIndex, int pageIndex) {
+            this.pdfIndex = pdfIndex;
+            this.pageIndex = pageIndex;
+
+        }
     }
 }

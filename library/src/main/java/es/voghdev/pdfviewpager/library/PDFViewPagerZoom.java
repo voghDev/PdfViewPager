@@ -24,17 +24,17 @@ import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.adapter.PdfScale;
 
 public class PDFViewPagerZoom extends PDFViewPager {
-    public PDFViewPagerZoom(Context context, String pdfPath) {
-        super(context, pdfPath);
+    public PDFViewPagerZoom(Context context, String... pdfPaths) {
+        super(context, pdfPaths);
     }
 
     public PDFViewPagerZoom(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    protected void initAdapter(Context context, String pdfPath) {
+    protected void initAdapter(Context context, String... pdfPaths) {
         setAdapter(new PDFPagerAdapter.Builder(context)
-                .setPdfPath(pdfPath)
+                .setPdfPaths(pdfPaths)
                 .setOffScreenSize(getOffscreenPageLimit())
                 .create()
         );
@@ -55,7 +55,7 @@ public class PDFViewPagerZoom extends PDFViewPager {
 
             if (assetFileName != null && assetFileName.length() > 0) {
                 setAdapter(new PDFPagerAdapter.Builder(context)
-                        .setPdfPath(assetFileName)
+                        .setPdfPaths(assetFileName)
                         .setScale(scale)
                         .setOffScreenSize(getOffscreenPageLimit())
                         .create());
