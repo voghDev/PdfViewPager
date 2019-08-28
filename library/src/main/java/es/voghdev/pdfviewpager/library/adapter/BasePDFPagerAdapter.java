@@ -193,7 +193,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     }
 
     protected void releaseAllBitmaps() {
-        for(BitmapContainer bitmapContainer: bitmapContainers) {
+        for (BitmapContainer bitmapContainer : bitmapContainers) {
             bitmapContainer.clear();
         }
     }
