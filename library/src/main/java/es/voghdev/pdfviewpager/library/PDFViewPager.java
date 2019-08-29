@@ -17,13 +17,20 @@ package es.voghdev.pdfviewpager.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 
 public class PDFViewPager extends ViewPager {
+    private PDFPagerAdapter pdfPagerAdapter;
+    private List<OnPageChangeListener> onPdfChangeListeners;
     protected Context context;
 
     public PDFViewPager(Context context, String... pdfPaths) {
@@ -63,10 +70,11 @@ public class PDFViewPager extends ViewPager {
     }
 
     protected void initAdapter(Context context, String... pdfPaths) {
-        setAdapter(new PDFPagerAdapter.Builder(context)
+        pdfPagerAdapter = new PDFPagerAdapter.Builder(context)
                 .setPdfPaths(pdfPaths)
                 .setOffScreenSize(getOffscreenPageLimit())
-                .create());
+                .create();
+        setAdapter(pdfPagerAdapter);
     }
 
     /**
@@ -81,5 +89,40 @@ public class PDFViewPager extends ViewPager {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public void addOnPdfChangeListener(@NonNull final OnPdfChangeListener listener) {
+        if (onPdfChangeListeners == null) {
+            onPdfChangeListeners = new ArrayList<>();
+        }
+        OnPageChangeListener onPageChangeListener = new SimpleOnPageChangeListener() {
+            private int prevPdfIndex = -1;
+
+            @Override
+            public void onPageSelected(int position) {
+                BasePDFPagerAdapter.LocalPosition localPosition = pdfPagerAdapter.getLocalPosition(position);
+                if (localPosition.pdfIndex == prevPdfIndex) {
+                    return;
+                }
+
+                prevPdfIndex = localPosition.pdfIndex;
+                listener.onPdfSelected(localPosition.pdfIndex);
+            }
+        };
+        addOnPageChangeListener(onPageChangeListener);
+        onPdfChangeListeners.add(onPageChangeListener);
+    }
+
+    public void clearOnPdfChangeListeners() {
+        if (onPdfChangeListeners != null) {
+            for (OnPageChangeListener onPageChangeListener : onPdfChangeListeners) {
+                removeOnPageChangeListener(onPageChangeListener);
+            }
+            onPdfChangeListeners.clear();
+        }
+    }
+
+    public static abstract class OnPdfChangeListener extends SimpleOnPageChangeListener {
+        public abstract void onPdfSelected(int position);
     }
 }

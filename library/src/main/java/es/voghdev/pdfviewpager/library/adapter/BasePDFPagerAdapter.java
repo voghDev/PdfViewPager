@@ -140,7 +140,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
             return v;
         }
 
-        LocalPosition localPosition = getLocalPosition(renderers, position);
+        LocalPosition localPosition = getLocalPosition(position);
         PdfRenderer.Page page = getPDFPage(renderers.get(localPosition.pdfIndex), localPosition.pageIndex);
 
         Bitmap bitmap = bitmapContainers
@@ -160,7 +160,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
         return renderer.openPage(position);
     }
 
-    LocalPosition getLocalPosition(Iterable<PdfRenderer> renderers, int globalPosition) {
+    public LocalPosition getLocalPosition(int globalPosition) {
         Iterator<PdfRenderer> rendererIterator = renderers.iterator();
         int pdfIndex = 0;
         int localPageIndex = globalPosition;
@@ -215,9 +215,9 @@ public class BasePDFPagerAdapter extends PagerAdapter {
         return view == (View) object;
     }
 
-    protected class LocalPosition {
-        final int pdfIndex;
-        final int pageIndex;
+    public class LocalPosition {
+        public final int pdfIndex;
+        public final int pageIndex;
 
         LocalPosition(int pdfIndex, int pageIndex) {
             this.pdfIndex = pdfIndex;

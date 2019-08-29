@@ -49,7 +49,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
             return v;
         }
 
-        LocalPosition localPosition = getLocalPosition(renderers, position);
+        LocalPosition localPosition = getLocalPosition(position);
         PdfRenderer.Page page = getPDFPage(renderers.get(localPosition.pdfIndex), localPosition.pageIndex);
 
         Bitmap bitmap = bitmapContainers
