@@ -80,7 +80,7 @@ public class Sample2Tests extends BaseTest {
 
         onView(withText(R.string.menu_sample2_txt)).perform(click());
         onView(withId(R.id.btn_download)).perform(click());
-        idlingResource = new WaitIdlingResource(System.currentTimeMillis(), 1500);
+        idlingResource = new WaitIdlingResource(System.currentTimeMillis(), 10000);
         Espresso.registerIdlingResources(idlingResource);
         onView(withId(R.id.btn_download)).check(matches(isDisplayed()));
         onView(withId(R.id.pdfViewPager)).check(matches(isDisplayed()));
