@@ -21,11 +21,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
+import es.voghdev.pdfviewpager.library.adapter.LocalPosition;
 import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 
 public class PDFViewPager extends ViewPager {
@@ -100,7 +101,7 @@ public class PDFViewPager extends ViewPager {
 
             @Override
             public void onPageSelected(int position) {
-                BasePDFPagerAdapter.LocalPosition localPosition = pdfPagerAdapter.getLocalPosition(position);
+                LocalPosition localPosition = pdfPagerAdapter.getLocalPosition(position);
                 if (localPosition.pdfIndex == prevPdfIndex) {
                     return;
                 }
@@ -120,6 +121,16 @@ public class PDFViewPager extends ViewPager {
             }
             onPdfChangeListeners.clear();
         }
+    }
+
+    public View findViewAtLocalPosition(LocalPosition localPosition) {
+        int globalPosition = pdfPagerAdapter.getGlobalPosition(localPosition);
+        return findViewAtGlobalPosition(globalPosition);
+    }
+
+    public View findViewAtGlobalPosition(int position) {
+        String tag = pdfPagerAdapter.getTag(position);
+        return findViewWithTag(tag);
     }
 
     public static abstract class OnPdfChangeListener extends SimpleOnPageChangeListener {

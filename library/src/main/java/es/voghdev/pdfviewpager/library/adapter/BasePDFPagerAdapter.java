@@ -150,6 +150,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
         page.close();
 
         iv.setImageBitmap(bitmap);
+        v.setTag(getTag(position));
         ((ViewPager) container).addView(v, 0);
 
         return v;
@@ -176,6 +177,30 @@ public class BasePDFPagerAdapter extends PagerAdapter {
         }
 
         throw new IndexOutOfBoundsException();
+    }
+
+    public int getGlobalPosition(LocalPosition localPosition) {
+        int globalPosition = 0;
+
+        if (localPosition.pdfIndex >= renderers.size()) {
+            throw new IndexOutOfBoundsException("PDF index is greater than number of PDFs");
+        }
+
+        if (localPosition.pageIndex >= renderers.get(localPosition.pdfIndex).getPageCount()) {
+            throw new IndexOutOfBoundsException("Page index is greater than the PDF page count");
+        }
+
+        for (int i = 0; i < localPosition.pdfIndex; i++) {
+            globalPosition += renderers.get(i).getPageCount();
+        }
+
+        globalPosition += localPosition.pageIndex;
+
+        return globalPosition;
+    }
+
+    public String getTag(int globalPosition) {
+        return String.valueOf(globalPosition);
     }
 
     @Override
@@ -213,16 +238,5 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == (View) object;
-    }
-
-    public class LocalPosition {
-        public final int pdfIndex;
-        public final int pageIndex;
-
-        LocalPosition(int pdfIndex, int pageIndex) {
-            this.pdfIndex = pdfIndex;
-            this.pageIndex = pageIndex;
-
-        }
     }
 }

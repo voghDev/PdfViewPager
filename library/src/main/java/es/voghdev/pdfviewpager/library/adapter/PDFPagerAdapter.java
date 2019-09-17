@@ -59,6 +59,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
+        v.setTag(getTag(position));
         ((ViewPager) container).addView(v, 0);
 
         return v;
