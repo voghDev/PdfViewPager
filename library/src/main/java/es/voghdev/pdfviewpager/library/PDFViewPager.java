@@ -96,11 +96,12 @@ public class PDFViewPager extends ViewPager {
         if (onPdfChangeListeners == null) {
             onPdfChangeListeners = new ArrayList<>();
         }
-        OnPageChangeListener onPageChangeListener = new SimpleOnPageChangeListener() {
+        OnPageChangeListener onPageChangeListener = new OnPageChangeListener() {
             private int prevPdfIndex = -1;
 
             @Override
             public void onPageSelected(int position) {
+                listener.onPageSelected(position);
                 LocalPosition localPosition = pdfPagerAdapter.getLocalPosition(position);
                 if (localPosition.pdfIndex == prevPdfIndex) {
                     return;
@@ -108,6 +109,16 @@ public class PDFViewPager extends ViewPager {
 
                 prevPdfIndex = localPosition.pdfIndex;
                 listener.onPdfSelected(localPosition.pdfIndex);
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                listener.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                listener.onPageScrollStateChanged(state);
             }
         };
         addOnPageChangeListener(onPageChangeListener);
