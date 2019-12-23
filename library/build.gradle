@@ -16,7 +16,7 @@ ext {
     siteUrl = 'https://github.com/voghDev/PdfViewPager'
     gitUrl = 'https://github.com/voghDev/PdfViewPager.git'
 
-    libraryVersion = '1.0.6'
+    libraryVersion = '2.0.0'
 
     developerId = 'voghDev'
     developerName = 'Olmo Gallegos'
@@ -28,13 +28,13 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
-        versionCode 7
-        versionName "1.0.0"
+        targetSdkVersion 29
+        versionCode 8
+        versionName "2.0.0"
     }
     buildTypes {
         release {
@@ -59,8 +59,7 @@ task checkstyle(type: Checkstyle) {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 }
 
 // Bintray installing and uploading scripts
