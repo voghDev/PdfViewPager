@@ -20,12 +20,10 @@ import android.graphics.Bitmap;
 import android.graphics.pdf.PdfRenderer;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.view.ViewPager;
-
-import com.davemorrissey.labs.subscaleview.ImageSource;
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 import es.voghdev.pdfviewpager.library.R;
+import es.voghdev.pdfviewpager.library.subscaleview.ImageSource;
+import es.voghdev.pdfviewpager.library.subscaleview.SubsamplingScaleImageView;
 import es.voghdev.pdfviewpager.library.util.EmptyClickListener;
 
 public class PDFPagerAdapter extends BasePDFPagerAdapter {
@@ -56,7 +54,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
-        ((ViewPager) container).addView(v, 0);
+        container.addView(v, 0);
 
         return v;
     }

@@ -10,7 +10,7 @@
         android:layout_height="match_parent" />
 
     <!-- Used by inheriting classes that implement zooming effect -->
-    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+    <es.voghdev.pdfviewpager.library.subscaleview.SubsamplingScaleImageView
         android:id="@+id/subsamplingImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
