@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">PdfViewPager samples</string>
     <string name="remote_pdf_url">Remote PDF URL</string>
-    <string name="sample_pdf_url">http://css4.pub/2015/textbook/somatosensory.pdf</string>
+    <string name="sample_pdf_url">https://css4.pub/2015/textbook/somatosensory.pdf</string>
     <string name="download">Tap to start download</string>
     <string name="asset_on_sd">Asset on SD card example</string>
     <string name="asset_on_xml">Asset on XML example</string>
