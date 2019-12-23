@@ -31,7 +31,7 @@ import es.voghdev.pdfviewpager.library.subscaleview.SubsamplingScaleImageView;
  * using Android's {@link BitmapRegionDecoder}, based on the Skia library. This
  * works well in most circumstances and has reasonable performance due to the cached decoder instance,
  * however it has some problems with grayscale, indexed and CMYK images.
- *
+ * <p>
  * A {@link ReadWriteLock} is used to delegate responsibility for multi threading behaviour to the
  * {@link BitmapRegionDecoder} instance on SDK &gt;= 21, whilst allowing this class to block until no
  * tiles are being loaded before recycling the decoder. In practice, {@link BitmapRegionDecoder} is
@@ -96,9 +96,13 @@ public class SkiaImageRegionDecoder implements ImageRegionDecoder {
             decoder = BitmapRegionDecoder.newInstance(context.getResources().openRawResource(id), false);
         } else if (uriString.startsWith(ASSET_PREFIX)) {
             String assetName = uriString.substring(ASSET_PREFIX.length());
-            decoder = BitmapRegionDecoder.newInstance(context.getAssets().open(assetName, AssetManager.ACCESS_RANDOM), false);
+            decoder = BitmapRegionDecoder.newInstance(
+                    context.getAssets().open(assetName, AssetManager.ACCESS_RANDOM),
+                    false);
         } else if (uriString.startsWith(FILE_PREFIX)) {
-            decoder = BitmapRegionDecoder.newInstance(uriString.substring(FILE_PREFIX.length()), false);
+            decoder = BitmapRegionDecoder.newInstance(
+                    uriString.substring(FILE_PREFIX.length()),
+                    false);
         } else {
             InputStream inputStream = null;
             try {
@@ -107,7 +111,9 @@ public class SkiaImageRegionDecoder implements ImageRegionDecoder {
                 decoder = BitmapRegionDecoder.newInstance(inputStream, false);
             } finally {
                 if (inputStream != null) {
-                    try { inputStream.close(); } catch (Exception e) { /* Ignore */ }
+                    try {
+                        inputStream.close();
+                    } catch (Exception e) { /* Ignore */ }
                 }
             }
         }
@@ -125,7 +131,8 @@ public class SkiaImageRegionDecoder implements ImageRegionDecoder {
                 options.inPreferredConfig = bitmapConfig;
                 Bitmap bitmap = decoder.decodeRegion(sRect, options);
                 if (bitmap == null) {
-                    throw new RuntimeException("Skia image decoder returned null bitmap - image format may not be supported");
+                    throw new RuntimeException(
+                            "Skia image decoder returned null bitmap - image format may not be supported");
                 }
                 return bitmap;
             } else {

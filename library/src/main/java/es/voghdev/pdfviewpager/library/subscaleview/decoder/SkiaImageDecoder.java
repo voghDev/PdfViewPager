@@ -94,12 +94,16 @@ public class SkiaImageDecoder implements ImageDecoder {
                 bitmap = BitmapFactory.decodeStream(inputStream, null, options);
             } finally {
                 if (inputStream != null) {
-                    try { inputStream.close(); } catch (Exception e) { /* Ignore */ }
+                    try {
+                        inputStream.close();
+                    } catch (Exception e) { /* Ignore */ }
                 }
             }
         }
         if (bitmap == null) {
-            throw new RuntimeException("Skia image region decoder returned null bitmap - image format may not be supported");
+            throw new RuntimeException(
+                    "Skia image region decoder returned null bitmap - image format may not be supported"
+            );
         }
         return bitmap;
     }

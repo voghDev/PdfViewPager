@@ -42,7 +42,8 @@ import static android.content.Context.ACTIVITY_SERVICE;
  * <p>
  * An implementation of {@link ImageRegionDecoder} using a pool of {@link BitmapRegionDecoder}s,
  * to provide true parallel loading of tiles. This is only effective if parallel loading has been
- * enabled in the view by calling {@link com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView#setExecutor(Executor)}
+ * enabled in the view by calling
+ * {@link com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView#setExecutor(Executor)}
  * with a multi-threaded {@link Executor} instance.
  * </p><p>
  * One decoder is initialised when the class is initialised. This is enough to decode base layer tiles.
@@ -98,6 +99,7 @@ public class SkiaPooledImageRegionDecoder implements ImageRegionDecoder {
 
     /**
      * Controls logging of debug messages. All instances are affected.
+     *
      * @param debug true to enable debug logging, false to disable.
      */
     @Keep
@@ -197,9 +199,15 @@ public class SkiaPooledImageRegionDecoder implements ImageRegionDecoder {
             } catch (Exception e) {
                 // Pooling disabled
             }
-            decoder = BitmapRegionDecoder.newInstance(context.getAssets().open(assetName, AssetManager.ACCESS_RANDOM), false);
+            decoder =
+                    BitmapRegionDecoder.newInstance(
+                            context.getAssets().open(assetName, AssetManager.ACCESS_RANDOM),
+                            false);
         } else if (uriString.startsWith(FILE_PREFIX)) {
-            decoder = BitmapRegionDecoder.newInstance(uriString.substring(FILE_PREFIX.length()), false);
+            decoder =
+                    BitmapRegionDecoder.newInstance(
+                            uriString.substring(FILE_PREFIX.length()),
+                            false);
             try {
                 File file = new File(uriString);
                 if (file.exists()) {
@@ -224,7 +232,9 @@ public class SkiaPooledImageRegionDecoder implements ImageRegionDecoder {
                 }
             } finally {
                 if (inputStream != null) {
-                    try { inputStream.close(); } catch (Exception e) { /* Ignore */ }
+                    try {
+                        inputStream.close();
+                    } catch (Exception e) { /* Ignore */ }
                 }
             }
         }
@@ -267,7 +277,8 @@ public class SkiaPooledImageRegionDecoder implements ImageRegionDecoder {
                         options.inPreferredConfig = bitmapConfig;
                         Bitmap bitmap = decoder.decodeRegion(sRect, options);
                         if (bitmap == null) {
-                            throw new RuntimeException("Skia image decoder returned null bitmap - image format may not be supported");
+                            throw new RuntimeException(
+                                    "null bitmap - image format may not be supported");
                         }
                         return bitmap;
                     }
@@ -315,8 +326,10 @@ public class SkiaPooledImageRegionDecoder implements ImageRegionDecoder {
      * Called before creating a new decoder. Based on number of CPU cores, available memory, and the
      * size of the image file, determines whether another decoder can be created. Subclasses can
      * override and customise this.
+     *
      * @param numberOfDecoders the number of decoders that have been created so far
-     * @param fileLength the size of the image file in bytes. Creating another decoder will use approximately this much native memory.
+     * @param fileLength       the size of the image file in bytes. Creating another decoder
+     *                         will use approximately this much native memory.
      * @return true if another decoder can be created.
      */
     @SuppressWarnings("WeakerAccess")
@@ -334,7 +347,9 @@ public class SkiaPooledImageRegionDecoder implements ImageRegionDecoder {
             debug("No additional encoders allowed, memory is low");
             return false;
         }
-        debug("Additional decoder allowed, current count is " + numberOfDecoders + ", estimated native memory " + ((fileLength * numberOfDecoders)/(1024 * 1024)) + "Mb");
+        debug("Additional decoder allowed, current count is "
+                + numberOfDecoders + ", estimated native memory "
+                + ((fileLength * numberOfDecoders) / (1024 * 1024)) + "Mb");
         return true;
     }
 
@@ -437,6 +452,7 @@ public class SkiaPooledImageRegionDecoder implements ImageRegionDecoder {
     /**
      * Gets the number of cores available in this device, across all processors.
      * Requires: Ability to peruse the filesystem at "/sys/devices/system/cpu"
+     *
      * @return The number of cores, or 1 if failed to get result
      */
     private int getNumCoresOldPhones() {
@@ -450,13 +466,13 @@ public class SkiaPooledImageRegionDecoder implements ImageRegionDecoder {
             File dir = new File("/sys/devices/system/cpu/");
             File[] files = dir.listFiles(new CpuFilter());
             return files.length;
-        } catch(Exception e) {
+        } catch (Exception e) {
             return 1;
         }
     }
 
     private boolean isLowMemory() {
-        ActivityManager activityManager = (ActivityManager)context.getSystemService(ACTIVITY_SERVICE);
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
         if (activityManager != null) {
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             activityManager.getMemoryInfo(memoryInfo);
