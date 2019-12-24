@@ -26,17 +26,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import es.voghdev.pdfviewpager.library.subscaleview.SubsamplingScaleImageView;
 
-/**
- * Default implementation of {@link com.davemorrissey.labs.subscaleview.decoder.ImageRegionDecoder}
- * using Android's {@link BitmapRegionDecoder}, based on the Skia library. This
- * works well in most circumstances and has reasonable performance due to the cached decoder instance,
- * however it has some problems with grayscale, indexed and CMYK images.
- * <p>
- * A {@link ReadWriteLock} is used to delegate responsibility for multi threading behaviour to the
- * {@link BitmapRegionDecoder} instance on SDK &gt;= 21, whilst allowing this class to block until no
- * tiles are being loaded before recycling the decoder. In practice, {@link BitmapRegionDecoder} is
- * synchronized internally so this has no real impact on performance.
- */
+
 public class SkiaImageRegionDecoder implements ImageRegionDecoder {
 
     private BitmapRegionDecoder decoder;
@@ -159,11 +149,7 @@ public class SkiaImageRegionDecoder implements ImageRegionDecoder {
         }
     }
 
-    /**
-     * Before SDK 21, BitmapRegionDecoder was not synchronized internally. Any attempt to decode
-     * regions from multiple threads with one decoder instance causes a segfault. For old versions
-     * use the write lock to enforce single threaded decoding.
-     */
+
     private Lock getDecodeLock() {
         if (Build.VERSION.SDK_INT < 21) {
             return decoderLock.writeLock();
