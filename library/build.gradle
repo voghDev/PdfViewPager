@@ -16,7 +16,7 @@ ext {
     siteUrl = 'https://github.com/voghDev/PdfViewPager'
     gitUrl = 'https://github.com/voghDev/PdfViewPager.git'
 
-    libraryVersion = '2.0.0'
+    libraryVersion = '1.1.0'
 
     developerId = 'voghDev'
     developerName = 'Olmo Gallegos'
@@ -34,7 +34,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 8
-        versionName "2.0.0"
+        versionName "1.0.0"
     }
     buildTypes {
         release {
