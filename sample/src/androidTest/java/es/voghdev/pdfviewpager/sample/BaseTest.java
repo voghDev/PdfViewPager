@@ -15,9 +15,9 @@
  */
 package es.voghdev.pdfviewpager.sample;
 
-import android.support.test.InstrumentationRegistry;
+import androidx.test.InstrumentationRegistry;
 
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 
 public abstract class BaseTest {
 

@@ -15,7 +15,7 @@
  */
 package es.voghdev.pdfviewpager.sample.idlingresource;
 
-import android.support.test.espresso.IdlingResource;
+import androidx.test.espresso.IdlingResource;
 
 public class WaitIdlingResource implements IdlingResource {
     long startMillisecs;
