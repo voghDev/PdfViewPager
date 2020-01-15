@@ -1,5 +1,12 @@
 # PdfViewPager changelog
 
+1.1.0
+-----
+
+- Migrate from `android.support` to `androidx`
+- Remove external dependency to SubsamplingScaleImageView library
+- Clone SubsamplingScaleImageView code into this project to get rid of all `android.support` usages
+
 1.0.6
 -----
 
