@@ -51,6 +51,14 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
 
         Bitmap bitmap = bitmapContainer.get(position);
         ssiv.setImage(ImageSource.bitmap(bitmap));
+
+        ssiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pageClickListener.onClick(v);
+            }
+        });
+
         page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         page.close();
 
