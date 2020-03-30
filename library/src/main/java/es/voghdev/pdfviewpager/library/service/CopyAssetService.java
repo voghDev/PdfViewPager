@@ -25,10 +25,12 @@ import es.voghdev.pdfviewpager.library.BuildConfig;
 import es.voghdev.pdfviewpager.library.util.FileUtil;
 
 public class CopyAssetService extends IntentService {
-    private static final String ACTION_COPY_ASSET = BuildConfig.APPLICATION_ID + ".copy_asset";
-
-    private static final String EXTRA_ASSET = BuildConfig.APPLICATION_ID + ".asset";
-    private static final String EXTRA_DESTINATION = BuildConfig.APPLICATION_ID + ".destination_path";
+    private static final String ACTION_COPY_ASSET =
+            BuildConfig.LIBRARY_PACKAGE_NAME + ".copy_asset";
+    private static final String EXTRA_ASSET =
+            BuildConfig.LIBRARY_PACKAGE_NAME + ".asset";
+    private static final String EXTRA_DESTINATION =
+            BuildConfig.LIBRARY_PACKAGE_NAME + ".destination_path";
 
     public CopyAssetService() {
         super("CopyAssetService");
