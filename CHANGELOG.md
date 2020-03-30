@@ -1,5 +1,10 @@
 # PdfViewPager changelog
 
+1.1.1
+-----
+
+- Added a missing OnClickListener for the ImageView being created on each page (#140)
+
 1.1.0
 -----
 
