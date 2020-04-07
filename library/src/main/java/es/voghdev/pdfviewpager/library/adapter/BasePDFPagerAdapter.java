@@ -48,6 +48,8 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     protected float renderQuality;
     protected int offScreenSize;
 
+    protected PdfErrorHandler errorHandler;
+
     public BasePDFPagerAdapter(Context context, String pdfPath) {
         this.pdfPath = pdfPath;
         this.context = context;
@@ -77,7 +79,7 @@ public class BasePDFPagerAdapter extends PagerAdapter {
             PdfRendererParams params = extractPdfParamsFromFirstPage(renderer, renderQuality);
             bitmapContainer = new SimpleBitmapPool(params);
         } catch (IOException e) {
-            e.printStackTrace();
+            errorHandler.onPdfError(e);
         }
     }
 
