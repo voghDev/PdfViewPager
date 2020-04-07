@@ -48,13 +48,25 @@ public class BasePDFPagerAdapter extends PagerAdapter {
     protected float renderQuality;
     protected int offScreenSize;
 
-    protected PdfErrorHandler errorHandler;
+    protected PdfErrorHandler errorHandler = new NullPdfErrorHandler();
 
     public BasePDFPagerAdapter(Context context, String pdfPath) {
         this.pdfPath = pdfPath;
         this.context = context;
         this.renderQuality = DEFAULT_QUALITY;
         this.offScreenSize = DEFAULT_OFFSCREENSIZE;
+
+        init();
+    }
+
+    public BasePDFPagerAdapter(Context context, String pdfPath, PdfErrorHandler errorHandler) {
+        this.pdfPath = pdfPath;
+        this.context = context;
+        this.renderQuality = DEFAULT_QUALITY;
+        this.offScreenSize = DEFAULT_OFFSCREENSIZE;
+        if (errorHandler != null) {
+            this.errorHandler = errorHandler;
+        }
 
         init();
     }

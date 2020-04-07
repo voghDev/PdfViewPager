@@ -26,4 +26,8 @@
           android:title="@string/menu_sample9_txt"
           android:icon="@android:drawable/ic_media_play" />
 
+    <item android:id="@+id/action_sample10"
+          android:title="@string/menu_sample10_txt"
+          android:icon="@android:drawable/ic_media_play" />
+
 </menu>

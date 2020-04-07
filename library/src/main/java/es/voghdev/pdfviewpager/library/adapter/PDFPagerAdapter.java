@@ -39,6 +39,10 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         super(context, pdfPath);
     }
 
+    public PDFPagerAdapter(Context context, String pdfPath, PdfErrorHandler errorHandler) {
+        super(context, pdfPath, errorHandler);
+    }
+
     @Override
     @SuppressWarnings("NewApi")
     public Object instantiateItem(ViewGroup container, int position) {
@@ -134,13 +138,6 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
             return this;
         }
 
-        private class NullPdfErrorHandler implements PdfErrorHandler {
-            @Override
-            public void onPdfError(Throwable t) {
-                /* Empty */
-            }
-        }
-
         public Builder setOnPageClickListener(View.OnClickListener listener) {
             if (listener != null) {
                 pageClickListener = listener;
@@ -149,13 +146,12 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         }
 
         public PDFPagerAdapter create() {
-            PDFPagerAdapter adapter = new PDFPagerAdapter(context, pdfPath);
+            PDFPagerAdapter adapter = new PDFPagerAdapter(context, pdfPath, errorHandler);
             adapter.scale.setScale(scale);
             adapter.scale.setCenterX(centerX);
             adapter.scale.setCenterY(centerY);
             adapter.offScreenSize = offScreenSize;
             adapter.renderQuality = renderQuality;
-            adapter.errorHandler = errorHandler;
             adapter.pageClickListener = pageClickListener;
             return adapter;
         }
