@@ -79,6 +79,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
         float centerX = 0f, centerY = 0f;
         int offScreenSize = DEFAULT_OFFSCREENSIZE;
         float renderQuality = DEFAULT_QUALITY;
+        PdfErrorHandler errorHandler = new NullPdfErrorHandler();
         View.OnClickListener pageClickListener = new EmptyClickListener();
 
         public Builder(Context context) {
@@ -122,6 +123,22 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
             return this;
         }
 
+        public Builder setErrorHandler(PdfErrorHandler handler) {
+            if (null == handler) {
+                throw new IllegalStateException("You can't provide a null PdfErrorHandler");
+            }
+
+            this.errorHandler = handler;
+            return this;
+        }
+
+        private class NullPdfErrorHandler implements PdfErrorHandler {
+            @Override
+            public void onPdfError(Throwable t) {
+                /* Empty */
+            }
+        }
+
         public Builder setOnPageClickListener(View.OnClickListener listener) {
             if (listener != null) {
                 pageClickListener = listener;
@@ -136,6 +153,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
             adapter.scale.setCenterY(centerY);
             adapter.offScreenSize = offScreenSize;
             adapter.renderQuality = renderQuality;
+            adapter.errorHandler = errorHandler;
             adapter.pageClickListener = pageClickListener;
             return adapter;
         }
