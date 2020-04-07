@@ -20,7 +20,10 @@
     <string name="menu_sample5_txt">PDF as asset (XML) sample</string>
     <string name="menu_sample8_txt">Zoomable PDF (SubsamplingScaleImageView)</string>
     <string name="menu_sample9_txt">Example with initial scale</string>
+    <string name="menu_sample10_txt">Example with an invalid PDF</string>
     <string name="dummy_msg">This sample PDF here &gt;&gt;\nis declared by code</string>
     <string name="zoomable_asset_on_xml">Zoomable PDF on XML Example</string>
     <string name="page_was_clicked">Page was clicked</string>
+    <string name="invalid_pdf_title">An invalid Pdf load has started</string>
+    <string name="invalid_pdf_text">You should receive an exception in your PdfErrorHandler</string>
 </resources>

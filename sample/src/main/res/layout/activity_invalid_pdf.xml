@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <es.voghdev.pdfviewpager.library.PDFViewPager
+        android:id="@+id/pdfViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/pdfErrorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/invalid_pdf_title"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/invalid_pdf_text"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</FrameLayout>
