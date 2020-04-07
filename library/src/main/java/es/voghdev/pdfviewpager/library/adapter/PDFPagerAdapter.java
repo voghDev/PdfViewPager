@@ -21,6 +21,8 @@ import android.graphics.pdf.PdfRenderer;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+
 import es.voghdev.pdfviewpager.library.R;
 import es.voghdev.pdfviewpager.library.subscaleview.ImageSource;
 import es.voghdev.pdfviewpager.library.subscaleview.SubsamplingScaleImageView;
@@ -123,7 +125,7 @@ public class PDFPagerAdapter extends BasePDFPagerAdapter {
             return this;
         }
 
-        public Builder setErrorHandler(PdfErrorHandler handler) {
+        public Builder setErrorHandler(@NonNull PdfErrorHandler handler) {
             if (null == handler) {
                 throw new IllegalStateException("You can't provide a null PdfErrorHandler");
             }
