@@ -1,5 +1,12 @@
 # PdfViewPager changelog
 
+1.1.2
+-----
+
+- Added an error handler for IOExceptions in Pdf initialization
+- Added tests
+- Minor code improvements
+
 1.1.1
 -----
 
