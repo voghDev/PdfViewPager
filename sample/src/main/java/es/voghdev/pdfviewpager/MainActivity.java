@@ -15,10 +15,14 @@
  */
 package es.voghdev.pdfviewpager;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
@@ -27,6 +31,8 @@ import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
 public class MainActivity extends BaseSampleActivity {
     PDFViewPager pdfViewPager;
     BasePDFPagerAdapter adapter;
+
+    final int REQUEST_CODE = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,14 +70,26 @@ public class MainActivity extends BaseSampleActivity {
             RemotePDFActivity.open(this);
             return false;
         } else if (id == R.id.action_sample3) {
-            AssetOnSDActivity.open(this);
+            if (hasExternalStoragePermissions()) {
+                AssetOnSDActivity.open(this);
+            } else {
+                requestExternalStoragePermissions();
+            }
             return false;
         } else if (id == R.id.action_sample4) {
             Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
         } else if (id == R.id.action_sample5) {
-            AssetOnXMLActivity.open(this);
+            if (hasExternalStoragePermissions()) {
+                AssetOnXMLActivity.open(this);
+            } else {
+                requestExternalStoragePermissions();
+            }
         } else if (id == R.id.action_sample8) {
-            ZoomablePDFActivityPhotoView.open(this);
+            if (hasExternalStoragePermissions()) {
+                ZoomablePDFActivityPhotoView.open(this);
+            } else {
+                requestExternalStoragePermissions();
+            }
         } else if (id == R.id.action_sample9) {
             PDFWithScaleActivity.open(this);
         } else if (id == R.id.action_sample10) {
@@ -79,5 +97,28 @@ public class MainActivity extends BaseSampleActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected boolean hasExternalStoragePermissions() {
+        boolean hasReadPermission = ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED;
+
+        boolean hasWritePermission = ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED;
+
+        return hasReadPermission && hasWritePermission;
+    }
+
+    protected void requestExternalStoragePermissions() {
+        String[] permissions = {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        };
+
+        ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
     }
 }
