@@ -16,7 +16,7 @@ Installation
 
 Add this line in your *app/build.gradle*
 
-    implementation 'es.voghdev.pdfviewpager:library:1.1.1'
+    implementation 'es.voghdev.pdfviewpager:library:1.1.2'
 
 If you want to use the old `android.support` instead of `androidx`, add this dependency
 
