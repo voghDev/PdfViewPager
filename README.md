@@ -148,7 +148,6 @@ TODOs
 - [X] Support API Levels under 21, by downloading PDF and invoking system native intent.
 - [X] UI tests
 - [X] Add checkstyle, refactor & improve code quality
-- [ ] Boost PDF opening & rendering performance using an asnychronous load
 
 See [changelog][4] for details
 
@@ -163,6 +162,13 @@ Developed By
 <a href="https://www.linkedin.com/profile/view?id=91543271">
   <img alt="Find me on Linkedin" src="https://image.freepik.com/iconos-gratis/boton-del-logotipo-linkedin_318-84979.png" height="60" width="60" />
 </a>
+
+Support
+-------
+
+This repository has been supported by JetBrains with free licenses for all JetBrains products
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/JetBrains_Logo_2016.svg/1200px-JetBrains_Logo_2016.svg.png" width="250" />
 
 # License
 
