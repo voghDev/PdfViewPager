@@ -79,9 +79,4 @@ public class AssetOnSDActivity extends BaseSampleActivity {
             ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
         }
     }
-
-    public static void open(Context context) {
-        Intent i = new Intent(context, AssetOnSDActivity.class);
-        context.startActivity(i);
-    }
 }

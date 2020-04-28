@@ -16,6 +16,7 @@
 package es.voghdev.pdfviewpager;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -67,33 +68,21 @@ public class MainActivity extends BaseSampleActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_sample2) {
-            RemotePDFActivity.open(this);
+            launchActivity(RemotePDFActivity.class);
             return false;
         } else if (id == R.id.action_sample3) {
-            if (hasExternalStoragePermissions()) {
-                AssetOnSDActivity.open(this);
-            } else {
-                requestExternalStoragePermissions();
-            }
+            requestPermissionsThenOpen(AssetOnSDActivity.class);
             return false;
         } else if (id == R.id.action_sample4) {
             Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
         } else if (id == R.id.action_sample5) {
-            if (hasExternalStoragePermissions()) {
-                AssetOnXMLActivity.open(this);
-            } else {
-                requestExternalStoragePermissions();
-            }
+            requestPermissionsThenOpen(AssetOnXMLActivity.class);
         } else if (id == R.id.action_sample8) {
-            if (hasExternalStoragePermissions()) {
-                ZoomablePDFActivityPhotoView.open(this);
-            } else {
-                requestExternalStoragePermissions();
-            }
+            requestPermissionsThenOpen(ZoomablePDFActivityPhotoView.class);
         } else if (id == R.id.action_sample9) {
-            PDFWithScaleActivity.open(this);
+            launchActivity(PDFWithScaleActivity.class);
         } else if (id == R.id.action_sample10) {
-            InvalidPdfActivity.open(this);
+            launchActivity(InvalidPdfActivity.class);
         }
 
         return super.onOptionsItemSelected(item);
@@ -113,6 +102,14 @@ public class MainActivity extends BaseSampleActivity {
         return hasReadPermission && hasWritePermission;
     }
 
+    protected void requestPermissionsThenOpen(Class activityClass) {
+        if (hasExternalStoragePermissions()) {
+            launchActivity(activityClass);
+        } else {
+            requestExternalStoragePermissions();
+        }
+    }
+
     protected void requestExternalStoragePermissions() {
         String[] permissions = {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -120,5 +117,10 @@ public class MainActivity extends BaseSampleActivity {
         };
 
         ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
+    }
+
+    protected void launchActivity(Class activityClass) {
+        Intent i = new Intent(this, activityClass);
+        startActivity(i);
     }
 }

@@ -71,11 +71,6 @@ public class PDFWithScaleActivity extends BaseSampleActivity {
         }
     }
 
-    public static void open(Context context) {
-        Intent i = new Intent(context, PDFWithScaleActivity.class);
-        context.startActivity(i);
-    }
-
     public int getScreenWidth(Context ctx) {
         int w = 0;
         if (ctx instanceof Activity) {

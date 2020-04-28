@@ -40,9 +40,4 @@ public class AssetOnXMLActivity extends BaseSampleActivity {
 
         ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
     }
-
-    public static void open(Context context) {
-        Intent i = new Intent(context, AssetOnXMLActivity.class);
-        context.startActivity(i);
-    }
 }

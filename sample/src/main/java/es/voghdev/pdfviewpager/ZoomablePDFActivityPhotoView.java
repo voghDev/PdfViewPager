@@ -44,9 +44,4 @@ public class ZoomablePDFActivityPhotoView extends BaseSampleActivity {
             adapter = null;
         }
     }
-
-    public static void open(Context context) {
-        Intent i = new Intent(context, ZoomablePDFActivityPhotoView.class);
-        context.startActivity(i);
-    }
 }

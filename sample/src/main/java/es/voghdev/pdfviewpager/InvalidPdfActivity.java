@@ -48,9 +48,4 @@ public class InvalidPdfActivity extends BaseSampleActivity {
 
         adapter.close();
     }
-
-    public static void open(Context context) {
-        Intent i = new Intent(context, InvalidPdfActivity.class);
-        context.startActivity(i);
-    }
 }
