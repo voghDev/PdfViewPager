@@ -41,7 +41,7 @@ public class MainActivity extends BaseSampleActivity {
         setTitle(R.string.std_example);
         setContentView(R.layout.activity_main);
 
-        pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
+        pdfViewPager = findViewById(R.id.pdfViewPager);
 
         adapter = new PDFPagerAdapter(this, "sample.pdf");
         pdfViewPager.setAdapter(adapter);
@@ -51,10 +51,7 @@ public class MainActivity extends BaseSampleActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (adapter != null) {
-            adapter.close();
-            adapter = null;
-        }
+        adapter.close();
     }
 
     @Override
