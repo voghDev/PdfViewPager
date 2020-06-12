@@ -17,7 +17,6 @@ package es.voghdev.pdfviewpager;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -64,16 +63,7 @@ public class PDFWithScaleActivity extends BaseSampleActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        BasePDFPagerAdapter adapter = (BasePDFPagerAdapter) pdfViewPager.getAdapter();
-        if (adapter != null) {
-            adapter.close();
-            adapter = null;
-        }
-    }
-
-    public static void open(Context context) {
-        Intent i = new Intent(context, PDFWithScaleActivity.class);
-        context.startActivity(i);
+        ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
     }
 
     public int getScreenWidth(Context ctx) {

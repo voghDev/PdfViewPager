@@ -41,12 +41,6 @@ public class ZoomablePDFActivityPhotoView extends BaseSampleActivity {
         BasePDFPagerAdapter adapter = (BasePDFPagerAdapter) pdfViewPager.getAdapter();
         if (adapter != null) {
             adapter.close();
-            adapter = null;
         }
-    }
-
-    public static void open(Context context) {
-        Intent i = new Intent(context, ZoomablePDFActivityPhotoView.class);
-        context.startActivity(i);
     }
 }

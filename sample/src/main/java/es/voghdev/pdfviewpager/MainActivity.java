@@ -15,10 +15,15 @@
  */
 package es.voghdev.pdfviewpager;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import es.voghdev.pdfviewpager.library.PDFViewPager;
 import es.voghdev.pdfviewpager.library.adapter.BasePDFPagerAdapter;
@@ -28,13 +33,15 @@ public class MainActivity extends BaseSampleActivity {
     PDFViewPager pdfViewPager;
     BasePDFPagerAdapter adapter;
 
+    final int REQUEST_CODE = 1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.std_example);
         setContentView(R.layout.activity_main);
 
-        pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
+        pdfViewPager = findViewById(R.id.pdfViewPager);
 
         adapter = new PDFPagerAdapter(this, "sample.pdf");
         pdfViewPager.setAdapter(adapter);
@@ -44,10 +51,7 @@ public class MainActivity extends BaseSampleActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (adapter != null) {
-            adapter.close();
-            adapter = null;
-        }
+        adapter.close();
     }
 
     @Override
@@ -61,23 +65,59 @@ public class MainActivity extends BaseSampleActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_sample2) {
-            RemotePDFActivity.open(this);
+            launchActivity(RemotePDFActivity.class);
             return false;
         } else if (id == R.id.action_sample3) {
-            AssetOnSDActivity.open(this);
+            requestPermissionsThenOpen(AssetOnSDActivity.class);
             return false;
         } else if (id == R.id.action_sample4) {
             Toast.makeText(this, R.string.dummy_msg, Toast.LENGTH_LONG).show();
         } else if (id == R.id.action_sample5) {
-            AssetOnXMLActivity.open(this);
+            requestPermissionsThenOpen(AssetOnXMLActivity.class);
         } else if (id == R.id.action_sample8) {
-            ZoomablePDFActivityPhotoView.open(this);
+            requestPermissionsThenOpen(ZoomablePDFActivityPhotoView.class);
         } else if (id == R.id.action_sample9) {
-            PDFWithScaleActivity.open(this);
+            launchActivity(PDFWithScaleActivity.class);
         } else if (id == R.id.action_sample10) {
-            InvalidPdfActivity.open(this);
+            launchActivity(InvalidPdfActivity.class);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected boolean hasExternalStoragePermissions() {
+        boolean hasReadPermission = ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED;
+
+        boolean hasWritePermission = ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED;
+
+        return hasReadPermission && hasWritePermission;
+    }
+
+    protected void requestPermissionsThenOpen(Class activityClass) {
+        if (hasExternalStoragePermissions()) {
+            launchActivity(activityClass);
+        } else {
+            requestExternalStoragePermissions();
+        }
+    }
+
+    protected void requestExternalStoragePermissions() {
+        String[] permissions = {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        };
+
+        ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
+    }
+
+    protected void launchActivity(Class activityClass) {
+        Intent i = new Intent(this, activityClass);
+        startActivity(i);
     }
 }

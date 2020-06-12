@@ -31,7 +31,7 @@ public class AssetOnXMLActivity extends BaseSampleActivity {
         setTitle(R.string.asset_on_xml);
         setContentView(R.layout.activity_asset_on_xml);
 
-        pdfViewPager = (PDFViewPager) findViewById(R.id.pdfViewPager);
+        pdfViewPager = findViewById(R.id.pdfViewPager);
     }
 
     @Override
@@ -39,10 +39,5 @@ public class AssetOnXMLActivity extends BaseSampleActivity {
         super.onDestroy();
 
         ((BasePDFPagerAdapter) pdfViewPager.getAdapter()).close();
-    }
-
-    public static void open(Context context) {
-        Intent i = new Intent(context, AssetOnXMLActivity.class);
-        context.startActivity(i);
     }
 }

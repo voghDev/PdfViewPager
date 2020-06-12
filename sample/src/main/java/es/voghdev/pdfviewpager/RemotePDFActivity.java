@@ -74,11 +74,6 @@ public class RemotePDFActivity extends BaseSampleActivity implements DownloadFil
         return etPdfUrl.getText().toString().trim();
     }
 
-    public static void open(Context context) {
-        Intent i = new Intent(context, RemotePDFActivity.class);
-        context.startActivity(i);
-    }
-
     public void showDownloadButton() {
         btnDownload.setVisibility(View.VISIBLE);
     }
