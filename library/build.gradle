@@ -60,7 +60,7 @@ task checkstyle(type: Checkstyle) {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0' }
+    implementation 'androidx.appcompat:appcompat:1.2.0' }
 
 // Bintray installing and uploading scripts
 // Can be found here: https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle
