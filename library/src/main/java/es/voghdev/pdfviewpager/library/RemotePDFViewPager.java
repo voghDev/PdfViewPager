@@ -18,6 +18,7 @@ package es.voghdev.pdfviewpager.library;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -39,7 +40,7 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
         this.context = context;
         this.listener = listener;
 
-        init(new DownloadFileUrlConnectionImpl(context, new Handler(), this), pdfUrl);
+        init(new DownloadFileUrlConnectionImpl(context, new Handler(Looper.getMainLooper()), this), pdfUrl);
     }
 
     public RemotePDFViewPager(Context context,
@@ -74,7 +75,7 @@ public class RemotePDFViewPager extends ViewPager implements DownloadFile.Listen
             String pdfUrl = a.getString(R.styleable.PDFViewPager_pdfUrl);
 
             if (pdfUrl != null && pdfUrl.length() > 0) {
-                init(new DownloadFileUrlConnectionImpl(context, new Handler(), this), pdfUrl);
+                init(new DownloadFileUrlConnectionImpl(context, new Handler(Looper.getMainLooper()), this), pdfUrl);
             }
 
             a.recycle();
