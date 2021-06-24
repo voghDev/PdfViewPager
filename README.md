@@ -216,7 +216,7 @@ And with your Android device connected
 [4]: https://github.com/voghDev/PdfViewPager/blob/master/CHANGELOG.md
 [5]: https://github.com/sephiroth74/ImageViewZoom
 [6]: http://developer.android.com/reference/android/graphics/pdf/PdfRenderer.html
-[7]: https://github.com/voghDev/PdfViewPager/blob/master/sample/src/main/java/es/voghdev/pdfviewpager/LegacyPDFActivity.java
+[7]: https://github.com/voghDev/PdfViewPager/blob/27b61836168a09fec9287726246bd7b3da8aae74/sample/src/main/java/es/voghdev/pdfviewpager/LegacyPDFActivity.java
 [8]: https://github.com/voghDev/PdfViewPager/tree/master/sample/src/main/java/es/voghdev/pdfviewpager
 [9]: https://github.com/voghDev
 [10]: http://www.mobiledevstories.com
