@@ -2,12 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
 
     defaultConfig {
         applicationId "es.voghdev.pdfviewpager"
         minSdkVersion 15
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
