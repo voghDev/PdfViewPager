@@ -1,36 +1,18 @@
+import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
+import com.vanniktech.maven.publish.SonatypeHost
+
 apply plugin: 'com.android.library'
 apply plugin: 'checkstyle'
-
-ext {
-    publishedGroupId = 'es.voghdev.pdfviewpager'
-    libraryName = 'PdfViewPager'
-    artifact = 'library'
-
-    libraryDescription = 'Android widget to display PDF documents in your Views, Activities or Fragments.'
-
-    siteUrl = 'https://github.com/voghDev/PdfViewPager'
-    gitUrl = 'https://github.com/voghDev/PdfViewPager.git'
-
-    libraryVersion = '1.1.2'
-
-    developerId = 'voghDev'
-    developerName = 'Olmo Gallegos'
-    developerEmail = 'vendofiatpunto@hotmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
+apply plugin: 'com.vanniktech.maven.publish'
 
 android {
-    compileSdkVersion 34
+    namespace 'es.voghdev.pdfviewpager.library'
+    compileSdk 34
     buildToolsVersion "34.0.0"
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 34
-        versionCode 8
-        versionName "1.0.0"
+        minSdk 15
+        targetSdk 34
     }
     buildTypes {
         release {
@@ -38,8 +20,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
+    lint {
         abortOnError false
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 }
 
@@ -58,5 +44,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
 }
 
-group = publishedGroupId
-version = libraryVersion
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+    signAllPublications()
+    configure(new AndroidSingleVariantLibrary("release", true, true))
+}
