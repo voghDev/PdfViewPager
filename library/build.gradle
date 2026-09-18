@@ -49,3 +49,15 @@ mavenPublishing {
     signAllPublications()
     configure(new AndroidSingleVariantLibrary("release", true, true))
 }
+
+signing {
+    def signingKey = findProperty("signingInMemoryKey") as String
+    def signingPassword = findProperty("signingInMemoryKeyPassword") as String
+    def signingKeyId = findProperty("signingInMemoryKeyId") as String
+    if (signingKey != null && signingPassword != null) {
+        if (!signingKey.startsWith("-----BEGIN")) {
+            signingKey = new String(signingKey.decodeBase64())
+        }
+        useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+    }
+}
