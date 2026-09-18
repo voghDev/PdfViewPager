@@ -2,11 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 
 android {
-    compileSdkVersion 29
+    namespace 'es.voghdev.pdfviewpager'
+    compileSdk 34
+    buildToolsVersion "34.0.0"
 
     defaultConfig {
         applicationId "es.voghdev.pdfviewpager"
-        minSdkVersion 15
+        minSdk 15
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -17,12 +22,14 @@ android {
         }
     }
 
-    lintOptions {
+    lint {
         abortOnError false
     }
 
-    packagingOptions {
-        exclude 'LICENSE.txt'
+    packaging {
+        resources {
+            excludes += 'LICENSE.txt'
+        }
     }
 }
 
